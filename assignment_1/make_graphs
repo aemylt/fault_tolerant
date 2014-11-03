@@ -5,7 +5,8 @@ import matplotlib.pyplot as plot
 import math
 
 def q6_r_sys(r_m, c):
-    return r_m * r_m + (1 - r_m) * c * r_m * r_m
+    one_module = r_m * r_m + (1 - r_m) * c * r_m
+    return one_module * one_module + (1 - one_module) * c * one_module
 
 q7_lambda = 0.001
 
