@@ -55,7 +55,7 @@
 
         $= e^{6*10^{-5}} + e^{3*10^{-5}}(1 - e^{3*10^{-5}}) + e^{4*10^{-5}}(1 - e^{2*10^{-5}}) + e^{5*10^{-5}}(1 - e^{1*10^{-5}})$
 
-        $ = 0.999$
+        $ = 0.9999999989$
 
         \item First, we need the reliability of one pair of modules:
 
@@ -72,19 +72,24 @@
         When plotted on a graph, this looks like the following:
 
         \begin{center}
-        \includegraphics[scale=0.7]{question_6_graph}
+            \includegraphics[scale=0.7]{question_6_graph}
         \end{center}
 
-        \item TODO: Add diagram of states
+        \item When a module fails in our hybrid system, there are two possibilities:
 
-        Our system can now be modelled by the following equation, assuming that our voter and reconfiguration circuitry are perfect:
+        \begin{itemize}
+            \item If $M_1$ or $M_2$ fail, then we remove that module and are left with two modules.
+            \item If $M_3$ fails, then we swap out the module and have a traditional TMR.
+        \end{itemize}
 
-        $R_{Sys} = R_M^3 + (1 - R_M)R_M^3 + 4(1 - R_M)^2R_M^2 + 2(1 - R_M)R_M^2$
+        Our system can therefore be modelled by the following equation, assuming that our voter and reconfiguration circuitry are perfect:
+
+        $R_{Sys} = R_M^3 + 2(1 - R_M)R_M^2 + (1 - R_M)(R_M^3 + 3(1 - R_M)R_M^2)$
 
         By setting $R_M(t) = e^{-0.001t}$, we can see what the reliability of the system looks like compared to standard TMR with no spares. Plotted below is the reliability of both schemes over 4000 hours:
 
         \begin{center}
-        \includegraphics[scale=0.7]{question_7_graph}
+            \includegraphics[scale=0.7]{question_7_graph}
         \end{center}
 
     \end{enumerate}
