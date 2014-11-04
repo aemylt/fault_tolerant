@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
-from numpy import arange
-import matplotlib.pyplot as plot
 import math
+import matplotlib.pyplot as plot
+from mpl_toolkits.mplot3d import Axes3D
+from numpy import arange
 
-def q6_r_sys(r_m, c):
+def calculate_q6_r_sys(r_m, c):
     one_module = r_m * r_m + (1 - r_m) * c * r_m
     return one_module * one_module + (1 - one_module) * c * one_module
 
@@ -19,15 +20,17 @@ def calculate_q7_tmr(t):
     r_m = math.e ** (-0.001 * t)
     return 3 * r_m * r_m - 2 * r_m * r_m * r_m
 
-q6_r_0 = []
-q6_r_05 = []
-q6_r_1 = []
-q6_r_m = arange(0, 1.001, 0.01)
+q6_r_sys = []
+q6_r_m = []
+q6_cov = []
 
-for i in q6_r_m:
-    q6_r_0.append(q6_r_sys(i, 0))
-    q6_r_05.append(q6_r_sys(i, 0.5))
-    q6_r_1.append(q6_r_sys(i, 1))
+for i in arange(0, 1.01, 0.01):
+    q6_r_m.append([i] * 101)
+    q6_r_sys.append([])
+    q6_cov.append([])
+    for j in arange(0, 1.01, 0.01):
+        q6_r_sys[-1].append(calculate_q6_r_sys(i, j))
+        q6_cov[-1].append(j)
 
 q7_r_sys = []
 q7_tmr = []
@@ -37,13 +40,13 @@ for i in q7_t:
     q7_r_sys.append(calculate_q7_r_sys(i))
     q7_tmr.append(calculate_q7_tmr(i))
 
-plot.plot(q6_r_m, q6_r_0, label='Coverage $C = 0$')
-plot.plot(q6_r_m, q6_r_05, label='Coverage $C = 0.5$')
-plot.plot(q6_r_m, q6_r_1, label='Coverage $C = 1$')
-plot.legend(bbox_to_anchor=(0.5, 0.9), bbox_transform=plot.gcf().transFigure)
-plot.xlabel("Module Reliability $R_M$")
-plot.ylabel("System Reliability $R_{Sys}$")
-plot.title("Reliability of the Pair by Spare scheme over Module Reliability")
+fig = plot.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(q6_r_m, q6_cov, q6_r_sys)
+ax.set_xlabel('Module Reliability $R_M$')
+ax.set_ylabel('Coverage $C$')
+ax.set_zlabel('System Reliability $R_Sys$')
+plot.title("Reliability of Pair By Spare Scheme over Module Reliability and Coverage")
 plot.savefig('question_6_graph.pdf', bbox_inches='tight')
 
 plot.figure()
