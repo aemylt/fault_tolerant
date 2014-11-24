@@ -171,6 +171,20 @@
 
                     $\frac{dP_F(t)}{dt} = P_2(t)\lambda_1(1 - c) + P_1(t)\lambda_1$
 
+                    We can integrate these using the Laplace Transform:
+
+                    $sP_2(s) - P_2(0) = sP_2(s) - 1 = -P_2(s)(\lambda_1 + \lambda_2)$
+
+                    $P_2(s + \lambda_1 + \lambda_2) = 1 \implies P_2(s) = \frac{1}{s + \lambda_1 + \lambda_2} \implies P_2(t) = e^{-(\lambda_1 + \lambda_2)t} $
+
+                    $sP_1(s) - P_1(0) = sP_1(s) = P_2(s)(\lambda_1c + \lambda_2) - P_1(s)\lambda_1$
+
+                    $P_1(s)(s + \lambda_1) = P_2(s)(\lambda_1c + \lambda_2) = \frac{\lambda_1c + \lambda_2}{s + \lambda_1 + \lambda_2}$
+
+                    $P_1(s) = \frac{\lambda_1c + \lambda_2}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)} = \frac{\lambda_1c}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)} + \frac{\lambda_2}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)}$
+
+                    $P_1(s) = \frac{\lambda_1c}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)} + \frac{1}{s + \lambda_1} - \frac{1}{s + \lambda_1 + \lambda_2} $
+
             \end{description}
 
         \item
