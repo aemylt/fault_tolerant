@@ -195,9 +195,9 @@
 
                 \item
                     \begin{description}
-                        \item[(a)] The probability of there being a fault when only a single program is produced is the probability of any routine failing. This is $0.01 * 20 = 0.2$
+                        \item[(a)] The probability of a routine having no faults is $1 - 0.01 = 0.99$
 
-                        The probability of the program being fault free is the inverse of this, which is $1 - 0.2 = 0.8$
+                        Therefore the probrability of there being no faults in the whole program is $0.99^{20} = 0.8179$
 
                         \item[(b)] If the probability of the routine being faulty is reduced to $10\%$ of the original level, then the new probability is:
 
@@ -205,15 +205,13 @@
 
                         Thus the probability of a program consisting of only this routine not being faulty is $1 - 0.001 = 0.999$
 
-                        \item[(c)] The probability of a fault in a version is $0.2$, as stated above.
+                        \item[(c)] The probability of version having no faults is $0.99^{20} = 0.8179$, as stated in part \textbf{(a)}.
 
-                        The probability that all three versions are free of faults is $0.8^3 = 0.512$
+                        The probability of a version being faulty is the opposite of this probability: $1 - 0.99^{20} = 0.1821$
 
-                        That probability that one version contains faults but the other two don't is $0.8^2*0.2 = 0.128$
+                        The probability of the whole program when three-version programming being used is therefore:
 
-                        The probability of the program being free of faults is therefore:
-
-                        $0.512 + 3 * 0.128 * 0.85 = 0.8384$
+                        $(0.99^{20})^3 + 3 * (0.99^{20})^2 * (1 - 0.99^{20}) * 0.85 = 0.8577$
                     \end{description}
             \end{enumerate}
 
