@@ -7,6 +7,7 @@
 \cfoot{Page \thepage}
 
 \usepackage{tikz}
+\usetikzlibrary{positioning}
 
 \usepackage{amsmath}
 
@@ -47,41 +48,34 @@
 
                     In the case of our five module system, the system starts off in a 5MR setup. When a module develops a fault, this module is removed and the system switches to a setup with four voting modules. When another module develops a fault, that module is also removed, leaving three voters. The system now continues as a traditional TMR.
 
-                \item Consider the reliability diagram of the system without module C:
+                \item Because module b never fails, we do not need to consider it in the reliability diagram. The result is the following:
 
-                    \begin{center}
-                        \begin{tikzpicture}
+                    %\begin{center}
+                        \begin{tikzpicture}[node distance=3cm]
                             \tikzset{module/.style={draw, shape=rectangle}}
-                            \node[module] (a) at (1, 1){a};
-                            \node[module] (b) at (2, 1){b};
-                            \node[module] (c) at (2, 0){c};
-                            \node[module] (A) at (2, 2){A};
-                            \node[module] (B) at (3, 2){B};
-
-                            \draw (0, 1) -- (a)
-                                (0, 1) -- (A)
-                                (A) -- (B)
-                                (a) -- (b)
-                                (a) -- (c)
-                                (b) -- (B)
-                                (B) -- (4, 1)
-                                (c) -- (4, 1);
+                            \node (start) {};
+                            \node[module, above right of = start] (A) {A};
+                            \node[module, below right of = start] (a) {a};
+                            \node[module, right of = A] (B) {B};
+                            \node[module, right of = a] (c) {c};
+                            \node[module, below of = c] (C) {C};
+                            \draw (start) -- (1cm, 0) |- (A);
+                            \draw (start) -- (1cm, 0) |- (a);
+                            \draw (A) -| (3cm, 0) -- (4cm, 0) |- (B);
+                            \draw (a) -| (3cm, 0) -- (4cm, 0) |- (c);
+                            \draw (B) -| (6cm, 0) -- (7cm, 0);
+                            \draw (c) -| (6cm, 0);
+                            \draw (5mm, 0) |- (C) -| (65mm, 0);
                         \end{tikzpicture}
-                    \end{center}
+                    %\end{center}
 
-                    The minimum requirements for these modules to fail and the probabilities of them happening are:
-                    \begin{itemize}
-                        \item a and A fail - $(1 - R)^2$
-                        \item a and B fail - $(1 - R)^2$
-                        \item B and c fail - $(1 - R)^2$
-                    \end{itemize}
-                    The probability of these modules failing is therefore $3(1 - R)^2$, so the reliability for these modules is:
+                    From this simplified reliability block diagram, we can derive an equation for the overall reliability as follows:
 
-                    $R_{abcAB} = 1 - 3(1 - R)^2$
+                    $R_{Aa} = R_{Bc} = 1 - (1 - R)^2$
 
-                    We can incorporate this into the overall system reliability as module C runs in parallel to all of these modules.
+                    $R_{ABac} = R_{Aa} * R_{Bc} = (1 - (1 - R)^2)^2$
 
-                    $R_{system} = 1 - (1 - R_{abcAB})(1 - R_C) = 1 - 3(1 - R)^3$
+                    $R_{system} = 1 - (1 - R_{ABac})(1 - R_C) = (1 - (1 - R)^2)^2(1 - R) $
 
             \end{enumerate}
 
@@ -157,7 +151,7 @@
                         P_2(t)\lambda_1(1 - c)\Delta t + P_1(t)\lambda_1\Delta t + P_F(t)
                     \end{bmatrix}$
 
-                    $\frac{P_2(t + \Delta t) - P_2(t)}{\Delta t} = P_2(t)(\lambda_1 + \lambda_2)$
+                    $\frac{P_2(t + \Delta t) - P_2(t)}{\Delta t} = -P_2(t)(\lambda_1 + \lambda_2)$
 
                     $\frac{P_1(t + \Delta t) - P_1(t)}{\Delta t} = P_2(t)(\lambda_1 c + \lambda_2) - P_1(t)\lambda_1$
 
@@ -165,7 +159,7 @@
 
                     As $\Delta_t \to 0$, we get the differential equations for the Markov model:
 
-                    $\frac{dP_2(t)}{dt} = P_2(t)(\lambda_1 + \lambda_2)$
+                    $\frac{dP_2(t)}{dt} = -P_2(t)(\lambda_1 + \lambda_2)$
 
                     $\frac{dP_1(t)}{dt} = P_2(t)(\lambda_1 c + \lambda_2) - P_1(t)\lambda_1$
 
@@ -175,15 +169,35 @@
 
                     $sP_2(s) - P_2(0) = sP_2(s) - 1 = -P_2(s)(\lambda_1 + \lambda_2)$
 
-                    $P_2(s + \lambda_1 + \lambda_2) = 1 \implies P_2(s) = \frac{1}{s + \lambda_1 + \lambda_2} \implies P_2(t) = e^{-(\lambda_1 + \lambda_2)t} $
+                    $P_2(s + \lambda_1 + \lambda_2) = 1 \implies P_2(s) = \frac{1}{s + \lambda_1 + \lambda_2} \implies P_2(t) = e^{-(\lambda_1 + \lambda_2)t}$
 
                     $sP_1(s) - P_1(0) = sP_1(s) = P_2(s)(\lambda_1c + \lambda_2) - P_1(s)\lambda_1$
 
                     $P_1(s)(s + \lambda_1) = P_2(s)(\lambda_1c + \lambda_2) = \frac{\lambda_1c + \lambda_2}{s + \lambda_1 + \lambda_2}$
 
-                    $P_1(s) = \frac{\lambda_1c + \lambda_2}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)} = \frac{\lambda_1c}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)} + \frac{\lambda_2}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)}$
+                    $P_1(s) = \frac{\lambda_1c + \lambda_2}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)} = \frac{A}{s + \lambda_1} + \frac{B}{s + \lambda_1 + \lambda_2}$
 
-                    $P_1(s) = \frac{\lambda_1c}{(s + \lambda_1 + \lambda_2)(s + \lambda_1)} + \frac{1}{s + \lambda_1} - \frac{1}{s + \lambda_1 + \lambda_2} $
+                    We can solve A and B via partial fractions:
+
+                    $\lambda_1c + \lambda_2 = A(s + \lambda_1 + \lambda_2) + B(s + \lambda_1)$
+
+                    If we set $s = -\lambda_1$ then:
+
+                    $\lambda_1c + \lambda_2 = A\lambda_2 \implies A = \frac{\lambda_1c + \lambda_2}{\lambda_2}$
+
+                    If we set $s = -\lambda_1 - \lambda_2$ then:
+
+                    $\lambda_1c + \lambda_2 = -B\lambda_2 \implies B = -\frac{\lambda_1c + \lambda_2}{\lambda_2}$
+
+                    Substituting this back in, we find:
+
+                    $P_1(s) = \frac{\lambda_1c + \lambda_2}{\lambda_2(s + \lambda_1)} - \frac{\lambda_1c + \lambda_2}{\lambda_2(s + \lambda_1 + \lambda_2)}$
+
+                    Finally, we find:
+
+                    $P_1(t) = \frac{\lambda_1c + \lambda_2}{\lambda_2}e^{-\lambda_1t} - \frac{\lambda_1c + \lambda_2}{\lambda_2(s + \lambda_1 + \lambda_2)}e^{-(\lambda_1 + \lambda_2)t}$
+
+                    $R_{system}(t) = P_2(t) + P_1(t) = e^{-(\lambda_1 + \lambda_2)t} + \frac{\lambda_1c + \lambda_2}{\lambda_2}e^{-\lambda_1t} - \frac{\lambda_1c + \lambda_2}{\lambda_2(s + \lambda_1 + \lambda_2)}e^{-(\lambda_1 + \lambda_2)t}$
 
             \end{description}
 
