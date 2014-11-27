@@ -69,11 +69,21 @@
 
                     From this simplified reliability block diagram, we can derive an equation for the overall reliability as follows:
 
-                    $R_{Aa} = R_{Bc} = 1 - (1 - R)^2$
+                    $R_{Aa}(t) = R_{Bc}(t) = 1 - (1 - R(t))^2$
 
-                    $R_{ABac} = R_{Aa} * R_{Bc} = (1 - (1 - R)^2)^2$
+                    $R_{ABac}(t) = R_{Aa}(t) * R_{Bc}(t) = (1 - (1 - R(t))^2)^2$
 
-                    $R_{system} = 1 - (1 - R_{ABac})(1 - R_C) = 1 - (1 - (1 - (1 - R)^2)^2)(1 - R) $
+                    $R_{system}(t) = 1 - (1 - R_{ABac}(t))(1 - R_C(t))$
+
+                    We can now find the reliability of the system:
+
+                    $R_{system}(t) = 1 - (1 - (1 - (1 - R(t))^2)^2)(1 - R(t))$
+
+                    $= 1 - (1 - (2R(t) - R(t)^2)^2)(1 - R(t))$
+
+                    $= 1 - (1 -R(t)^4 + 4R(t)^3 - 4R(t)^2)(1 - R(t))$
+
+                    $= -R(t)^5 + 5R(t)^4 - 8R(t)^3 + 4R(t)^2 + R(t)$
 
             \end{enumerate}
 
