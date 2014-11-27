@@ -42,32 +42,30 @@
             \begin{enumerate}
                 \item NMR with spare means that the system will always act as an NMR system, but if any of the modules develops a fault that is detected, that module will be swapped out for a spare.
 
-                    In the case of our example will five modules, three of the modules will be in use and the other two will act as spares. If one of the three active modules develops a fault, this is swapped out for a spare and there will be three active modules again, but only one spare left. When a second module develops a fault, this is again swapped out for the remaining spare. We are now out of spares, so the system continues as a traditional NMR (in this case TMR).
+                    In the case of our example will five modules, three of the modules will be in use and the other two will act as spares. If one of the three active modules develops a fault, this is swapped out for a spare and there will be three active modules again, but only one spare left. When a second module develops a fault, this is swapped out for the remaining spare. We are now out of spares, so the system continues as a traditional NMR.
 
-                    Self-purging redundancy has every module that hasn't yet developed a fault active at the same time. If a module develops a fault, that module is removed and the system continues with the remaining modules.
+                    Self-purging redundancy has every module that hasn't yet developed a fault active in an NMR circuit. If a module develops a fault, that module is removed and the system continues with the remaining modules active.
 
                     In the case of our five module system, the system starts off in a 5MR setup. When a module develops a fault, this module is removed and the system switches to a setup with four voting modules. When another module develops a fault, that module is also removed, leaving three voters. The system now continues as a traditional TMR.
 
-                \item Because module b never fails, we do not need to consider it in the reliability diagram. The result is the following:
+                \item Because module b never fails, we do can remove it from the reliability diagram. The result is the following:
 
-                    %\begin{center}
-                        \begin{tikzpicture}[node distance=3cm]
-                            \tikzset{module/.style={draw, shape=rectangle}}
-                            \node (start) {};
-                            \node[module, above right of = start] (A) {A};
-                            \node[module, below right of = start] (a) {a};
-                            \node[module, right of = A] (B) {B};
-                            \node[module, right of = a] (c) {c};
-                            \node[module, below of = c] (C) {C};
-                            \draw (start) -- (1cm, 0) |- (A);
-                            \draw (start) -- (1cm, 0) |- (a);
-                            \draw (A) -| (3cm, 0) -- (4cm, 0) |- (B);
-                            \draw (a) -| (3cm, 0) -- (4cm, 0) |- (c);
-                            \draw (B) -| (6cm, 0) -- (7cm, 0);
-                            \draw (c) -| (6cm, 0);
-                            \draw (5mm, 0) |- (C) -| (65mm, 0);
-                        \end{tikzpicture}
-                    %\end{center}
+                    \begin{tikzpicture}[node distance=3cm]
+                        \tikzset{module/.style={draw, shape=rectangle}}
+                        \node (start) {};
+                        \node[module, above right of = start] (A) {A};
+                        \node[module, below right of = start] (a) {a};
+                        \node[module, right of = A] (B) {B};
+                        \node[module, right of = a] (c) {c};
+                        \node[module, below of = c] (C) {C};
+                        \draw (start) -- (1cm, 0) |- (A);
+                        \draw (start) -- (1cm, 0) |- (a);
+                        \draw (A) -| (3cm, 0) -- (4cm, 0) |- (B);
+                        \draw (a) -| (3cm, 0) -- (4cm, 0) |- (c);
+                        \draw (B) -| (6cm, 0) -- (7cm, 0);
+                        \draw (c) -| (6cm, 0);
+                        \draw (5mm, 0) |- (C) -| (65mm, 0);
+                    \end{tikzpicture}
 
                     From this simplified reliability block diagram, we can derive an equation for the overall reliability as follows:
 
@@ -82,8 +80,8 @@
         \item
             \begin{itemize}
                 \item 3S is all three modules working and the spare not in use.
-                \item 3 is three modules working and the spare has either been put in for another module or has failed.
-                \item 2 is two modules working and the spare has either been put in for another module or has failed.
+                \item 3 is three modules working and either one module has been replaced with the spare or the spare has developed a fault.
+                \item 2 is two modules working and either one module has been replaced with the spare or the spare has developed a fault.
                 \item 2S is where one of the modules has failed, but the failure hasn't been detected.
                 \item F is the failure state; either two modules have failed but neither were successfully detected and swapped for the spare, or three modules have failed and one was replaced with the spare.
             \end{itemize}
@@ -203,7 +201,7 @@
 
         \item
             \begin{enumerate}
-                \item Software Implemented Fault Tolerance (SIFT) is where we use software to make systems tolerant against hardware faults. Common examples of this include implementing the voter for an NMR system in software, or using software to implement system checkpoints.
+                \item Software Implemented Fault Tolerance (SIFT) is using software to make systems tolerant against hardware faults. Common examples of this include implementing the voter for an NMR system in software, or using software to implement system checkpoints.
 
                 Software Fault Tolerance (SFT) is using fault tolerance techniques to defend against programming errors. Examples of this include acceptance tests and N-version programming.
 
