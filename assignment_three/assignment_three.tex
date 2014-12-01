@@ -1,0 +1,65 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Dominic Moylett - dm1905@my.bristol.ac.uk}
+\cfoot{Page \thepage}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{amsmath}
+
+\begin{document}
+    \begin{center}
+        \section*{Fault Tolerant Computing and VLSI Testing}
+        \subsection*{Assignment 3}
+    \end{center}
+
+    \begin{enumerate}
+
+        \item
+
+        \item
+
+        \item $FC = 80\% \implies DL = 1 - 0.9^{1-0.8} = 0.020852 = 20852PPM$
+
+        $FC = 90\% \implies DL = 1 - 0.9^{1-0.9} = 0.010481 = 10481PPM$
+
+        $FC = 99\% \implies DL = 1 - 0.9^{1-0.99} = 0.001053 = 1053PPM$
+
+        $DL = 20PPM = 2 * 10^{-5} = 1 - 0.7^{1 - FC}$
+
+        $0.6^{1 - FC} = 1 - 2 * 10^{-5} = 0.99998$
+
+        $1 - FC = \log_{0.6}0.99998 = 3.915 * 10^{-5}$
+
+        $FC = 1 - 3.915 * 10^{-5} = 0.99996 = 99.996\%$
+
+        \item \mbox{}\\
+
+            \begin{tabular}{|c|c|c|c|c|}
+                \hline
+                AB              & 00 & 01      & 10      & 11      \\ \hline
+                Z               & 1  & 1       & 1       & 0       \\ \hline
+                $P_0$ stuck open  & 1  & LastZ   & 1       & 0       \\ \hline
+                $P_0$ stuck short & 1  & 1       & 1       & $I_{DDQ}$ \\ \hline
+                $P_1$ stuck open  & 1  & 1       & LastZ   & 0       \\ \hline
+                $P_1$ stuck short & 1  & 1       & 1       & $I_{DDQ}$ \\ \hline
+                $N_0$ stuck open  & 1  & 1       & 1       & LastZ   \\ \hline
+                $N_0$ stuck short & 1  & $I_{DDQ}$ & 1       & 0       \\ \hline
+                $N_1$ stuck open  & 1  & 1       & 1       & LastZ   \\ \hline
+                $N_1$ stuck short & 1  & 1       & $I_{DDQ}$ & 0       \\ \hline
+            \end{tabular}
+
+        \item $a \oplus (a + b) = a\overline{(a + b)} + \overline{a}(a + b)$
+        $= a\overline{a}\overline{b} + \overline{a}a + \overline{a}b = \overline{a}b$
+
+        $(a + b)\overline{b} = a\overline{b} + b\overline{b} = a\overline{b}$
+
+        $(a \oplus (a + b)) + (a + b)\overline{b} = \overline{a}b + a\overline{b} = a \oplus b $
+
+    \end{enumerate}
+
+\end{document}
