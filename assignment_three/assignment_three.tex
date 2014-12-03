@@ -53,12 +53,87 @@
                 $N_1$ stuck short & 1  & 1       & $I_{DDQ}$ & 0       \\ \hline
             \end{tabular}
 
-        \item $a \oplus (a + b) = a\overline{(a + b)} + \overline{a}(a + b)$
-        $= a\overline{a}\overline{b} + \overline{a}a + \overline{a}b = \overline{a}b$
+        \item TODO: Add tests here!
+
+        $a \oplus (a + b) = a\overline{(a + b)} + \overline{a}(a + b) = a\overline{a}\overline{b} + \overline{a}a + \overline{a}b = \overline{a}b$
 
         $(a + b)\overline{b} = a\overline{b} + b\overline{b} = a\overline{b}$
 
         $(a \oplus (a + b)) + (a + b)\overline{b} = \overline{a}b + a\overline{b} = a \oplus b $
+
+        Therefore, the boolean operation this circuit is equivalent to is exclusive-OR.
+
+        \item Test patterns are written as $abc$.
+
+            Not that a * symbol is used where appropriate to represent the AND operation for clarity, in order to help distinguish between, for example, $\overline{a*c}$ and $\overline{a}*\overline{c}$
+            \begin{description}
+                \item[(i)] $\overline{a}\frac{dz}{da} = \overline{a}(z(a = 1) \oplus z(a = 0)) = \overline{a}((\overline{c} + cb) \oplus cb)$
+
+                    $= \overline{a}(\overline{\overline{c} + cb}cb + (\overline{c} + cb)\overline{cb}) = \overline{a}(\overline{c}\overline{cb}cb + \overline{c}\overline{cb} + cb\overline{cb})$
+
+                    $= \overline{a} * \overline{c}\overline{cb} = \overline{a} * \overline{c}(\overline{c} + \overline{b}) = \overline{a} * \overline{c} + \overline{a} * \overline{c}\overline{b} = \overline{a} * \overline{c}(1 + \overline{b}) = \overline{a} * \overline{c} = 1$
+
+                    The patterns $\{000, 010\}$ can detect the fault.
+
+                \item[(ii)] $h\frac{dz}{dh} = h(z(h = 1) \oplus z(h = 0)) = h(1 \oplus a\overline{c}) = h\overline{a\overline{c}} = h(\overline{a} + c)$
+
+                    $= h\overline{a} + hc$
+
+                    Note that $h = cb$.
+
+                    $h\frac{dz}{dh} = \overline{a}bc + bc = bc(a + 1) = bc = 1$
+
+                    The patterns $\{011, 111\}$ can detect the fault.
+
+                \item[(iii)] $\overline{h}\frac{dz}{dh} = \overline{h}\overline{a} + \overline{h}c = \overline{cb}\overline{a} + \overline{cb}c = (\overline{c} + \overline{b})\overline{a} + (\overline{c} + \overline{b})c$
+
+                $= \overline{a}\overline{b} + \overline{a}\overline{c} + \overline{b}c + \overline{c}c = \overline{a}\overline{c} + \overline{a}\overline{c} + \overline{b}c = 1$
+
+                    The patterns $\{000, 001, 010, 101\}$ can detect the fault.
+
+                \item[(iv)] $e\frac{dz}{de} = e(z(e = 1) \oplus z(e = 0)) = e((a\overline{c} + b) \oplus a\overline{c})$
+
+                    $= e(\overline{a\overline{c} + b}a\overline{c} + (a\overline{c} + b)\overline{a\overline{c}}) = e(\overline{b}*\overline{a\overline{c}}a\overline{c} + a\overline{c}\overline{a\overline{c}} + b\overline{a\overline{c}}) = eb\overline{a\overline{c}}$
+
+                    $= be(\overline{a} + c) = \overline{a}be + bec$
+
+                    Note that $e = c$.
+
+                    $e\frac{dz}{de} = \overline{a}bc + bc = bc(\overline{a} + 1) = bc = 1$
+
+                    The patterns $\{011, 111\}$ can detect the failure.
+
+                \item[(v)] $\overline{e}\frac{dz}{de} = \overline{a}b\overline{e} + b\overline{e}c = \overline{a}b\overline{c} + bc\overline{c} = \overline{a}b\overline{c}$
+
+                    The pattern $\{010\}$ can detect the failure.
+
+                \item[(vi)] $c\frac{dz}{dc} = c(z(c = 1) \oplus z(c = 0)) = c(b \oplus a) = c(\overline{a}b + a\overline{b}) = \overline{a}bc + a\overline{b}c = 1$
+
+                    The patterns $\{011, 101\}$ can detect the fault.
+            \end{description}
+
+        \item Test patterns are written as $ab$.
+            \begin{enumerate}
+                \item $\overline{a}\frac{di}{da} = \overline{a}(i(a = 1) \oplus i(a = 0)) = \overline{a}(b \oplus 0) = \overline{a}b = 1$
+
+                    The pattern $\{01\}$ can detect the fault.
+
+                \item $\overline{d}\frac{di}{da} = \overline{d}(i(d = 1) \oplus i(d = 0)) = \overline{d}(ab \oplus 0) = \overline{d}ab$
+
+                    Note that $d = a$.
+
+                    $\overline{d}\frac{di}{da} = \overline{a}ab = 0 = 1$
+
+                    We have reached a contradiction, therefore this fault cannot be detected.
+
+                \item $\overline{g}\frac{di}{dg} = \overline{g}(i(g = 1) \oplus i(g = 0)) = \overline{g}(ab \oplus 0) = \overline{g}ab$
+
+                    Note that $g = ab$.
+
+                    $\overline{g}\frac{di}{dg} = \overline{ab}ab = 0 = 1$
+
+                    We have reached a contradiction, therefore this fault cannot be detected.
+            \end{enumerate}
 
     \end{enumerate}
 
