@@ -1,0 +1,16 @@
+read_netlist ./verilog_simulation_models/*.v
+read_netlist counter.v
+run_build_model counter
+add_clock 0 CK
+add_scan enable 1 test_se
+write_drc_file ./counter.spf -replace
+run_drc ./counter.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only
+report_summaries
+report_faults -all
+report_patterns -all
+write_pattern FILE_ATPG.wgl -format WGL
+write_pattern FILE_ATPG.stil -format STIL

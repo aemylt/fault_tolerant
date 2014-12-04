@@ -1,0 +1,8 @@
+
+export LM_LICENSE_FILE=/home/research/software/synopsys/licence.dat
+export PATH=/home/research/software/synopsys/syn/linux/syn/bin:$PATH
+export PATH=/home/research/software/synopsys/primetime/linux/syn/bin:$PATH
+export PATH=/home/research/software/synopsys/hspice/linux:$PATH
+export PATH=/home/research/software/synopsys/ns/linux/ns/bin:$PATH
+export PATH=/home/research/software/synopsys/Saber/bin:$PATH
+export PATH=/home/research/software/synopsys/tetramax/linux/syn/bin:$PATH

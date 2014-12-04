@@ -1,0 +1,5 @@
+module test2(A,B,M,N,Y);
+  input A,B,M,N;
+  output Y;
+  assign Y=(A^B)^(M^N);
+endmodule

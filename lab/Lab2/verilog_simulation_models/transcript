@@ -1,0 +1,96 @@
+# //  ModelSim SE-64 6.5c Aug 27 2009 Linux 2.6.18-194.11.3.el5.centos.plus
+# //
+# //  Copyright 1991-2009 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+pwd
+# /home/staff/jimson/Lab2/verilog_simulation_models
+vlog -reportprogress 300 -work work /home/staff/jimson/Lab2/fa.v
+# Model Technology ModelSim SE-64 vlog 6.5c Compiler 2009.08 Aug 27 2009
+# -- Compiling module FA
+# 
+# Top level modules:
+# 	FA
+vsim work.FA
+# vsim work.FA 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading work.FA(fast)
+# Loading work.HDEXOR2D1(fast)
+# ** Warning: (vsim-3010) [TSCALE] - Module 'HDEXOR2D1' has a `timescale directive in effect, but previous modules do not.
+#         Region: /FA/U4
+# Loading work.HDAO22DL(fast)
+add wave \
+{sim:/FA/sum } \
+{sim:/FA/n2 } \
+{sim:/FA/cout } \
+{sim:/FA/cin } \
+{sim:/FA/b } \
+{sim:/FA/a } 
+force -freeze sim:/FA/b 1 0 -cancel 3n
+# Invalid time value: 3n
+# ** Error: (vish-4004) The -cancel option requires a time period argument.
+# Usage: force [-freeze | -drive | -deposit] [-cancel <time>] [-repeat <time>] <object_name> {<value> [[@]<time>[<unit>]]}...
+force -freeze sim:/FA/cin 1 0
+force -freeze sim:/FA/cin St1 0 -cancel 4
+force -freeze sim:/FA/a 0 0 -cancel 5n
+# Invalid time value: 5n
+# ** Error: (vish-4004) The -cancel option requires a time period argument.
+# Usage: force [-freeze | -drive | -deposit] [-cancel <time>] [-repeat <time>] <object_name> {<value> [[@]<time>[<unit>]]}...
+run
+force -freeze sim:/FA/b 1 0 -cancel 10n
+# Invalid time value: 10n
+# ** Error: (vish-4004) The -cancel option requires a time period argument.
+# Usage: force [-freeze | -drive | -deposit] [-cancel <time>] [-repeat <time>] <object_name> {<value> [[@]<time>[<unit>]]}...
+force -freeze sim:/FA/a HiZ 0 -cancel 5n
+# Invalid time value: 5n
+# ** Error: (vish-4004) The -cancel option requires a time period argument.
+# Usage: force [-freeze | -drive | -deposit] [-cancel <time>] [-repeat <time>] <object_name> {<value> [[@]<time>[<unit>]]}...
+run
+restart
+# Loading work.FA(fast)
+# Loading work.HDEXOR2D1(fast)
+# ** Warning: (vsim-3010) [TSCALE] - Module 'HDEXOR2D1' has a `timescale directive in effect, but previous modules do not.
+#         Region: /FA/U4
+# Loading work.HDAO22DL(fast)
+force -freeze sim:/FA/cin 1 1 -cancel 5n
+# Invalid time value: 5n
+# ** Error: (vish-4004) The -cancel option requires a time period argument.
+# Usage: force [-freeze | -drive | -deposit] [-cancel <time>] [-repeat <time>] <object_name> {<value> [[@]<time>[<unit>]]}...
+force -freeze sim:/FA/b 1 0 -cancel 5n
+# Invalid time value: 5n
+# ** Error: (vish-4004) The -cancel option requires a time period argument.
+# Usage: force [-freeze | -drive | -deposit] [-cancel <time>] [-repeat <time>] <object_name> {<value> [[@]<time>[<unit>]]}...
+force -freeze sim:/FA/a 1 0 -cancel 5n
+# Invalid time value: 5n
+# ** Error: (vish-4004) The -cancel option requires a time period argument.
+# Usage: force [-freeze | -drive | -deposit] [-cancel <time>] [-repeat <time>] <object_name> {<value> [[@]<time>[<unit>]]}...
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit

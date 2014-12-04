@@ -1,0 +1,59 @@
+Loading db file '/home/abc/Desktop/Lab1/umcl18g212t3_tc_180V_25C.db'
+Information: Updating design information... (UID-85)
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : s298
+Version: B-2008.09
+Date   : Sat Apr 24 07:48:42 2010
+****************************************
+
+
+Library(s) Used:
+
+    umcl18g212t3_tc_180V_25C (File: /home/abc/Desktop/Lab1/umcl18g212t3_tc_180V_25C.db)
+
+
+Operating Conditions: nom_pvt   Library: umcl18g212t3_tc_180V_25C
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+s298                   suggested_10K     umcl18g212t3_tc_180V_25C
+dff_0                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_1                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_2                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_3                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_4                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_5                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_6                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_7                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_8                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_9                  suggested_10K     umcl18g212t3_tc_180V_25C
+dff_10                 suggested_10K     umcl18g212t3_tc_180V_25C
+dff_11                 suggested_10K     umcl18g212t3_tc_180V_25C
+dff_12                 suggested_10K     umcl18g212t3_tc_180V_25C
+dff_13                 suggested_10K     umcl18g212t3_tc_180V_25C
+
+
+Global Operating Voltage = 1.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1uW
+
+
+  Cell Internal Power  =  62.6618 uW   (84%)
+  Net Switching Power  =  11.8605 uW   (16%)
+                         ---------
+Total Dynamic Power    =  74.5223 uW  (100%)
+
+Cell Leakage Power     =   6.2319 nW
+
+1

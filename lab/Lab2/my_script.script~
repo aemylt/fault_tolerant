@@ -1,0 +1,24 @@
+remove_design -designs
+read_file -format verilog {{c432.v}}
+compile
+write -format verilog -hierarchy -output c432_syn.v
+
+remove_design -designs
+read_file -format verilog {{c499.v}}
+compile
+write -format verilog -hierarchy -output c499_syn.v
+
+remove_design -designs
+read_file -format verilog {{c880.v}}
+compile
+write -format verilog -hierarchy -output c880_syn.v
+
+remove_design -designs
+read_file -format verilog {{c1355.v}}
+compile
+write -format verilog -hierarchy -output c1355_syn.v
+
+remove_design -designs
+read_file -format verilog {{c1908.v}}
+compile
+write -format verilog -hierarchy -output c1908_syn.v

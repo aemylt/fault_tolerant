@@ -1,0 +1,14 @@
+read netlist /home/staff/jimson/Lab2/verilog_simulation_models/*.v
+read netlist  full_add_syn.v
+run build_model fulladder
+
+write drc_file ./test1.spf -replace
+run drc ./test1.spf 
+set faults -model stuck
+add faults -all
+set atpg -abort 300 -merge high -coverage 100 -DEcision NORandom  -norandom_fill
+run atpg
+report patterns -all 
+write patterns ./c171.stil -replace -format stil
+
+

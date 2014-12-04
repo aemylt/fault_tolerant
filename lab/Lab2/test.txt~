@@ -1,0 +1,13 @@
+read netlist verilog_simulation_models/*.v
+read netlist  test2.v
+run build_model test2
+write drc_file temp.spf -replace
+run drc temp.spf
+set faults -model stuck
+add faults -all
+set atpg -abort 300 -merge high -coverage 100 -DEcision NORandom  -norandom_fill
+run atpg
+#eport patterns -all -typehttp://toolbox.xilinx.com/docsan/xilinx4/data/docs/sim/vtex9.html
+write patterns temp.stil -replace -format stil
+BUILD -Force
+

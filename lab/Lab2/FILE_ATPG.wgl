@@ -1,0 +1,247 @@
+# WGL pattern output written by  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 
+# Date: Thu Dec  4 10:00:50 2014
+# Module tested: s27
+# === bidimap ===
+#  in out in out;
+#   00     00
+#   10     10
+#   X0     X0
+#   Z0     -0
+#   -0     -0
+#   01     01
+#   11     11
+#   X1     X1
+#   Z1     -1
+#   -1     -1
+#   0X     0-
+#   1X     1-
+#   XX     X-
+#   ZX     -X
+#   -X     --
+#   0Z     0Z
+#   1Z     1Z
+#   XZ     XZ
+#   ZZ     -Z
+#   -Z     -Z
+#   0-     0-
+#   1-     1-
+#   X-     X-
+#   Z-     --
+#   --     --
+# scanchain inversion reference is set to master
+
+#     Uncollapsed Stuck Fault Summary Report
+# -----------------------------------------------
+# fault class                     code   #faults
+# ------------------------------  ----  ---------
+# Detected                         DT         90
+# Possibly detected                PT          0
+# Undetectable                     UD          4
+# ATPG untestable                  AU          0
+# Not detected                     ND          0
+# -----------------------------------------------
+# total faults                                94
+# test coverage                           100.00%
+# -----------------------------------------------
+# 
+#            Pattern Summary Report
+# -----------------------------------------------
+# #internal patterns                          10
+#     #full_sequential patterns               10
+# -----------------------------------------------
+# 
+# rule  severity  #fails  description
+# ----  --------  ------  ---------------------------------
+# N5    warning     2996  redefined module
+# B8    warning        2  unconnected module input pin
+# 
+# clock_name        off  usage
+# ----------------  ---  --------------------------
+# CK                 0   master shift 
+# 
+# There are no constraint ports
+# There are no equivalent pins
+# There are no net connections
+
+waveform s27
+
+signal
+   "GND" : input;
+   "VDD" : input;
+   "CK" : input;
+   "G0" : input;
+   "G1" : input;
+   "G17" : output;
+   "G2" : input;
+   "G3" : input;
+   "test_si" : input;
+   "test_so" : output;
+   "test_se" : input;
+end
+
+timeplate "_default_WFT_" period 100ns
+   "GND" := input [0ps:S];
+   "VDD" := input [0ps:S];
+   "CK" := input [0ps:D, 50ns:S, 80ns:D];
+   "G0" := input [0ps:S];
+   "G1" := input [0ps:S];
+   "G17" := output [0ps:X, 40ns:Q'edge];
+   "G2" := input [0ps:S];
+   "G3" := input [0ps:S];
+   "test_si" := input [0ps:S];
+   "test_so" := output [0ps:X, 40ns:Q'edge];
+   "test_se" := input [0ps:S];
+end
+
+scancell
+   "DFF_0/Q_reg"; "DFF_1/Q_reg"; "DFF_2/Q_reg"; 
+   Schain_nameG ["DFF_2/Q_reg", "DFF_1/Q_reg", "DFF_0/Q_reg" ];
+end
+
+scanchain
+   Schain_name ["test_si", "DFF_0/Q_reg", "DFF_1/Q_reg", "DFF_2/Q_reg", "test_so"
+                ];
+end
+
+scanstate
+   { non_tester_ready_master_data }
+   { scan_test }
+   Schain_nameU0 := Schain_nameG(XXX);
+   Schain_nameL0 := Schain_nameG(011);
+   Schain_nameU1 := Schain_nameG(000);
+   Schain_nameL1 := Schain_nameG(100);
+   Schain_nameU2 := Schain_nameG(100);
+   Schain_nameL2 := Schain_nameG(010);
+   Schain_nameU3 := Schain_nameG(010);
+   Schain_nameL3 := Schain_nameG(101);
+   Schain_nameU4 := Schain_nameG(101);
+   Schain_nameL4 := Schain_nameG(011);
+   Schain_nameU5 := Schain_nameG(101);
+   Schain_nameL5 := Schain_nameG(000);
+   Schain_nameU6 := Schain_nameG(000);
+   Schain_nameL6 := Schain_nameG(000);
+   Schain_nameU7 := Schain_nameG(000);
+   Schain_nameL7 := Schain_nameG(110);
+   Schain_nameU8 := Schain_nameG(110);
+   Schain_nameL8 := Schain_nameG(010);
+   Schain_nameU9 := Schain_nameG(010);
+   Schain_nameL9 := Schain_nameG(010);
+   Schain_nameU10 := Schain_nameG(010);
+   Schain_nameL10 := Schain_nameG(000);
+end
+
+pattern group_ALL ("GND", "VDD", "CK", "G0", "G1", "G2", "G3", "test_si", "test_se",
+   "G17", "test_so")
+   { test_setup }
+   vector("_default_WFT_") := [ X X 0 X X X X X X X X ];
+   { scan_test }
+   { pattern 0 }
+   { load_unload }
+   vector("_default_WFT_") := [ X X 0 X X X X X 1 X X ];
+     scan("_default_WFT_") := [ X X 1 X X X X - 1 X - ], 
+   output [Schain_name:Schain_nameU0], input [Schain_name:Schain_nameL0];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 0 0 0 1 0 0 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 0 0 0 1 0 0 1 0 ];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 1 0 0 0 1 0 0 X X ];
+   { pattern 1 }
+   { load_unload }
+   vector("_default_WFT_") := [ 1 0 0 0 0 0 1 0 1 X X ];
+     scan("_default_WFT_") := [ 1 0 1 0 0 0 1 - 1 X - ], 
+   output [Schain_name:Schain_nameU1], input [Schain_name:Schain_nameL1];
+   { vector }
+   vector("_default_WFT_") := [ 0 1 0 0 1 0 0 1 0 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 0 1 0 0 1 0 0 1 0 1 1 ];
+   { vector }
+   vector("_default_WFT_") := [ 0 1 1 0 1 0 0 1 0 X X ];
+   { pattern 2 }
+   { load_unload }
+   vector("_default_WFT_") := [ 0 1 0 0 1 0 0 1 1 X X ];
+     scan("_default_WFT_") := [ 0 1 1 0 1 0 0 - 1 X - ], 
+   output [Schain_name:Schain_nameU2], input [Schain_name:Schain_nameL2];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 0 0 0 0 1 1 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 0 0 0 0 1 1 0 0 ];
+   { pattern 3 }
+   { load_unload }
+   vector("_default_WFT_") := [ 1 0 0 0 0 0 0 1 1 X X ];
+     scan("_default_WFT_") := [ 1 0 1 0 0 0 0 - 1 X - ], 
+   output [Schain_name:Schain_nameU3], input [Schain_name:Schain_nameL3];
+   { vector }
+   vector("_default_WFT_") := [ 0 1 0 1 0 0 1 0 0 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 0 1 0 1 0 0 1 0 0 1 1 ];
+   { vector }
+   vector("_default_WFT_") := [ 0 1 1 1 0 0 1 0 0 X X ];
+   { pattern 4 }
+   { load_unload }
+   vector("_default_WFT_") := [ 0 1 0 1 0 0 1 0 1 X X ];
+     scan("_default_WFT_") := [ 0 1 1 1 0 0 1 - 1 X - ], 
+   output [Schain_name:Schain_nameU4], input [Schain_name:Schain_nameL4];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 1 1 0 0 1 0 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 1 1 0 0 1 0 1 0 ];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 1 1 1 0 0 1 0 X X ];
+   { pattern 5 }
+   { load_unload }
+   vector("_default_WFT_") := [ 1 0 0 1 1 0 0 1 1 X X ];
+     scan("_default_WFT_") := [ 1 0 1 1 1 0 0 - 1 X - ], 
+   output [Schain_name:Schain_nameU5], input [Schain_name:Schain_nameL5];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 0 1 1 1 1 0 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 0 1 1 1 1 0 1 0 ];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 1 0 1 1 1 1 0 X X ];
+   { pattern 6 }
+   { load_unload }
+   vector("_default_WFT_") := [ 1 0 0 0 1 1 1 1 1 X X ];
+     scan("_default_WFT_") := [ 1 0 1 0 1 1 1 - 1 X - ], 
+   output [Schain_name:Schain_nameU6], input [Schain_name:Schain_nameL6];
+   { vector }
+   vector("_default_WFT_") := [ 1 1 0 1 0 1 1 1 0 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 1 1 0 1 0 1 1 1 0 0 0 ];
+   { pattern 7 }
+   { load_unload }
+   vector("_default_WFT_") := [ 1 1 0 1 0 1 1 1 1 X X ];
+     scan("_default_WFT_") := [ 1 1 1 1 0 1 1 - 1 X - ], 
+   output [Schain_name:Schain_nameU7], input [Schain_name:Schain_nameL7];
+   { vector }
+   vector("_default_WFT_") := [ 0 1 0 1 1 0 0 0 1 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 0 1 0 1 1 0 0 0 1 1 1 ];
+   { pattern 8 }
+   { load_unload }
+   vector("_default_WFT_") := [ 0 1 0 1 1 0 0 0 1 X X ];
+     scan("_default_WFT_") := [ 0 1 1 1 1 0 0 - 1 X - ], 
+   output [Schain_name:Schain_nameU8], input [Schain_name:Schain_nameL8];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 1 0 0 0 0 1 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 1 0 0 1 0 0 0 0 1 1 0 ];
+   { pattern 9 }
+   { load_unload }
+   vector("_default_WFT_") := [ 1 0 0 1 0 0 0 0 1 X X ];
+     scan("_default_WFT_") := [ 1 0 1 1 0 0 0 - 1 X - ], 
+   output [Schain_name:Schain_nameU9], input [Schain_name:Schain_nameL9];
+   { vector }
+   vector("_default_WFT_") := [ 0 0 0 1 0 1 1 1 0 X X ];
+   { vector }
+   vector("_default_WFT_") := [ 0 0 0 1 0 1 1 1 0 0 0 ];
+   { vector }
+   vector("_default_WFT_") := [ 0 0 1 1 0 1 1 1 0 X X ];
+   { end_pattern 9}
+   { load_unload }
+   vector("_default_WFT_") := [ 0 0 0 1 0 1 1 1 1 X X ];
+     scan("_default_WFT_") := [ 0 0 1 1 0 1 1 - 1 X - ], 
+   output [Schain_name:Schain_nameU10], input [Schain_name:Schain_nameL10];
+end
+
+end

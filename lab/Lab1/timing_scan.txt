@@ -1,0 +1,53 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : s27
+Version: G-2012.06-SP5
+Date   : Wed Dec  3 10:49:04 2014
+****************************************
+
+Operating Conditions: nom_pvt   Library: umcl18g212t3_tc_180V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: DFF_2/Q_reg
+              (rising edge-triggered flip-flop clocked by CK)
+  Endpoint: DFF_0/Q_reg
+            (rising edge-triggered flip-flop clocked by CK)
+  Path Group: CK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  s27                suggested_10K         umcl18g212t3_tc_180V_25C
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock CK (rise edge)                     0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  DFF_2/Q_reg/CK (HDSDFPQ1)                0.00       0.00 r
+  DFF_2/Q_reg/Q (HDSDFPQ1)                 0.22       0.22 f
+  DFF_2/Q (dff_1)                          0.00       0.22 f
+  U19/Z (HDNOR2D1)                         0.10       0.31 r
+  U18/Z (HDAOI22D1)                        0.12       0.44 f
+  U17/Z (HDNOR2D1)                         0.14       0.57 r
+  U15/Z (HDNOR2D1)                         0.06       0.63 f
+  DFF_0/D (dff_0)                          0.00       0.63 f
+  DFF_0/Q_reg/D (HDSDFPQ1)                 0.00       0.63 f
+  data arrival time                                   0.63
+
+  clock CK (rise edge)                    20.00      20.00
+  clock network delay (ideal)              0.00      20.00
+  DFF_0/Q_reg/CK (HDSDFPQ1)                0.00      20.00 r
+  library setup time                      -0.10      19.90
+  data required time                                 19.90
+  -----------------------------------------------------------
+  data required time                                 19.90
+  data arrival time                                  -0.63
+  -----------------------------------------------------------
+  slack (MET)                                        19.27
+
+
+1

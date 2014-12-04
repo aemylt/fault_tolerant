@@ -1,0 +1,25 @@
+read_file -format verilog {{dff.v}}
+read_file -format verilog {{s298.v}}
+current_design s298
+create_clock -name "CK" -period 20 -waveform {0 10} {CK}
+compile
+report_power > power.txt
+report_area > area.txt
+report_timing > timing.txt
+
+set_scan_configuration -style multiplexed_flip_flop
+compile -scan
+
+
+
+set_dft_signal -view existing_dft -type ScanClock -port CK -timing [list 40 60]
+create_test_protocol
+dft_drc
+set_scan_configuration -chain_count 1
+preview_dft
+insert_dft
+report_area >area_dft.txt
+report_power >power_dft.txt
+report_timing >timing_dft.txt
+
+write -format verilog -hierarchy -output s298_dft.v

@@ -1,0 +1,104 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  Z-2007.03-SP5-i071016_155731 STIL output";
+   Date "Sun Apr 17 15:01:56 2011";
+   History {
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT          0 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                 0 *}
+      Ann {* test coverage                             0.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* rule  severity  #fails  description *}
+      Ann {* ----  --------  ------  --------------------------------- *}
+      Ann {* B8    warning        2  unconnected module input pin *}
+      Ann {*  *}
+      Ann {* clock_name        off  usage *}
+      Ann {* ----------------  ---  -------------------------- *}
+      Ann {* CK                 0    *}
+      Ann {*  *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+   }
+}
+Signals {
+   "GND" In; "VDD" In; "CK" In; "G0" In; "G1" In; "G2" In; "G3" In; "test_si" In;
+   "test_se" In; "G17" Out; "test_so" Out;
+}
+SignalGroups {
+   "_pi" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
+   "test_se"'; // #signals=9
+   "_in" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
+   "test_se"'; // #signals=9
+   "_po" = '"G17" + "test_so"'; // #signals=2
+   "_out" = '"G17" + "test_so"'; // #signals=2
+   "_default_In_Timing_" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" +
+   "test_si" + "test_se"'; // #signals=9
+   "_default_Out_Timing_" = '"G17" + "test_so"'; // #signals=2
+   "_default_Clk0_Timing_" = '"CK"'; // #signals=1
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Clk0_Timing_" { P { '0ns' D; '50ns' U; '80ns' D; } }
+         "_default_Out_Timing_" { X { '0ns' X; } }
+         "_default_Out_Timing_" { H { '0ns' X; '40ns' H; } }
+         "_default_Out_Timing_" { T { '0ns' X; '40ns' T; } }
+         "_default_Out_Timing_" { L { '0ns' X; '40ns' L; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+    ScanChain "Schain_name" { ScanIn "test_si"; ScanOut "test_so"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "capture_CK" {
+      W "_default_WFT_";
+      "forcePI": V { "_pi"=\r9 # ; "_po"=XX; }
+      "measurePO": V { "_po"=##; }
+      "pulse": V { "CK"=P; "_po"=XX; }
+   }
+   "capture" {
+      W "_default_WFT_";
+      "forcePI": V { "_pi"=\r9 # ; "_po"=XX; }
+      "measurePO": V { "_po"=##; }
+   }
+   // Uncomment and modify the following to suit your design
+    load_unload {
+      V { "CK" = 0; "test_se"=1;} // force clocks off and scan enable pins active
+      Shift { V {_si=#; _so=#; "CK" = P; }} // pulse shift clocks
+    }
+}
+MacroDefs {
+   "test_setup" {
+      W "_default_WFT_";
+      V { "CK"=0; }
+   }
+}

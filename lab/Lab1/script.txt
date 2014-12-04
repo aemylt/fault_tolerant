@@ -1,0 +1,7 @@
+read_file -format pla {{/home/staff/jimson/linux/Synopsys/Synthesis/gf_97.pla}}
+current_design gf_97.pla
+create_clock -name "clk" -period 20 -waveform {0 10} {clk}
+compile
+report_power > report/arbiter_vhdl_p.rpt
+report_area > report/arbiter_vhdl_a.rpt
+report_timing > report/arbiter_vhdl_t.rpt

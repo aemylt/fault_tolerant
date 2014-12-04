@@ -1,0 +1,6 @@
+#! /bin/bash
+export SNPSLMD_LICENSE_FILE=26000@hl.cs.bris.ac.uk
+export PATH=/home/research/software/synopsys2013/hspice/bin:$PATH
+export PATH=/home/research/software/synopsys2013/G-2012.06-SP3/amd64/syn/bin:$PATH
+export SYNOPSYS=/home/research/software/synopsys2013
+

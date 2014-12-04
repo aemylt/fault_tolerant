@@ -1,0 +1,11 @@
+
+set build -black_box REG_FILE_ram
+
+
+
+#add net connection PIO VDD VSS -remove
+
+
+
+
+

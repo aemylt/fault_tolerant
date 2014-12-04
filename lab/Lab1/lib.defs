@@ -1,0 +1,6 @@
+DEFINE test /home/staff/jimson/linux/IC_Design/VLSI3/test
+ASSIGN test libMode shared
+DEFINE EE34050 /home/staff/jimson/linux/IC_Design/VLSI3/EE34050
+ASSIGN EE34050 libMode shared
+DEFINE lab /home/staff/jimson/linux/IC_Design/VLSI3/lab
+ASSIGN lab libMode shared

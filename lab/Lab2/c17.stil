@@ -1,0 +1,126 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  Z-2007.03-SP5-i071016_155731 STIL output";
+   Date "Thu Mar 25 23:29:10 2010";
+   Source "  TetraMAX (TM)  Z-2007.03-SP5-i071016_155731 STIL output";
+   History {
+      Ann {*  Thu Mar 25 23:23:15 2010  *}
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT          0 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                 0 *}
+      Ann {* test coverage                             0.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT         38 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                38 *}
+      Ann {* test coverage                           100.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           6 *}
+      Ann {*     #basic_scan patterns                     6 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+   }
+}
+Signals {
+   "N1" In; "N2" In; "N3" In; "N6" In; "N7" In; "N22" Out; "N23" Out;
+}
+SignalGroups {
+   "_pi" = '"N1" + "N2" + "N3" + "N6" + "N7"'; // #signals=5
+   "_default_In_Timing_" = '"N1" + "N2" + "N3" + "N6" + "N7"'; // #signals=5
+   "_in" = '"N1" + "N2" + "N3" + "N6" + "N7"'; // #signals=5
+   "_default_Out_Timing_" = '"N22" + "N23"'; // #signals=2
+   "_po" = '"N22" + "N23"'; // #signals=2
+   "_out" = '"N22" + "N23"'; // #signals=2
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Out_Timing_" { X { '0ns' X; } }
+         "_default_Out_Timing_" { H { '0ns' X; '40ns' H; } }
+         "_default_Out_Timing_" { L { '0ns' X; '40ns' L; } }
+         "_default_Out_Timing_" { T { '0ns' X; '40ns' T; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "capture" {
+      W "_default_WFT_";
+      C { "N7"=0; "N6"=0; "N3"=0; "N2"=0; "N1"=0; }
+      "forcePI": V { "_pi"=#####; "_po"=XX; }
+      "measurePO": V { "_po"=##; }
+   }
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+}
+Pattern "_pattern_" {
+   W "_default_WFT_";
+   "precondition all Signals": C { "_pi"=00000; "_po"=XX; }
+   "pattern 0": Call "capture" { 
+      "_pi"=10101; "_po"=HH; }
+   "pattern 1": Call "capture" { 
+      "_pi"=00101; "_po"=LH; }
+   "pattern 2": Call "capture" { 
+      "_pi"=0111N; "_po"=LL; }
+   "pattern 3": Call "capture" { 
+      "_pi"=01N00; "_po"=HH; }
+   "pattern 4": Call "capture" { 
+      "_pi"=10011; "_po"=LH; }
+   "pattern 5": Call "capture" { 
+      "_pi"=N0N00; "_po"=XL; }
+}

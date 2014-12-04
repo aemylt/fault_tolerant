@@ -1,0 +1,54 @@
+# Written by : DC-Transcript, Version 2003.06 -- May 20, 2003
+# Date       : Mon Aug  4 19:23:48 2003
+#
+
+#
+# Translation of script: xx1.dcsh
+#
+
+#/* User's init file for Synopsys Design Analyzer  */
+#/* Each user shall fill in the variables designer, search path */
+#/* for scripts, and cache_read / cache_write as appropriate    */
+
+set company {IHP Frankfurt (Oder) GmbH}
+set designer "Maharatna"
+#/* search_path = ~/Design/designflow/syn_scripts + search_path */
+#                                       /* scripts directory */
+
+set cache_read /tmp
+set cache_write /tmp
+
+set text_print_command {lpr -Phplj-a1 }
+
+set echo_include_commands false
+
+#/* add further commands to "Setup -> Scripts" menu */
+set view_script_submenu_items [concat  $view_script_submenu_items [list {remove 
+all designs} {remove_design -designs}]]
+
+
+#/* set library and search path variables, exclude unwanted modules */
+
+#/* Motorola CDR 3 library: */
+
+# commented out sep 2005 
+# set search_path [list "/usr/synopsys/V-2004.06-SP2/libraries/syn"]
+# set target_library cdr3.max.db
+# set symbol_library cdr3.sdb
+
+# added sep 2005 for umc180 libraries
+set search_path [list "/usr/synopsys/umc180 . /home/csxjm/Synopsys "]
+set target_library umcl18g212t3_tc_180V_25C.db
+set symbol_library umcl18g212t3.sdb
+#set target_library  noc60xr.db
+#set link_library noc60xr.db
+set link_library [concat  "*" $target_library]
+
+define_design_lib WORK -path ./WORK 
+#/* Synopsys 'class': */
+#/*
+#link_library = {"*" "class.db"}
+#target_library = {"class.db"}
+#symbol_library = {"class.sdb" "generic.sdb"}
+#*/
+#/* set_dont_use cdr3synPwcslV225T125/sdff* */
