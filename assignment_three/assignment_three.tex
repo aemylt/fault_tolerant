@@ -29,9 +29,9 @@
                 \node[state, right of = 1] (FS) {FS};
                 \node[state, below of = 1] (FU) {FU};
                 \path[->, thick]
-                    (1) edge [loop above] node {$1 - a\lambda\Delta t$} (1)
-                        edge [bend left = 20] node [above] {$a\lambda C\Delta t$} (FS)
-                        edge [bend left = 20] node [above, sloped] {$a\lambda(1 - C)\Delta t$} (FU)
+                    (1) edge [loop above] node {$1 - \alpha\lambda\Delta t$} (1)
+                        edge [bend left = 20] node [above] {$\alpha\lambda C\Delta t$} (FS)
+                        edge [bend left = 20] node [above, sloped] {$\alpha\lambda(1 - C)\Delta t$} (FU)
                     (FS) edge [loop above] node {$1 - \frac{\Delta t}{24}$} (FS)
                         edge [bend left = 20] node [below] {$\frac{\Delta t}{24}$} (1)
                     (FU) edge [loop below] node {$1 - \frac{\Delta t}{72}$} (FU)
@@ -44,39 +44,15 @@
                 \item FU is where a fault has not been detected.
             \end{itemize}
 
-            $P(t) = \begin{bmatrix} P_1(t) \\ P_{FS}(t) \\ P_{FU}(t) \\ \end{bmatrix}, P_1(t) + P_{FS}(t) + P_{FU}(t) = 1, P(0) = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$
+            The Mean Time To Failure (MTTF) will be the amount of time we expect to stay in the working state. This is the value of $t$ such that $t\alpha\lambda = 1$. This is equal to $t = \frac{1}{\lambda\alpha}$
 
-            $A = \begin{bmatrix}
-                1 - a\lambda\Delta t    & \frac{\Delta t}{24}     & \frac{\Delta t}{72}     \\
-                a\lambda C\Delta t      & 1 - \frac{\Delta t}{24} & 0                       \\
-                a\lambda(1 - C)\Delta t & 0                       & 1 - \frac{\Delta t}{72} \\
-            \end{bmatrix}$ 
+            We detect the failure with probability 0.95, and don't with probability 0.05. This gives us a mean time between failures of:
 
-            $P(t + \Delta t) = AP(t) = \begin{bmatrix}
-                P_1(t)(1 - a\lambda\Delta t) + P_{FS}(t)\frac{\Delta t}{24} + P_{FU}(t)\frac{\Delta t}{72} \\
-                P_1(t)a\lambda C\Delta t + P_{FS}(t)(1 - \frac{\Delta t}{24}) \\
-                P_1(t)a\lambda(1 - C)\Delta t + P_{FU}(t)(1 - \frac{\Delta t}{72}) \\
-            \end{bmatrix}$
+            $0.95 * 24 + 0.05 * 72 = 26.4$
 
-            $P_1(t + \Delta t) = P_1(t)(1 - a\lambda\Delta t) + P_{FS}(t)\frac{\Delta t}{24} + P_{FU}(t)\frac{\Delta t}{72}$
+            Thus, the steady-state availability is:
 
-            $P_{FS}(t + \Delta t) = P_1(t)a\lambda C\Delta t + P_{FS}(t)(1 - \frac{\Delta t}{24})$
-
-            $P_{FU}(t + \Delta t) = P_1(t)a\lambda(1 - C)\Delta t + P_{FU}(t)(1 - \frac{\Delta t}{72})$
-
-            $\frac{P_1(t + \Delta t) - P_1(t)}{\Delta t} = - P_1(t)a\lambda + \frac{P_{FS}(t)}{24} + \frac{P_{FU}(t)}{72}$
-
-            $\frac{P_{FS}(t + \Delta t) - P_{FS}(t)}{\Delta t} = P_1(t)a\lambda C - \frac{P_{FS}(t)}{24}$
-
-            $\frac{P_{FU}(t + \Delta t) - P_{FU}(t)}{\Delta t} = P_1(t)a\lambda(1 - C) - \frac{P_{FU}(t)}{72}$
-
-            As $\Delta t\to 0$:
-
-            $\frac{dP_1(t)}{dt} = - P_1(t)a\lambda + \frac{P_{FS}(t)}{24} + \frac{P_{FU}(t)}{72}$
-
-            $\frac{dP_{FS}(t)}{dt} = P_1(t)a\lambda C - \frac{P_{FS}(t)}{24}$
-
-            $\frac{dP_{FU}(t)}{dt} = P_1(t)a\lambda(1 - C) - \frac{P_{FU}(t)}{72}$
+            $A = \frac{1}{\alpha\lambda(\frac{1}{\alpha\lambda} + 26.4)} = \frac{1}{1 + 26.4\alpha\lambda}$
 
             The Markov Model for the system without self-diagnostics is:
 
@@ -96,46 +72,15 @@
                 \item FU is where a fault has occured.
             \end{itemize}
 
-            $P(t) = \begin{bmatrix} P_1(t) \\ P_{FU}(t) \end{bmatrix}, P_1(t) + P_{FU}(t) = 1, P(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix},$
-            $A = \begin{bmatrix}
-                1 - \lambda\Delta t && \frac{\Delta t}{72}     \\
-                \lambda\Delta t     && 1 - \frac{\Delta t}{72} \\
-            \end{bmatrix}$
+            The MTTF is $\frac{1}{\lambda}$ and the steady-state availability is:
 
-            $P(t + \Delta t) = AP(t) = \begin{bmatrix}
-                P_1(t)(1 - \lambda\Delta t) + P_{FU}(t)\frac{\Delta t}{72}       \\
-                P_1(t)\lambda\Delta t       + P_{FU}(t)(1 - \frac{\Delta t}{72}) \\
-            \end{bmatrix}$
+            $A = \frac{1}{\lambda(\frac{1}{\lambda} + 72)} = \frac{1}{1 + 72\lambda}$
 
-            $\frac{P_1(t + \Delta t) - P_1(t)}{\Delta t} = -P_1(t)\lambda + \frac{P_{FU}(t)}{72},$
-            $\frac{P_{FU}(t + \Delta t) - P_FU(t)}{\Delta t} = P_1(t)\lambda - \frac{P_{FU}(t)}{72}$
+            We can find the value of $\alpha$ for which self-diagnostics begins to degrade the steady-state availability by equating these two equations:
 
-            As $\Delta t \to 0$:
+            $\frac{1}{1 + 26.4\alpha\lambda} = \frac{1}{1 + 72\lambda} \implies 1 + 26.4\alpha\lambda = 1 + 72\lambda \implies 26.4\alpha\lambda = 72\lambda$
 
-            $\frac{dP_1(t)}{dt} = -P_1(t)\lambda + \frac{P_{FU}(t)}{72},$
-            $\frac{dP_{FU}(t) }{dt} = P_1(t)\lambda - \frac{P_{FU}(t)}{72}$
-
-            $sP_1(s) + sP_{FU}(s) = 1 \implies P_{FU}(s) = \frac{1 - sP_1(s)}{s}$
-
-            $sP_1(s) - P_1(0) = sP_1(s) - 1 = -P_1(s)\lambda + \frac{P_{FU}(s)}{72} = -P_1(s)\lambda + \frac{1 - sP_1(s)}{72s}$
-
-            $s^2P_1(s) - s = -sP_1(s)\lambda + \frac{1 - sP_1(s)}{72}$
-
-            $s^2P_1(s) + sP_1(s)\lambda + \frac{sP_1(s)}{72} = sP_1(s)(s + \lambda + \frac{1}{72}) = s + \frac{1}{72}$
-
-            $P_1(s) = \frac{s + \frac{1}{72}}{(s)(s + \lambda + \frac{1}{72})}$
-
-            We can solve this equation via partial fractions:
-
-            $P_1(s) = \frac{s + \frac{1}{72}}{(s)(s + \lambda + \frac{1}{72})} = \frac{A}{s} + \frac{B}{s + \lambda + \frac{1}{72}} \implies A(s + \lambda + \frac{1}{72}) + Bs = s + \frac{1}{72}$
-
-            $s = 0 \implies A(\lambda + \frac{1}{72}) = \frac{1}{72} \implies A = \frac{1}{72(\lambda + \frac{1}{72})}$
-
-            $s = -(\lambda + \frac{1}{72}) \implies -B(\frac{1}{72} + \lambda) = -\lambda \implies B = \frac{\lambda}{\frac{1}{72} + \lambda}$
-
-            $P_1(s) = \frac{1}{72(\lambda + \frac{1}{72})s} + \frac{\lambda}{(\frac{1}{72} + \lambda)(s + \lambda + \frac{1}{72})}$
-
-            $R(t) = P_1(t) = \frac{1}{72(\lambda + \frac{1}{72})} + \frac{\lambda}{\frac{1}{72} + \lambda}e^{-(\lambda + \frac{1}{72})} = \frac{1}{72\lambda + 1} + \frac{\lambda}{\frac{1}{72} + \lambda}e^{-(\lambda + \frac{1}{72})}$
+            $\alpha = \frac{72}{26.4} = 2.727$
 
         \item Test patterns are written as $ABCD$
             \begin{description}
@@ -273,7 +218,7 @@
                     \begin{circuitikz}
                         \node (a) at (0, 4) {a};
                         \node (b) at (0, 2) {b};
-                        \node[and port, label={[label distance=5mm]45:1/0}] (c) at (3, 3) {};
+                        \node[or port, label={[label distance=5mm]45:1/0}] (c) at (3, 3) {};
                         \node[not port, label={[label distance=5mm]45:1}] (d) at (3, 1) {};
                         \node[xor port, label={[label distance=5mm]45:0/1}] (e) at (6, 5) {};
                         \node[and port, label={[label distance=5mm]45:1/0}] (f) at (6, 2) {};
@@ -324,7 +269,7 @@
                     \begin{circuitikz}
                         \node (a) at (0, 4) {a};
                         \node (b) at (0, 2) {b};
-                        \node[and port, label={[label distance=5mm]45:1}] (c) at (3, 3) {};
+                        \node[or port, label={[label distance=5mm]45:1}] (c) at (3, 3) {};
                         \node[not port, label={[label distance=5mm]45:1}] (d) at (3, 1) {};
                         \node[xor port, label={[label distance=5mm]45:0}] (e) at (6, 5) {};
                         \node[and port, label={[label distance=5mm]45:0/1}] (f) at (6, 2) {};
