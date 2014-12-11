@@ -82,9 +82,9 @@
 
             $\alpha = \frac{72}{26.4} = 2.727$
 
-        \item Test patterns are written as $ABCD$
+        \item
             \begin{description}
-                \item[(i)] 0000
+                \item[(i)] $ABCD = 0000$ can detect line 4 stuck-at 0:
 
                     \begin{circuitikz}
                         \node (A) at (0, 6) {A};
@@ -115,7 +115,7 @@
                         \draw (g.out) -| (h.in 2);
                     \end{circuitikz}
 
-                \item[(ii)] 0100
+                \item[(ii)] $ABCD = 0100$ can detect line 13 stuck-at 1:
 
                     \begin{circuitikz}
                         \node (A) at (0, 6) {A};
@@ -146,7 +146,7 @@
                         \draw (g.out) -| (h.in 2);
                     \end{circuitikz}
 
-                \item[(iii)]0111
+                \item[(iii)] $ABCD = 0111$ can detect input B stuck-at 0:
 
                     \begin{circuitikz}
                         \node (A) at (0, 6) {A};
@@ -184,7 +184,7 @@
 
         $FC = 99\% \implies DL = 1 - 0.9^{1-0.99} = 0.001053 = 1053PPM$
 
-        $DL = 20PPM = 2 * 10^{-5} = 1 - 0.7^{1 - FC}$
+        $DL = 20PPM = 2 * 10^{-5} = 1 - 0.6^{1 - FC}$
 
         $0.6^{1 - FC} = 1 - 2 * 10^{-5} = 0.99998$
 
@@ -208,12 +208,12 @@
                 $N_1$ stuck short & 1  & 1         & $I_{DDQ}$ & 0         \\ \hline
             \end{tabular}
 
-        \item Test patterns are written as $ab$
+        \item
             \begin{description}
                 \item[(1)] Note that $a = 1$ in order to exercise d sa0, as that is the only input that can set the wire d to 1.
-                    Also note that $b = 0$, as otherwise the fault d sa0 will be quenched at the OR-gate.
+                    Also note that $b = 0$, as otherwise the fault d sa0 will have no effect after the OR-gate.
 
-                    Therefore the only input that could test this fault is 10. Here is what this input produces:
+                    Therefore the only input that could test this fault is $ab = 10$. Here is what this input produces:
 
                     \begin{circuitikz}
                         \node (a) at (0, 4) {a};
@@ -234,7 +234,7 @@
                         \draw (f.out) -| (g.in 2);
                     \end{circuitikz}
 
-                    So even with this input, the fault cannot be detected. The fault is therefore redundant.
+                    So even with this input, the fault d sa0 cannot be detected. The fault is therefore redundant.
 
                     We can remove the redundancy by considering the operation of the circuit:
 
@@ -244,16 +244,16 @@
 
                     $(a \oplus (a + b)) + (a + b)\overline{b} = \overline{a}b + a\overline{b}$
 
-                    We can now detect the fault using the input $11$:
+                    Our redundancy-free circuit is therefore the following:
 
                     \begin{circuitikz}
                         \node (a) at (0, 3) {a};
                         \node (b) at (0, 1) {b};
-                        \node[not port, label={[label distance=5mm]45:0}] (c) at (3, 4) {};
-                        \node[not port, label={[label distance=5mm]45:0}] (d) at (3, 0) {};
-                        \node[and port, label={[label distance=5mm]45:0}] (e) at (6, 3) {};
-                        \node[and port, label={[label distance=5mm]45:1/0}] (f) at (6, 1) {};
-                        \node[or port, label={[label distance=5mm]45:1/0}] (g) at (9, 2) {};
+                        \node[not port] (c) at (3, 4) {};
+                        \node[not port] (d) at (3, 0) {};
+                        \node[and port] (e) at (6, 3) {};
+                        \node[and port] (f) at (6, 1) {};
+                        \node[or port] (g) at (9, 2) {};
                         \draw (a) -- (1, 3) |- (c.in);
                         \draw (b) -- (1, 1) |- (d.in);
                         \draw (c.out) -| (e.in 1);
@@ -264,7 +264,7 @@
                         \draw (f.out) -| (g.in 2);
                     \end{circuitikz}
 
-                \item[(2)] $10$:
+                \item[(2)] $ab = 10$ can detect the fault m sa0:
 
                     \begin{circuitikz}
                         \node (a) at (0, 4) {a};
@@ -272,14 +272,34 @@
                         \node[or port, label={[label distance=5mm]45:1}] (c) at (3, 3) {};
                         \node[not port, label={[label distance=5mm]45:1}] (d) at (3, 1) {};
                         \node[xor port, label={[label distance=5mm]45:0}] (e) at (6, 5) {};
-                        \node[and port, label={[label distance=5mm]45:0/1}] (f) at (6, 2) {};
-                        \node[or port, label={[label distance=5mm]45:0/1}] (g) at (9, 4) {};
+                        \node[and port, label={[label distance=5mm]45:1/0}] (f) at (6, 2) {};
+                        \node[or port, label={[label distance=5mm]45:1/0}] (g) at (9, 4) {};
                         \draw (a) -| (c.in 1);
                         \draw (b) -| (c.in 2);
                         \draw (b) -| (d.in);
                         \draw (a) -- (2, 4) |- (e.in 1);
                         \draw (c.out) -| (e.in 2);
                         \draw (c.out) -| (f.in 1);
+                        \draw (d.out) -| (f.in 2);
+                        \draw (e.out) -| (g.in 1);
+                        \draw (f.out) -| (g.in 2);
+                    \end{circuitikz}
+
+                    The wire m fed in the original circuit fed into the reduced AND operation $a\overline{b}$. The gate for this operation is still in the redundancy-free circuit, so we can still test for this fault by testing the $a$ input for the AND gate. $ab = 10$ can detect the fault in this wire too:
+
+                    \begin{circuitikz}
+                        \node (a) at (0, 3) {a};
+                        \node (b) at (0, 1) {b};
+                        \node[not port, label={[label distance=5mm]45:0}] (c) at (3, 4) {};
+                        \node[not port, label={[label distance=5mm]45:1}] (d) at (3, 0) {};
+                        \node[and port, label={[label distance=5mm]45:0}] (e) at (6, 3) {};
+                        \node[and port, label={[label distance=5mm]45:1/0}] (f) at (6, 1) {};
+                        \node[or port, label={[label distance=5mm]45:1/0}] (g) at (9, 2) {};
+                        \draw (a) -- (1, 3) |- (c.in);
+                        \draw (b) -- (1, 1) |- (d.in);
+                        \draw (c.out) -| (e.in 1);
+                        \draw (b) -- (2, 1) |- (e.in 2);
+                        \draw (a) -- (3, 3) |- (f.in 1);
                         \draw (d.out) -| (f.in 2);
                         \draw (e.out) -| (g.in 1);
                         \draw (f.out) -| (g.in 2);
@@ -301,9 +321,7 @@
             \draw (b) -| (c.in 2);
         \end{circuitikz}
 
-        \item Test patterns are written as $abc$.
-
-            Not that a * symbol is used where appropriate to represent the AND operation for clarity, in order to help distinguish between, for example, $\overline{a*c}$ and $\overline{a}*\overline{c}$
+        \item Note that a * symbol is used where appropriate to represent the AND operation for clarity, in order to help distinguish between, for example, $\overline{a*c}$ and $\overline{a}*\overline{c}$
             \begin{description}
                 \item[(i)] $\overline{a}\frac{dz}{da} = \overline{a}(z(a = 1) \oplus z(a = 0)) = \overline{a}((\overline{c} + cb) \oplus cb)$
 
@@ -311,7 +329,7 @@
 
                     $= \overline{a} * \overline{c}\overline{cb} = \overline{a} * \overline{c}(\overline{c} + \overline{b}) = \overline{a} * \overline{c} + \overline{a} * \overline{c}\overline{b} = \overline{a} * \overline{c}(1 + \overline{b}) = \overline{a} * \overline{c} = 1$
 
-                    The patterns $\{000, 010\}$ can detect the fault.
+                    The patterns $abc = 000, 010$ can detect the fault line a s-a-1.
 
                 \item[(ii)] $h\frac{dz}{dh} = h(z(h = 1) \oplus z(h = 0)) = h(1 \oplus a\overline{c}) = h\overline{a\overline{c}} = h(\overline{a} + c)$
 
@@ -321,13 +339,13 @@
 
                     $h\frac{dz}{dh} = \overline{a}bc + bc = bc(a + 1) = bc = 1$
 
-                    The patterns $\{011, 111\}$ can detect the fault.
+                    The patterns $abc = 011, 111$ can detect the fault line h s-a-0.
 
                 \item[(iii)] $\overline{h}\frac{dz}{dh} = \overline{h}\overline{a} + \overline{h}c = \overline{cb}\overline{a} + \overline{cb}c = (\overline{c} + \overline{b})\overline{a} + (\overline{c} + \overline{b})c$
 
-                $= \overline{a}\overline{b} + \overline{a}\overline{c} + \overline{b}c + \overline{c}c = \overline{a}\overline{c} + \overline{a}\overline{c} + \overline{b}c = 1$
+                $= \overline{a}\overline{b} + \overline{a}\overline{c} + \overline{b}c + \overline{c}c = \overline{a}\overline{b} + \overline{a}*\overline{c} + \overline{b}c = 1$
 
-                    The patterns $\{000, 001, 010, 101\}$ can detect the fault.
+                    The patterns $abc = 000, 001, 010, 101$ can detect the fault line h s-a-1.
 
                 \item[(iv)] $e\frac{dz}{de} = e(z(e = 1) \oplus z(e = 0)) = e((a\overline{c} + b) \oplus a\overline{c})$
 
@@ -339,22 +357,22 @@
 
                     $e\frac{dz}{de} = \overline{a}bc + bc = bc(\overline{a} + 1) = bc = 1$
 
-                    The patterns $\{011, 111\}$ can detect the failure.
+                    The patterns $abc = 011, 111$ can detect the fault line e s-a-0.
 
                 \item[(v)] $\overline{e}\frac{dz}{de} = \overline{a}b\overline{e} + b\overline{e}c = \overline{a}b\overline{c} + bc\overline{c} = \overline{a}b\overline{c}$
 
-                    The pattern $\{010\}$ can detect the failure.
+                    The pattern $abc = 010$ can detect the fault line e s-a-1.
 
                 \item[(vi)] $c\frac{dz}{dc} = c(z(c = 1) \oplus z(c = 0)) = c(b \oplus a) = c(\overline{a}b + a\overline{b}) = \overline{a}bc + a\overline{b}c = 1$
 
-                    The patterns $\{011, 101\}$ can detect the fault.
+                    The patterns $abc = 011, 101$ can detect the fault line c s-a-0.
             \end{description}
 
-        \item Test patterns are written as $ab$.
+        \item
             \begin{enumerate}
                 \item $\overline{a}\frac{di}{da} = \overline{a}(i(a = 1) \oplus i(a = 0)) = \overline{a}(b \oplus 0) = \overline{a}b = 1$
 
-                    The pattern $\{01\}$ can detect the fault.
+                    The pattern $ab = 01$ can detect the fault a/1.
 
                 \item $\overline{d}\frac{di}{da} = \overline{d}(i(d = 1) \oplus i(d = 0)) = \overline{d}(ab \oplus 0) = \overline{d}ab$
 
@@ -362,7 +380,7 @@
 
                     $\overline{d}\frac{di}{da} = \overline{a}ab = 0 = 1$
 
-                    We have reached a contradiction, therefore this fault cannot be detected.
+                    We have reached a contradiction, therefore the fault d/1 cannot be detected.
 
                 \item $\overline{g}\frac{di}{dg} = \overline{g}(i(g = 1) \oplus i(g = 0)) = \overline{g}(ab \oplus 0) = \overline{g}ab$
 
@@ -370,7 +388,7 @@
 
                     $\overline{g}\frac{di}{dg} = \overline{ab}ab = 0 = 1$
 
-                    We have reached a contradiction, therefore this fault cannot be detected.
+                    We have reached a contradiction, therefore the fault g/1 cannot be detected.
             \end{enumerate}
 
         \item Below are the signatures calculated for the sequence $M = {10011011}$ (fault-free) and the faulty sequence $M' = {11111111}$
