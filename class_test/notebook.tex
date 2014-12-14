@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{circuitikz}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+    There can be a time delay before an error and a failure, or a failure may never even occur from an error. Same with going from faults to errors.
+
+    On example of liveware faults was pilots who required training after controls became digital.
+
+    \begin{itemize}
+        \item Permanent errors must be repaired
+        \item Intermittent errors depend on the error: Do we fix the error or just modify the cases which cause the error?
+        \item Transient errors cannot be easily fixed. They need to be tolerated.
+    \end{itemize}
+
+    Consider the circuit $f = \overline{A + B}$
+
+    \begin{circuitikz}[baseline=(current bounding box.north)]
+        \node (A) at (0, 2) {A};
+        \node (B) at (0, 0) {B};
+        \node[xor port] (C) at (2, 1) {};
+        \draw (A) -| (C.in 1);
+        \draw (B) -| (C.in 2);
+    \end{circuitikz}
+    \parbox[t]{10cm}{\vskip0pt
+        To test a fault, we need to set the faulty inpit to the complement and the other inputs to be non-dominating. So to test A-sa0, we need $A = 1, B = 0$ and will get 1 if the fault isn't there, or 1 if the fault is. Likewise, to test A-sa1, we need $A = 0, B = 0$ and will get 0 if the fault isn't there, and 1 if the fault is.
+    }
+
+    Note that:
+    \begin{itemize}
+        \item $<0, 0>$ will detect A-sa1, B-sa1 and f-sa0.
+        \item $<0, 1>$ will detect B-sa0 and f-sa1.
+        \item $<1, 0>$ will detect A-sa0 and f-sa1.
+    \end{itemize}
+
+    So our test set is $\{00, 01, 10\}$
+
+    Boolean difference example (circuit in slides):
+
+    To detect y-sa0, find values such that $y\frac{df}{dy} = 1$:
+
+    $y(f(y = 0) \oplus f(y = 1)) = 1 \implies y(z \oplus x) = 1 \implies \overline{x}yz + xy\overline{z} = 1$
+
+    Therefore, 011 and 110 can detect the fault.
+
+\end{document}
