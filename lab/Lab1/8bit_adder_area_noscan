@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : adder
+Version: G-2012.06-SP5
+Date   : Mon Dec 22 15:58:03 2014
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    umcl18g212t3_tc_180V_25C (File: /home/ugrads/coms2011/dm1905/linux/fourth_year/fault_tolerant/lab/Lab1/umcl18g212t3_tc_180V_25C.db)
+
+Number of ports:                           27
+Number of nets:                            37
+Number of cells:                           11
+Number of combinational cells:              1
+Number of sequential cells:                 9
+Number of macros:                           0
+Number of buf/inv:                          0
+Number of references:                       3
+
+Combinational area:        419.331005
+Buf/Inv area:                0.000000
+Noncombinational area:     406.422009
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:           825.753014
+Total area:                 undefined
+1
