@@ -75,10 +75,60 @@ set_faults -model stuck
 add_faults -all
 run_atpg full_sequential_only -auto
 
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 4bit_adder.v
+run_build_model adder
+write_drc_file ./4bit_adder.spf -replace
+run_drc ./4bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
 
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 8bit_adder.v
+run_build_model adder
+write_drc_file ./8bit_adder.spf -replace
+run_drc ./8bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
 
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 16bit_adder.v
+run_build_model adder
+write_drc_file ./16bit_adder.spf -replace
+run_drc ./16bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
 
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 32bit_adder.v
+run_build_model adder
+write_drc_file ./32bit_adder.spf -replace
+run_drc ./32bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
 
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 64bit_adder.v
+run_build_model adder
+write_drc_file ./64bit_adder.spf -replace
+run_drc ./64bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
 
 read_netlist ./verilog_simulation_models/*.v
 read_netlist s298_syn.v
