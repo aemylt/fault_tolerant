@@ -1,0 +1,134 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
+   Date "Tue Dec 23 18:34:18 2014";
+   History {
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT          0 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                 0 *}
+      Ann {* test coverage                             0.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+   }
+}
+Signals {
+   "a[31]" In; "a[30]" In; "a[29]" In; "a[28]" In; "a[27]" In; "a[26]" In; "a[25]" In;
+   "a[24]" In; "a[23]" In; "a[22]" In; "a[21]" In; "a[20]" In; "a[19]" In; "a[18]" In;
+   "a[17]" In; "a[16]" In; "a[15]" In; "a[14]" In; "a[13]" In; "a[12]" In; "a[11]" In;
+   "a[10]" In; "a[9]" In; "a[8]" In; "a[7]" In; "a[6]" In; "a[5]" In; "a[4]" In; "a[3]" In;
+   "a[2]" In; "a[1]" In; "a[0]" In; "b[31]" In; "b[30]" In; "b[29]" In; "b[28]" In;
+   "b[27]" In; "b[26]" In; "b[25]" In; "b[24]" In; "b[23]" In; "b[22]" In; "b[21]" In;
+   "b[20]" In; "b[19]" In; "b[18]" In; "b[17]" In; "b[16]" In; "b[15]" In; "b[14]" In;
+   "b[13]" In; "b[12]" In; "b[11]" In; "b[10]" In; "b[9]" In; "b[8]" In; "b[7]" In;
+   "b[6]" In; "b[5]" In; "b[4]" In; "b[3]" In; "b[2]" In; "b[1]" In; "b[0]" In; "cin" In;
+   "s[31]" Out; "s[30]" Out; "s[29]" Out; "s[28]" Out; "s[27]" Out; "s[26]" Out; "s[25]" Out;
+   "s[24]" Out; "s[23]" Out; "s[22]" Out; "s[21]" Out; "s[20]" Out; "s[19]" Out; "s[18]" Out;
+   "s[17]" Out; "s[16]" Out; "s[15]" Out; "s[14]" Out; "s[13]" Out; "s[12]" Out; "s[11]" Out;
+   "s[10]" Out; "s[9]" Out; "s[8]" Out; "s[7]" Out; "s[6]" Out; "s[5]" Out; "s[4]" Out;
+   "s[3]" Out; "s[2]" Out; "s[1]" Out; "s[0]" Out; "cout" Out;
+}
+SignalGroups {
+   "_default_In_Timing_" = '"a[31]" + "a[30]" + "a[29]" + "a[28]" + "a[27]" +
+   "a[26]" + "a[25]" + "a[24]" + "a[23]" + "a[22]" + "a[21]" + "a[20]" + "a[19]" +
+   "a[18]" + "a[17]" + "a[16]" + "a[15]" + "a[14]" + "a[13]" + "a[12]" + "a[11]" +
+   "a[10]" + "a[9]" + "a[8]" + "a[7]" + "a[6]" + "a[5]" + "a[4]" + "a[3]" +
+   "a[2]" + "a[1]" + "a[0]" + "b[31]" + "b[30]" + "b[29]" + "b[28]" + "b[27]" +
+   "b[26]" + "b[25]" + "b[24]" + "b[23]" + "b[22]" + "b[21]" + "b[20]" + "b[19]" +
+   "b[18]" + "b[17]" + "b[16]" + "b[15]" + "b[14]" + "b[13]" + "b[12]" + "b[11]" +
+   "b[10]" + "b[9]" + "b[8]" + "b[7]" + "b[6]" + "b[5]" + "b[4]" + "b[3]" +
+   "b[2]" + "b[1]" + "b[0]" + "cin"'; // #signals=65
+   "_pi" = '"a[31]" + "a[30]" + "a[29]" + "a[28]" + "a[27]" + "a[26]" + "a[25]" +
+   "a[24]" + "a[23]" + "a[22]" + "a[21]" + "a[20]" + "a[19]" + "a[18]" + "a[17]" +
+   "a[16]" + "a[15]" + "a[14]" + "a[13]" + "a[12]" + "a[11]" + "a[10]" + "a[9]" +
+   "a[8]" + "a[7]" + "a[6]" + "a[5]" + "a[4]" + "a[3]" + "a[2]" + "a[1]" +
+   "a[0]" + "b[31]" + "b[30]" + "b[29]" + "b[28]" + "b[27]" + "b[26]" + "b[25]" +
+   "b[24]" + "b[23]" + "b[22]" + "b[21]" + "b[20]" + "b[19]" + "b[18]" + "b[17]" +
+   "b[16]" + "b[15]" + "b[14]" + "b[13]" + "b[12]" + "b[11]" + "b[10]" + "b[9]" +
+   "b[8]" + "b[7]" + "b[6]" + "b[5]" + "b[4]" + "b[3]" + "b[2]" + "b[1]" +
+   "b[0]" + "cin"'; // #signals=65
+   "_in" = '"a[31]" + "a[30]" + "a[29]" + "a[28]" + "a[27]" + "a[26]" + "a[25]" +
+   "a[24]" + "a[23]" + "a[22]" + "a[21]" + "a[20]" + "a[19]" + "a[18]" + "a[17]" +
+   "a[16]" + "a[15]" + "a[14]" + "a[13]" + "a[12]" + "a[11]" + "a[10]" + "a[9]" +
+   "a[8]" + "a[7]" + "a[6]" + "a[5]" + "a[4]" + "a[3]" + "a[2]" + "a[1]" +
+   "a[0]" + "b[31]" + "b[30]" + "b[29]" + "b[28]" + "b[27]" + "b[26]" + "b[25]" +
+   "b[24]" + "b[23]" + "b[22]" + "b[21]" + "b[20]" + "b[19]" + "b[18]" + "b[17]" +
+   "b[16]" + "b[15]" + "b[14]" + "b[13]" + "b[12]" + "b[11]" + "b[10]" + "b[9]" +
+   "b[8]" + "b[7]" + "b[6]" + "b[5]" + "b[4]" + "b[3]" + "b[2]" + "b[1]" +
+   "b[0]" + "cin"'; // #signals=65
+   "_default_Out_Timing_" = '"s[31]" + "s[30]" + "s[29]" + "s[28]" + "s[27]" +
+   "s[26]" + "s[25]" + "s[24]" + "s[23]" + "s[22]" + "s[21]" + "s[20]" + "s[19]" +
+   "s[18]" + "s[17]" + "s[16]" + "s[15]" + "s[14]" + "s[13]" + "s[12]" + "s[11]" +
+   "s[10]" + "s[9]" + "s[8]" + "s[7]" + "s[6]" + "s[5]" + "s[4]" + "s[3]" +
+   "s[2]" + "s[1]" + "s[0]" + "cout"'; // #signals=33
+   "_po" = '"s[31]" + "s[30]" + "s[29]" + "s[28]" + "s[27]" + "s[26]" + "s[25]" +
+   "s[24]" + "s[23]" + "s[22]" + "s[21]" + "s[20]" + "s[19]" + "s[18]" + "s[17]" +
+   "s[16]" + "s[15]" + "s[14]" + "s[13]" + "s[12]" + "s[11]" + "s[10]" + "s[9]" +
+   "s[8]" + "s[7]" + "s[6]" + "s[5]" + "s[4]" + "s[3]" + "s[2]" + "s[1]" +
+   "s[0]" + "cout"'; // #signals=33
+   "_out" = '"s[31]" + "s[30]" + "s[29]" + "s[28]" + "s[27]" + "s[26]" + "s[25]" +
+   "s[24]" + "s[23]" + "s[22]" + "s[21]" + "s[20]" + "s[19]" + "s[18]" + "s[17]" +
+   "s[16]" + "s[15]" + "s[14]" + "s[13]" + "s[12]" + "s[11]" + "s[10]" + "s[9]" +
+   "s[8]" + "s[7]" + "s[6]" + "s[5]" + "s[4]" + "s[3]" + "s[2]" + "s[1]" +
+   "s[0]" + "cout"'; // #signals=33
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Out_Timing_" { X { '0ns' Z; } }
+         "_default_Out_Timing_" { H { '0ns' Z; '40ns' H; } }
+         "_default_Out_Timing_" { T { '0ns' Z; '40ns' T; } }
+         "_default_Out_Timing_" { L { '0ns' Z; '40ns' L; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "multiclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r65 #; "_po"=\j \r33 #; }}
+   "allclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r65 #; "_po"=\j \r33 #; }}
+   "allclock_launch" { W "_default_WFT_";
+      V { "_pi"=\j \r65 #; "_po"=\j \r33 #; }}
+   "allclock_launch_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r65 #; "_po"=\j \r33 #; }}
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+}

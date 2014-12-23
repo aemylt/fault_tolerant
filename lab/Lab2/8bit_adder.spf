@@ -1,0 +1,97 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
+   Date "Tue Dec 23 18:31:55 2014";
+   History {
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT          0 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                 0 *}
+      Ann {* test coverage                             0.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+   }
+}
+Signals {
+   "a[7]" In; "a[6]" In; "a[5]" In; "a[4]" In; "a[3]" In; "a[2]" In; "a[1]" In; "a[0]" In;
+   "b[7]" In; "b[6]" In; "b[5]" In; "b[4]" In; "b[3]" In; "b[2]" In; "b[1]" In; "b[0]" In;
+   "cin" In; "s[7]" Out; "s[6]" Out; "s[5]" Out; "s[4]" Out; "s[3]" Out; "s[2]" Out;
+   "s[1]" Out; "s[0]" Out; "cout" Out;
+}
+SignalGroups {
+   "_default_In_Timing_" = '"a[7]" + "a[6]" + "a[5]" + "a[4]" + "a[3]" + "a[2]" +
+   "a[1]" + "a[0]" + "b[7]" + "b[6]" + "b[5]" + "b[4]" + "b[3]" + "b[2]" +
+   "b[1]" + "b[0]" + "cin"'; // #signals=17
+   "_pi" = '"a[7]" + "a[6]" + "a[5]" + "a[4]" + "a[3]" + "a[2]" + "a[1]" +
+   "a[0]" + "b[7]" + "b[6]" + "b[5]" + "b[4]" + "b[3]" + "b[2]" + "b[1]" +
+   "b[0]" + "cin"'; // #signals=17
+   "_in" = '"a[7]" + "a[6]" + "a[5]" + "a[4]" + "a[3]" + "a[2]" + "a[1]" +
+   "a[0]" + "b[7]" + "b[6]" + "b[5]" + "b[4]" + "b[3]" + "b[2]" + "b[1]" +
+   "b[0]" + "cin"'; // #signals=17
+   "_default_Out_Timing_" = '"s[7]" + "s[6]" + "s[5]" + "s[4]" + "s[3]" + "s[2]" +
+   "s[1]" + "s[0]" + "cout"'; // #signals=9
+   "_po" = '"s[7]" + "s[6]" + "s[5]" + "s[4]" + "s[3]" + "s[2]" + "s[1]" +
+   "s[0]" + "cout"'; // #signals=9
+   "_out" = '"s[7]" + "s[6]" + "s[5]" + "s[4]" + "s[3]" + "s[2]" + "s[1]" +
+   "s[0]" + "cout"'; // #signals=9
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Out_Timing_" { X { '0ns' Z; } }
+         "_default_Out_Timing_" { H { '0ns' Z; '40ns' H; } }
+         "_default_Out_Timing_" { T { '0ns' Z; '40ns' T; } }
+         "_default_Out_Timing_" { L { '0ns' Z; '40ns' L; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "multiclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r17 #; "_po"=\j \r9 #; }}
+   "allclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r17 #; "_po"=\j \r9 #; }}
+   "allclock_launch" { W "_default_WFT_";
+      V { "_pi"=\j \r17 #; "_po"=\j \r9 #; }}
+   "allclock_launch_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r17 #; "_po"=\j \r9 #; }}
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+}
