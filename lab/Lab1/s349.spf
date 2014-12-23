@@ -1,0 +1,106 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
+   Date "Tue Dec 23 13:58:03 2014";
+   History {
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT          0 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                 0 *}
+      Ann {* test coverage                             0.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* rule  severity  #fails  description *}
+      Ann {* ----  --------  ------  --------------------------------- *}
+      Ann {* B8    warning        2  unconnected module input pin *}
+      Ann {*  *}
+      Ann {* clock_name        off  usage *}
+      Ann {* ----------------  ---  -------------------------- *}
+      Ann {* CK                 0    *}
+      Ann {*  *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+   }
+}
+Signals {
+   "GND" In; "VDD" In; "CK" In; "A0" In; "A1" In; "A2" In; "A3" In; "B0" In; "B1" In;
+   "B2" In; "B3" In; "START" In; "test_si" In; "test_se" In; "CNTVCO2" Out; "CNTVCON2" Out;
+   "P0" Out; "P1" Out; "P2" Out; "P3" Out; "P4" Out; "P5" Out; "P6" Out; "P7" Out;
+   "READY" Out; "test_so" Out;
+}
+SignalGroups {
+   "_pi" = '"GND" + "VDD" + "CK" + "A0" + "A1" + "A2" + "A3" + "B0" + "B1" +
+   "B2" + "B3" + "START" + "test_si" + "test_se"'; // #signals=14
+   "_in" = '"GND" + "VDD" + "CK" + "A0" + "A1" + "A2" + "A3" + "B0" + "B1" +
+   "B2" + "B3" + "START" + "test_si" + "test_se"'; // #signals=14
+   "_po" = '"CNTVCO2" + "CNTVCON2" + "P0" + "P1" + "P2" + "P3" + "P4" + "P5" +
+   "P6" + "P7" + "READY" + "test_so"'; // #signals=12
+   "_out" = '"CNTVCO2" + "CNTVCON2" + "P0" + "P1" + "P2" + "P3" + "P4" + "P5" +
+   "P6" + "P7" + "READY" + "test_so"'; // #signals=12
+   "_default_In_Timing_" = '"GND" + "VDD" + "CK" + "A0" + "A1" + "A2" + "A3" +
+   "B0" + "B1" + "B2" + "B3" + "START" + "test_si" + "test_se"'; // #signals=14
+   "_default_Out_Timing_" = '"CNTVCO2" + "CNTVCON2" + "P0" + "P1" + "P2" + "P3" +
+   "P4" + "P5" + "P6" + "P7" + "READY" + "test_so"'; // #signals=12
+   "_default_Clk0_Timing_" = '"CK"'; // #signals=1
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Clk0_Timing_" { P { '0ns' D; '50ns' U; '80ns' D; } }
+         "_default_Out_Timing_" { X { '0ns' Z; } }
+         "_default_Out_Timing_" { H { '0ns' Z; '40ns' H; } }
+         "_default_Out_Timing_" { T { '0ns' Z; '40ns' T; } }
+         "_default_Out_Timing_" { L { '0ns' Z; '40ns' L; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "multiclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r14 #; "_po"=\j \r12 #; }}
+   "allclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r14 #; "_po"=\j \r12 #; }}
+   "allclock_launch" { W "_default_WFT_";
+      V { "_pi"=\j \r14 #; "_po"=\j \r12 #; }}
+   "allclock_launch_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r14 #; "_po"=\j \r12 #; }}
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { "CK" = 0; } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; "CK" = P; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+   "test_setup" {
+      W "_default_WFT_";
+      V { "CK"=0; }
+   }
+}
