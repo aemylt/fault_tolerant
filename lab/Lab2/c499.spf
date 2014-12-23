@@ -1,0 +1,118 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
+   Date "Tue Dec 23 12:41:20 2014";
+   History {
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT          0 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                 0 *}
+      Ann {* test coverage                             0.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+   }
+}
+Signals {
+   "N1" In; "N5" In; "N9" In; "N13" In; "N17" In; "N21" In; "N25" In; "N29" In; "N33" In;
+   "N37" In; "N41" In; "N45" In; "N49" In; "N53" In; "N57" In; "N61" In; "N65" In;
+   "N69" In; "N73" In; "N77" In; "N81" In; "N85" In; "N89" In; "N93" In; "N97" In;
+   "N101" In; "N105" In; "N109" In; "N113" In; "N117" In; "N121" In; "N125" In; "N129" In;
+   "N130" In; "N131" In; "N132" In; "N133" In; "N134" In; "N135" In; "N136" In; "N137" In;
+   "N724" Out; "N725" Out; "N726" Out; "N727" Out; "N728" Out; "N729" Out; "N730" Out;
+   "N731" Out; "N732" Out; "N733" Out; "N734" Out; "N735" Out; "N736" Out; "N737" Out;
+   "N738" Out; "N739" Out; "N740" Out; "N741" Out; "N742" Out; "N743" Out; "N744" Out;
+   "N745" Out; "N746" Out; "N747" Out; "N748" Out; "N749" Out; "N750" Out; "N751" Out;
+   "N752" Out; "N753" Out; "N754" Out; "N755" Out;
+}
+SignalGroups {
+   "_default_In_Timing_" = '"N1" + "N5" + "N9" + "N13" + "N17" + "N21" + "N25" +
+   "N29" + "N33" + "N37" + "N41" + "N45" + "N49" + "N53" + "N57" + "N61" + "N65" +
+   "N69" + "N73" + "N77" + "N81" + "N85" + "N89" + "N93" + "N97" + "N101" +
+   "N105" + "N109" + "N113" + "N117" + "N121" + "N125" + "N129" + "N130" +
+   "N131" + "N132" + "N133" + "N134" + "N135" + "N136" + "N137"'; // #signals=41
+   "_pi" = '"N1" + "N5" + "N9" + "N13" + "N17" + "N21" + "N25" + "N29" + "N33" +
+   "N37" + "N41" + "N45" + "N49" + "N53" + "N57" + "N61" + "N65" + "N69" + "N73" +
+   "N77" + "N81" + "N85" + "N89" + "N93" + "N97" + "N101" + "N105" + "N109" +
+   "N113" + "N117" + "N121" + "N125" + "N129" + "N130" + "N131" + "N132" +
+   "N133" + "N134" + "N135" + "N136" + "N137"'; // #signals=41
+   "_in" = '"N1" + "N5" + "N9" + "N13" + "N17" + "N21" + "N25" + "N29" + "N33" +
+   "N37" + "N41" + "N45" + "N49" + "N53" + "N57" + "N61" + "N65" + "N69" + "N73" +
+   "N77" + "N81" + "N85" + "N89" + "N93" + "N97" + "N101" + "N105" + "N109" +
+   "N113" + "N117" + "N121" + "N125" + "N129" + "N130" + "N131" + "N132" +
+   "N133" + "N134" + "N135" + "N136" + "N137"'; // #signals=41
+   "_default_Out_Timing_" = '"N724" + "N725" + "N726" + "N727" + "N728" + "N729" +
+   "N730" + "N731" + "N732" + "N733" + "N734" + "N735" + "N736" + "N737" +
+   "N738" + "N739" + "N740" + "N741" + "N742" + "N743" + "N744" + "N745" +
+   "N746" + "N747" + "N748" + "N749" + "N750" + "N751" + "N752" + "N753" +
+   "N754" + "N755"'; // #signals=32
+   "_po" = '"N724" + "N725" + "N726" + "N727" + "N728" + "N729" + "N730" +
+   "N731" + "N732" + "N733" + "N734" + "N735" + "N736" + "N737" + "N738" +
+   "N739" + "N740" + "N741" + "N742" + "N743" + "N744" + "N745" + "N746" +
+   "N747" + "N748" + "N749" + "N750" + "N751" + "N752" + "N753" + "N754" +
+   "N755"'; // #signals=32
+   "_out" = '"N724" + "N725" + "N726" + "N727" + "N728" + "N729" + "N730" +
+   "N731" + "N732" + "N733" + "N734" + "N735" + "N736" + "N737" + "N738" +
+   "N739" + "N740" + "N741" + "N742" + "N743" + "N744" + "N745" + "N746" +
+   "N747" + "N748" + "N749" + "N750" + "N751" + "N752" + "N753" + "N754" +
+   "N755"'; // #signals=32
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Out_Timing_" { X { '0ns' Z; } }
+         "_default_Out_Timing_" { H { '0ns' Z; '40ns' H; } }
+         "_default_Out_Timing_" { T { '0ns' Z; '40ns' T; } }
+         "_default_Out_Timing_" { L { '0ns' Z; '40ns' L; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "multiclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r41 #; "_po"=\j \r32 #; }}
+   "allclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r41 #; "_po"=\j \r32 #; }}
+   "allclock_launch" { W "_default_WFT_";
+      V { "_pi"=\j \r41 #; "_po"=\j \r32 #; }}
+   "allclock_launch_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r41 #; "_po"=\j \r32 #; }}
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+}

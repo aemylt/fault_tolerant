@@ -1,0 +1,110 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
+   Date "Tue Dec 23 12:47:44 2014";
+   History {
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT          0 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                 0 *}
+      Ann {* test coverage                             0.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+   }
+}
+Signals {
+   "G1" In; "G10" In; "G11" In; "G12" In; "G13" In; "G14" In; "G15" In; "G16" In;
+   "G17" In; "G18" In; "G19" In; "G2" In; "G20" In; "G21" In; "G22" In; "G23" In;
+   "G24" In; "G25" In; "G26" In; "G27" In; "G28" In; "G29" In; "G3" In; "G30" In;
+   "G31" In; "G32" In; "G33" In; "G4" In; "G5" In; "G6" In; "G7" In; "G8" In; "G9" In;
+   "G1884" Out; "G1885" Out; "G1886" Out; "G1887" Out; "G1888" Out; "G1889" Out; "G1890" Out;
+   "G1891" Out; "G1892" Out; "G1893" Out; "G1894" Out; "G1895" Out; "G1896" Out; "G1897" Out;
+   "G1898" Out; "G1899" Out; "G1900" Out; "G1901" Out; "G1902" Out; "G1903" Out; "G1904" Out;
+   "G1905" Out; "G1906" Out; "G1907" Out; "G1908" Out;
+}
+SignalGroups {
+   "_default_In_Timing_" = '"G1" + "G10" + "G11" + "G12" + "G13" + "G14" + "G15" +
+   "G16" + "G17" + "G18" + "G19" + "G2" + "G20" + "G21" + "G22" + "G23" + "G24" +
+   "G25" + "G26" + "G27" + "G28" + "G29" + "G3" + "G30" + "G31" + "G32" + "G33" +
+   "G4" + "G5" + "G6" + "G7" + "G8" + "G9"'; // #signals=33
+   "_pi" = '"G1" + "G10" + "G11" + "G12" + "G13" + "G14" + "G15" + "G16" + "G17" +
+   "G18" + "G19" + "G2" + "G20" + "G21" + "G22" + "G23" + "G24" + "G25" + "G26" +
+   "G27" + "G28" + "G29" + "G3" + "G30" + "G31" + "G32" + "G33" + "G4" + "G5" +
+   "G6" + "G7" + "G8" + "G9"'; // #signals=33
+   "_in" = '"G1" + "G10" + "G11" + "G12" + "G13" + "G14" + "G15" + "G16" + "G17" +
+   "G18" + "G19" + "G2" + "G20" + "G21" + "G22" + "G23" + "G24" + "G25" + "G26" +
+   "G27" + "G28" + "G29" + "G3" + "G30" + "G31" + "G32" + "G33" + "G4" + "G5" +
+   "G6" + "G7" + "G8" + "G9"'; // #signals=33
+   "_default_Out_Timing_" = '"G1884" + "G1885" + "G1886" + "G1887" + "G1888" +
+   "G1889" + "G1890" + "G1891" + "G1892" + "G1893" + "G1894" + "G1895" + "G1896" +
+   "G1897" + "G1898" + "G1899" + "G1900" + "G1901" + "G1902" + "G1903" + "G1904" +
+   "G1905" + "G1906" + "G1907" + "G1908"'; // #signals=25
+   "_po" = '"G1884" + "G1885" + "G1886" + "G1887" + "G1888" + "G1889" + "G1890" +
+   "G1891" + "G1892" + "G1893" + "G1894" + "G1895" + "G1896" + "G1897" + "G1898" +
+   "G1899" + "G1900" + "G1901" + "G1902" + "G1903" + "G1904" + "G1905" + "G1906" +
+   "G1907" + "G1908"'; // #signals=25
+   "_out" = '"G1884" + "G1885" + "G1886" + "G1887" + "G1888" + "G1889" + "G1890" +
+   "G1891" + "G1892" + "G1893" + "G1894" + "G1895" + "G1896" + "G1897" + "G1898" +
+   "G1899" + "G1900" + "G1901" + "G1902" + "G1903" + "G1904" + "G1905" + "G1906" +
+   "G1907" + "G1908"'; // #signals=25
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Out_Timing_" { X { '0ns' Z; } }
+         "_default_Out_Timing_" { H { '0ns' Z; '40ns' H; } }
+         "_default_Out_Timing_" { T { '0ns' Z; '40ns' T; } }
+         "_default_Out_Timing_" { L { '0ns' Z; '40ns' L; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "multiclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r33 #; "_po"=\j \r25 #; }}
+   "allclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r33 #; "_po"=\j \r25 #; }}
+   "allclock_launch" { W "_default_WFT_";
+      V { "_pi"=\j \r33 #; "_po"=\j \r25 #; }}
+   "allclock_launch_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r33 #; "_po"=\j \r25 #; }}
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+}

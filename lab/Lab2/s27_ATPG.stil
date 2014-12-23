@@ -1,0 +1,187 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
+   Date "Tue Dec 23 12:28:54 2014";
+   Source "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
+   History {
+      Ann {*  Tue Dec 23 12:23:38 2014  *}
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT         82 *}
+      Ann {* Possibly detected                PT          8 *}
+      Ann {* Undetectable                     UD          4 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                94 *}
+      Ann {* test coverage                            95.56% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           8 *}
+      Ann {*     #full_sequential patterns                8 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* rule  severity  #fails  description *}
+      Ann {* ----  --------  ------  --------------------------------- *}
+      Ann {* B8    warning        2  unconnected module input pin *}
+      Ann {*  *}
+      Ann {* clock_name        off  usage *}
+      Ann {* ----------------  ---  -------------------------- *}
+      Ann {* CK                 0   nonscan_DFF  *}
+      Ann {*  *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+      Ann {* Unified STIL Flow *}
+      Ann {* serial_flag = 1 *}
+   }
+}
+Signals {
+   "GND" In; "VDD" In; "CK" In; "G0" In; "G1" In; "G2" In; "G3" In; "test_si" In;
+   "test_se" In; "G17" Out; "test_so" Out;
+}
+SignalGroups {
+   "_pi" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
+   "test_se"' { WFCMap { 0X->0; 1X->1; ZX->Z; NX->N; ZH->H; ZL->L; ZT->T; 1Z->1;
+   0Z->0; } } // #signals=9
+   "_in" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
+   "test_se"'; // #signals=9
+   "_po" = '"G17" + "test_so"' { WFCMap { 0X->0; 1X->1; ZX->Z; NX->N; ZH->H;
+   ZL->L; ZT->T; 1Z->1; 0Z->0; } } // #signals=2
+   "_out" = '"G17" + "test_so"'; // #signals=2
+   "_default_In_Timing_" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" +
+   "test_si" + "test_se"'; // #signals=9
+   "_default_Out_Timing_" = '"G17" + "test_so"'; // #signals=2
+   "_default_Clk0_Timing_" = '"CK"'; // #signals=1
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Clk0_Timing_" { P { '0ns' D; '50ns' U; '80ns' D; } }
+         "_default_Out_Timing_" { X { '0ns' Z; } }
+         "_default_Out_Timing_" { H { '0ns' Z; '40ns' H; } }
+         "_default_Out_Timing_" { L { '0ns' Z; '40ns' L; } }
+         "_default_Out_Timing_" { T { '0ns' Z; '40ns' T; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "multiclock_capture" {
+      W "_default_WFT_";
+      C { "VDD"=0; "G17"=X; "CK"=0; "GND"=0; "test_so"=X; "G3"=0; "G2"=0; "G1"=0; "G0"=0; "test_si"=0; "test_se"=0; }
+      V { "_pi"=\j \r9 # ; "_po"=\j ##; }
+   }
+   "allclock_capture" {
+      W "_default_WFT_";
+      C { "VDD"=0; "G17"=X; "CK"=0; "GND"=0; "test_so"=X; "G3"=0; "G2"=0; "G1"=0; "G0"=0; "test_si"=0; "test_se"=0; }
+      V { "_pi"=\j \r9 # ; "_po"=\j ##; }
+   }
+   "allclock_launch" {
+      W "_default_WFT_";
+      C { "VDD"=0; "G17"=X; "CK"=0; "GND"=0; "test_so"=X; "G3"=0; "G2"=0; "G1"=0; "G0"=0; "test_si"=0; "test_se"=0; }
+      V { "_pi"=\j \r9 # ; "_po"=\j ##; }
+   }
+   "allclock_launch_capture" {
+      W "_default_WFT_";
+      C { "VDD"=0; "G17"=X; "CK"=0; "GND"=0; "test_so"=X; "G3"=0; "G2"=0; "G1"=0; "G0"=0; "test_si"=0; "test_se"=0; }
+      V { "_pi"=\j \r9 # ; "_po"=\j ##; }
+   }
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { "CK" = 0; } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; "CK" = P; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+   "test_setup" {
+      W "_default_WFT_";
+      V { "CK"=0; }
+   }
+}
+Pattern "_pattern_" {
+   W "_default_WFT_";
+   "precondition all Signals": C { "_pi"=\r9 0 ; "_po"=XX; }
+   Macro "test_setup";
+   Ann {* Xs_are_explicit *}
+   Ann {* full_sequential *}
+   "pattern 0": Call "multiclock_capture" { 
+      "_pi"=11P100101; "_po"=XX; }
+   Call "multiclock_capture" { 
+      "_pi"=010111100; "_po"=HX; }
+   Ann {* Xs_are_explicit *}
+   Ann {* full_sequential *}
+   "pattern 1": Call "multiclock_capture" { 
+      "_pi"=10P011010; "_po"=XX; }
+   Call "multiclock_capture" { 
+      "_pi"=10P100010; "_po"=HL; }
+   Call "multiclock_capture" { 
+      "_pi"=000011110; "_po"=HL; }
+   Ann {* full_sequential *}
+   "pattern 2": Call "multiclock_capture" { 
+      "_pi"=10P110100; "_po"=HL; }
+   Call "multiclock_capture" { 
+      "_pi"=010001011; "_po"=HH; }
+   Ann {* full_sequential *}
+   "pattern 3": Call "multiclock_capture" { 
+      "_pi"=01P010011; "_po"=HH; }
+   Call "multiclock_capture" { 
+      "_pi"=01P001101; "_po"=HL; }
+   Call "multiclock_capture" { 
+      "_pi"=11P110101; "_po"=HH; }
+   Call "multiclock_capture" { 
+      "_pi"=110001110; "_po"=HH; }
+   Ann {* full_sequential *}
+   "pattern 4": Call "multiclock_capture" { 
+      "_pi"=00P011100; "_po"=HH; }
+   Call "multiclock_capture" { 
+      "_pi"=01P110011; "_po"=HL; }
+   Call "multiclock_capture" { 
+      "_pi"=10P101111; "_po"=HL; }
+   Call "multiclock_capture" { 
+      "_pi"=100010010; "_po"=HL; }
+   Ann {* full_sequential *}
+   "pattern 5": Call "multiclock_capture" { 
+      "_pi"=10P011000; "_po"=HL; }
+   Call "multiclock_capture" { 
+      "_pi"=110101110; "_po"=LL; }
+   Ann {* full_sequential *}
+   "pattern 6": Call "multiclock_capture" { 
+      "_pi"=00P001111; "_po"=LL; }
+   Call "multiclock_capture" { 
+      "_pi"=10P000101; "_po"=HL; }
+   Call "multiclock_capture" { 
+      "_pi"=010001011; "_po"=LL; }
+   Ann {* full_sequential *}
+   "pattern 7": Call "multiclock_capture" { 
+      "_pi"=11P001110; "_po"=LL; }
+   Call "multiclock_capture" { 
+      "_pi"=00P100100; "_po"=LL; }
+   Call "multiclock_capture" { 
+      "_pi"=11P011111; "_po"=LL; }
+   Call "multiclock_capture" { 
+      "_pi"=10P000101; "_po"=HH; }
+   Call "multiclock_capture" { 
+      "_pi"=010111000; "_po"=HL; }
+}
+
+// Patterns reference 26 V statements, generating 26 test cycles

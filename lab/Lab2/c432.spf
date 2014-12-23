@@ -1,7 +1,7 @@
 STIL 1.0 { Design 2005; }
 Header {
    Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
-   Date "Tue Dec 23 12:23:38 2014";
+   Date "Tue Dec 23 12:36:39 2014";
    History {
       Ann {*     Uncollapsed Stuck Fault Summary Report *}
       Ann {* ----------------------------------------------- *}
@@ -22,34 +22,38 @@ Header {
       Ann {* #internal patterns                           0 *}
       Ann {* ----------------------------------------------- *}
       Ann {*  *}
-      Ann {* rule  severity  #fails  description *}
-      Ann {* ----  --------  ------  --------------------------------- *}
-      Ann {* B8    warning        2  unconnected module input pin *}
-      Ann {*  *}
-      Ann {* clock_name        off  usage *}
-      Ann {* ----------------  ---  -------------------------- *}
-      Ann {* CK                 0    *}
-      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
       Ann {* There are no constraint ports *}
       Ann {* There are no equivalent pins *}
       Ann {* There are no net connections *}
    }
 }
 Signals {
-   "GND" In; "VDD" In; "CK" In; "G0" In; "G1" In; "G2" In; "G3" In; "test_si" In;
-   "test_se" In; "G17" Out; "test_so" Out;
+   "N1" In; "N4" In; "N8" In; "N11" In; "N14" In; "N17" In; "N21" In; "N24" In; "N27" In;
+   "N30" In; "N34" In; "N37" In; "N40" In; "N43" In; "N47" In; "N50" In; "N53" In;
+   "N56" In; "N60" In; "N63" In; "N66" In; "N69" In; "N73" In; "N76" In; "N79" In;
+   "N82" In; "N86" In; "N89" In; "N92" In; "N95" In; "N99" In; "N102" In; "N105" In;
+   "N108" In; "N112" In; "N115" In; "N223" Out; "N329" Out; "N370" Out; "N421" Out;
+   "N430" Out; "N431" Out; "N432" Out;
 }
 SignalGroups {
-   "_pi" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
-   "test_se"'; // #signals=9
-   "_in" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
-   "test_se"'; // #signals=9
-   "_po" = '"G17" + "test_so"'; // #signals=2
-   "_out" = '"G17" + "test_so"'; // #signals=2
-   "_default_In_Timing_" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" +
-   "test_si" + "test_se"'; // #signals=9
-   "_default_Out_Timing_" = '"G17" + "test_so"'; // #signals=2
-   "_default_Clk0_Timing_" = '"CK"'; // #signals=1
+   "_default_In_Timing_" = '"N1" + "N4" + "N8" + "N11" + "N14" + "N17" + "N21" +
+   "N24" + "N27" + "N30" + "N34" + "N37" + "N40" + "N43" + "N47" + "N50" + "N53" +
+   "N56" + "N60" + "N63" + "N66" + "N69" + "N73" + "N76" + "N79" + "N82" + "N86" +
+   "N89" + "N92" + "N95" + "N99" + "N102" + "N105" + "N108" + "N112" + "N115"'; // #signals=36
+   "_pi" = '"N1" + "N4" + "N8" + "N11" + "N14" + "N17" + "N21" + "N24" + "N27" +
+   "N30" + "N34" + "N37" + "N40" + "N43" + "N47" + "N50" + "N53" + "N56" + "N60" +
+   "N63" + "N66" + "N69" + "N73" + "N76" + "N79" + "N82" + "N86" + "N89" + "N92" +
+   "N95" + "N99" + "N102" + "N105" + "N108" + "N112" + "N115"'; // #signals=36
+   "_in" = '"N1" + "N4" + "N8" + "N11" + "N14" + "N17" + "N21" + "N24" + "N27" +
+   "N30" + "N34" + "N37" + "N40" + "N43" + "N47" + "N50" + "N53" + "N56" + "N60" +
+   "N63" + "N66" + "N69" + "N73" + "N76" + "N79" + "N82" + "N86" + "N89" + "N92" +
+   "N95" + "N99" + "N102" + "N105" + "N108" + "N112" + "N115"'; // #signals=36
+   "_default_Out_Timing_" = '"N223" + "N329" + "N370" + "N421" + "N430" + "N431" +
+   "N432"'; // #signals=7
+   "_po" = '"N223" + "N329" + "N370" + "N421" + "N430" + "N431" + "N432"'; // #signals=7
+   "_out" = '"N223" + "N329" + "N370" + "N421" + "N430" + "N431" + "N432"'; // #signals=7
 }
 Timing {
    WaveformTable "_default_WFT_" {
@@ -59,7 +63,6 @@ Timing {
          "_default_In_Timing_" { 1 { '0ns' U; } }
          "_default_In_Timing_" { Z { '0ns' Z; } }
          "_default_In_Timing_" { N { '0ns' N; } }
-         "_default_Clk0_Timing_" { P { '0ns' D; '50ns' U; '80ns' D; } }
          "_default_Out_Timing_" { X { '0ns' Z; } }
          "_default_Out_Timing_" { H { '0ns' Z; '40ns' H; } }
          "_default_Out_Timing_" { T { '0ns' Z; '40ns' T; } }
@@ -80,22 +83,18 @@ PatternExec {
 }
 Procedures {
    "multiclock_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r36 #; "_po"=\j \r7 #; }}
    "allclock_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r36 #; "_po"=\j \r7 #; }}
    "allclock_launch" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r36 #; "_po"=\j \r7 #; }}
    "allclock_launch_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r36 #; "_po"=\j \r7 #; }}
    // Uncomment and modify the following to suit your design
    // load_unload {
-      // V { "CK" = 0; } // force clocks off and scan enable pins active
-      // Shift { V { _si=#; _so=#; "CK" = P; }} // pulse shift clocks
+      // V { } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; }} // pulse shift clocks
    // }
 }
 MacroDefs {
-   "test_setup" {
-      W "_default_WFT_";
-      V { "CK"=0; }
-   }
 }

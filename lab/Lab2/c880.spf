@@ -1,0 +1,124 @@
+STIL 1.0 { Design 2005; }
+Header {
+   Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
+   Date "Tue Dec 23 12:43:04 2014";
+   History {
+      Ann {*     Uncollapsed Stuck Fault Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* fault class                     code   #faults *}
+      Ann {* ------------------------------  ----  --------- *}
+      Ann {* Detected                         DT          0 *}
+      Ann {* Possibly detected                PT          0 *}
+      Ann {* Undetectable                     UD          0 *}
+      Ann {* ATPG untestable                  AU          0 *}
+      Ann {* Not detected                     ND          0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* total faults                                 0 *}
+      Ann {* test coverage                             0.00% *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {*            Pattern Summary Report *}
+      Ann {* ----------------------------------------------- *}
+      Ann {* #internal patterns                           0 *}
+      Ann {* ----------------------------------------------- *}
+      Ann {*  *}
+      Ann {* There are no rule fails *}
+      Ann {* There are no clocks *}
+      Ann {* There are no constraint ports *}
+      Ann {* There are no equivalent pins *}
+      Ann {* There are no net connections *}
+   }
+}
+Signals {
+   "N1" In; "N8" In; "N13" In; "N17" In; "N26" In; "N29" In; "N36" In; "N42" In; "N51" In;
+   "N55" In; "N59" In; "N68" In; "N72" In; "N73" In; "N74" In; "N75" In; "N80" In;
+   "N85" In; "N86" In; "N87" In; "N88" In; "N89" In; "N90" In; "N91" In; "N96" In;
+   "N101" In; "N106" In; "N111" In; "N116" In; "N121" In; "N126" In; "N130" In; "N135" In;
+   "N138" In; "N143" In; "N146" In; "N149" In; "N152" In; "N153" In; "N156" In; "N159" In;
+   "N165" In; "N171" In; "N177" In; "N183" In; "N189" In; "N195" In; "N201" In; "N207" In;
+   "N210" In; "N219" In; "N228" In; "N237" In; "N246" In; "N255" In; "N259" In; "N260" In;
+   "N261" In; "N267" In; "N268" In; "N388" Out; "N389" Out; "N390" Out; "N391" Out;
+   "N418" Out; "N419" Out; "N420" Out; "N421" Out; "N422" Out; "N423" Out; "N446" Out;
+   "N447" Out; "N448" Out; "N449" Out; "N450" Out; "N767" Out; "N768" Out; "N850" Out;
+   "N863" Out; "N864" Out; "N865" Out; "N866" Out; "N874" Out; "N878" Out; "N879" Out;
+   "N880" Out;
+}
+SignalGroups {
+   "_default_In_Timing_" = '"N1" + "N8" + "N13" + "N17" + "N26" + "N29" + "N36" +
+   "N42" + "N51" + "N55" + "N59" + "N68" + "N72" + "N73" + "N74" + "N75" + "N80" +
+   "N85" + "N86" + "N87" + "N88" + "N89" + "N90" + "N91" + "N96" + "N101" +
+   "N106" + "N111" + "N116" + "N121" + "N126" + "N130" + "N135" + "N138" +
+   "N143" + "N146" + "N149" + "N152" + "N153" + "N156" + "N159" + "N165" +
+   "N171" + "N177" + "N183" + "N189" + "N195" + "N201" + "N207" + "N210" +
+   "N219" + "N228" + "N237" + "N246" + "N255" + "N259" + "N260" + "N261" +
+   "N267" + "N268"'; // #signals=60
+   "_pi" = '"N1" + "N8" + "N13" + "N17" + "N26" + "N29" + "N36" + "N42" + "N51" +
+   "N55" + "N59" + "N68" + "N72" + "N73" + "N74" + "N75" + "N80" + "N85" + "N86" +
+   "N87" + "N88" + "N89" + "N90" + "N91" + "N96" + "N101" + "N106" + "N111" +
+   "N116" + "N121" + "N126" + "N130" + "N135" + "N138" + "N143" + "N146" +
+   "N149" + "N152" + "N153" + "N156" + "N159" + "N165" + "N171" + "N177" +
+   "N183" + "N189" + "N195" + "N201" + "N207" + "N210" + "N219" + "N228" +
+   "N237" + "N246" + "N255" + "N259" + "N260" + "N261" + "N267" + "N268"'; // #signals=60
+   "_in" = '"N1" + "N8" + "N13" + "N17" + "N26" + "N29" + "N36" + "N42" + "N51" +
+   "N55" + "N59" + "N68" + "N72" + "N73" + "N74" + "N75" + "N80" + "N85" + "N86" +
+   "N87" + "N88" + "N89" + "N90" + "N91" + "N96" + "N101" + "N106" + "N111" +
+   "N116" + "N121" + "N126" + "N130" + "N135" + "N138" + "N143" + "N146" +
+   "N149" + "N152" + "N153" + "N156" + "N159" + "N165" + "N171" + "N177" +
+   "N183" + "N189" + "N195" + "N201" + "N207" + "N210" + "N219" + "N228" +
+   "N237" + "N246" + "N255" + "N259" + "N260" + "N261" + "N267" + "N268"'; // #signals=60
+   "_default_Out_Timing_" = '"N388" + "N389" + "N390" + "N391" + "N418" + "N419" +
+   "N420" + "N421" + "N422" + "N423" + "N446" + "N447" + "N448" + "N449" +
+   "N450" + "N767" + "N768" + "N850" + "N863" + "N864" + "N865" + "N866" +
+   "N874" + "N878" + "N879" + "N880"'; // #signals=26
+   "_po" = '"N388" + "N389" + "N390" + "N391" + "N418" + "N419" + "N420" +
+   "N421" + "N422" + "N423" + "N446" + "N447" + "N448" + "N449" + "N450" +
+   "N767" + "N768" + "N850" + "N863" + "N864" + "N865" + "N866" + "N874" +
+   "N878" + "N879" + "N880"'; // #signals=26
+   "_out" = '"N388" + "N389" + "N390" + "N391" + "N418" + "N419" + "N420" +
+   "N421" + "N422" + "N423" + "N446" + "N447" + "N448" + "N449" + "N450" +
+   "N767" + "N768" + "N850" + "N863" + "N864" + "N865" + "N866" + "N874" +
+   "N878" + "N879" + "N880"'; // #signals=26
+}
+Timing {
+   WaveformTable "_default_WFT_" {
+      Period '100ns';
+      Waveforms {
+         "_default_In_Timing_" { 0 { '0ns' D; } }
+         "_default_In_Timing_" { 1 { '0ns' U; } }
+         "_default_In_Timing_" { Z { '0ns' Z; } }
+         "_default_In_Timing_" { N { '0ns' N; } }
+         "_default_Out_Timing_" { X { '0ns' Z; } }
+         "_default_Out_Timing_" { H { '0ns' Z; '40ns' H; } }
+         "_default_Out_Timing_" { T { '0ns' Z; '40ns' T; } }
+         "_default_Out_Timing_" { L { '0ns' Z; '40ns' L; } }
+      }
+   }
+}
+ScanStructures {
+   // Uncomment and modify the following to suit your design
+   // ScanChain "chain_name" { ScanIn "chain_input_name"; ScanOut "chain_output_name"; }
+}
+PatternBurst "_burst_" {
+   PatList { "_pattern_" {
+   }
+}}
+PatternExec {
+   PatternBurst "_burst_";
+}
+Procedures {
+   "multiclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r60 #; "_po"=\j \r26 #; }}
+   "allclock_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r60 #; "_po"=\j \r26 #; }}
+   "allclock_launch" { W "_default_WFT_";
+      V { "_pi"=\j \r60 #; "_po"=\j \r26 #; }}
+   "allclock_launch_capture" { W "_default_WFT_";
+      V { "_pi"=\j \r60 #; "_po"=\j \r26 #; }}
+   // Uncomment and modify the following to suit your design
+   // load_unload {
+      // V { } // force clocks off and scan enable pins active
+      // Shift { V { _si=#; _so=#; }} // pulse shift clocks
+   // }
+}
+MacroDefs {
+}

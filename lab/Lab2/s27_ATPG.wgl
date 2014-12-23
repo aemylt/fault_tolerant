@@ -1,0 +1,144 @@
+# WGL pattern output written by  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 
+# Date: Tue Dec 23 12:28:43 2014
+# Module tested: s27
+# === bidimap ===
+#  in out in out;
+#   00     00
+#   10     10
+#   X0     X0
+#   Z0     -0
+#   -0     -0
+#   01     01
+#   11     11
+#   X1     X1
+#   Z1     -1
+#   -1     -1
+#   0X     0-
+#   1X     1-
+#   XX     X-
+#   ZX     -X
+#   -X     --
+#   0Z     0Z
+#   1Z     1Z
+#   XZ     XZ
+#   ZZ     -Z
+#   -Z     -Z
+#   0-     0-
+#   1-     1-
+#   X-     X-
+#   Z-     --
+#   --     --
+# scanchain inversion reference is set to master
+
+#     Uncollapsed Stuck Fault Summary Report
+# -----------------------------------------------
+# fault class                     code   #faults
+# ------------------------------  ----  ---------
+# Detected                         DT         82
+# Possibly detected                PT          8
+# Undetectable                     UD          4
+# ATPG untestable                  AU          0
+# Not detected                     ND          0
+# -----------------------------------------------
+# total faults                                94
+# test coverage                            95.56%
+# -----------------------------------------------
+# 
+#            Pattern Summary Report
+# -----------------------------------------------
+# #internal patterns                           8
+#     #full_sequential patterns                8
+# -----------------------------------------------
+# 
+# rule  severity  #fails  description
+# ----  --------  ------  ---------------------------------
+# B8    warning        2  unconnected module input pin
+# 
+# clock_name        off  usage
+# ----------------  ---  --------------------------
+# CK                 0   nonscan_DFF 
+# 
+# There are no constraint ports
+# There are no equivalent pins
+# There are no net connections
+
+waveform s27
+
+signal
+   "GND" : input;
+   "VDD" : input;
+   "CK" : input;
+   "G0" : input;
+   "G1" : input;
+   "G17" : output;
+   "G2" : input;
+   "G3" : input;
+   "test_si" : input;
+   "test_so" : output;
+   "test_se" : input;
+end
+
+timeplate "_default_WFT_" period 100ns
+   "GND" := input [0ps:S];
+   "VDD" := input [0ps:S];
+   "CK" := input [0ps:D, 50ns:S, 80ns:D];
+   "G0" := input [0ps:S];
+   "G1" := input [0ps:S];
+   "G17" := output [0ps:Z, 40ns:Q'edge];
+   "G2" := input [0ps:S];
+   "G3" := input [0ps:S];
+   "test_si" := input [0ps:S];
+   "test_so" := output [0ps:Z, 40ns:Q'edge];
+   "test_se" := input [0ps:S];
+end
+
+pattern group_ALL ("GND", "VDD", "CK", "G0", "G1", "G2", "G3", "test_si", "test_se",
+   "G17", "test_so")
+   { test_setup }
+   vector("_default_WFT_") := [ X X 0 X X X X X X X X ];
+   { non_scan_test }
+   { pattern 0 }
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 1 1 1 0 0 1 0 1 X X ];
+   { pattern 1 }
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 0 1 0 1 1 0 1 0 X X ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 0 1 1 0 0 0 1 0 1 0 ];
+   { pattern 2 }
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 0 1 1 1 0 1 0 0 1 0 ];
+   { pattern 3 }
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 0 1 1 0 1 0 0 1 1 1 1 ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 0 1 1 0 0 1 1 0 1 1 0 ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 1 1 1 1 0 1 0 1 1 1 ];
+   { pattern 4 }
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 0 0 1 0 1 1 1 0 0 1 1 ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 0 1 1 1 1 0 0 1 1 1 0 ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 0 1 1 0 1 1 1 1 1 0 ];
+   { pattern 5 }
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 0 1 0 1 1 0 0 0 1 0 ];
+   { pattern 6 }
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 0 0 1 0 0 1 1 1 1 0 0 ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 0 1 0 0 0 1 0 1 1 0 ];
+   { pattern 7 }
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 1 1 0 0 1 1 1 0 0 0 ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 0 0 1 1 0 0 1 0 0 0 0 ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 1 1 0 1 1 1 1 1 0 0 ];
+   { multiclock_capture }
+   vector("_default_WFT_") := [ 1 0 1 0 0 0 1 0 1 1 1 ];
+end
+
+end
