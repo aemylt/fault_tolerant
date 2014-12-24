@@ -92,8 +92,6 @@ insert_dft
 report_area > s386_area_scan
 write -format verilog -hierarchy -output s386_syn.v
 
-analyze -library WORK -format vhdl {/home/ugrads/coms2011/dm1905/linux/fourth_year/fault_tolerant/lab/Lab1/full_adder.vhd}
-elaborate ADDSUB -architecture STRUCTURE -library DEFAULT -parameters "size = 1"
 create_clock -period 10 clk
 compile
 report_area > full_adder_area_noscan
