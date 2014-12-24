@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Dominic Moylett - dm1905@my.bristol.ac.uk}
+\cfoot{Page \thepage}
+
+\usepackage{tabularx}
+
+\begin{document}
+    \begin{center}
+        \section*{Fault Tolerant Computing and VLSI Testing}
+        \subsection*{Lab 1}
+    \end{center}
+
+    \begin{enumerate}
+
+        \item Above questions:
+
+            \begin{itemize}
+                \item How many scan cells do you have? 3
+                \item How many rule violations do you have? 0
+                \item How many scan chains will you have? 1
+                \item How much is the area overhead of scan? 23.4\%
+                \item How much is the timing overhead of scan? 4.7\%
+                \item What type of DFF before dft\_compiler? reg
+                \item What type of DFF after dft\_compiler? HDSDFPQ1
+                \item What two pins did dft\_compiler add? test\_si, test\_se
+            \end{itemize}
+
+        \item \mbox{}\\
+
+            \begin{tabularx}{\textwidth}{|X|X|X|}
+                \hline
+                Circuit name & Area without scan chain & Area with scan chain \\ \hline
+                s298 & 1380.55 & 1483.78 \\ \hline
+                s344 & 1509.57 & 1664.41 \\ \hline
+                s349 & 1509.57 & 1664.41 \\ \hline
+                s382 & 1899.87 & 2170.83 \\ \hline
+                s386 & 1077.34 & 1154.76 \\ \hline
+            \end{tabularx}
+
+        \item \mbox{}\\
+
+            \begin{tabularx}{\textwidth}{|X|X|X|}
+                \hline
+                Circuit name (registered inputs and outputs) & Area without scan chain & Area with scan chain \\ \hline
+                Full adder & 280.63 & 332.24\\ \hline
+                4 bit & 503.20 & 496.75\\ \hline
+                8 bit & 825.75 & 941.88\\ \hline
+                16 bit & 1599.90 & 1819.25\\ \hline
+                32 bit & 3148.19 & 3573.98\\ \hline
+                64 bit & 6244.76 & 7083.46\\ \hline
+            \end{tabularx}
+
+        \item \mbox{}\\
+
+            \begin{tabularx}{\textwidth}{|X|X|}
+                \hline
+                Command & Example \\ \hline
+                create\_clock & create\_clock -period 10 CK \\ \hline
+                current\_design & current\_design s27 \\ \hline
+                compile & compile -scan \\ \hline
+                set\_dft\_signal & set\_dft\_signal -view existing\_dft -type ScanClock -port CK -timing [list 40 60] \\ \hline
+                create\_test\_protocol & create\_test\_protocol \\ \hline
+                dft\_drc & dft\_drc \\ \hline
+                set\_scan\_configuration & set\_scan\_configuration -chain\_count 1 \\ \hline
+                insert\_dft & insert\_dft \\ \hline
+                write & write -format verilog -hierarchy -output s27\_dft.v \\ \hline
+                report\_area & report\_area \\ \hline
+                report\_timing & report\_timing \\ \hline
+                report\_power & report\_power \\ \hline
+            \end{tabularx}
+
+    \end{enumerate}
+
+\end{document}
