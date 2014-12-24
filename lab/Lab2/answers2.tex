@@ -1,0 +1,72 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Dominic Moylett - dm1905@my.bristol.ac.uk}
+\cfoot{Page \thepage}
+
+\usepackage{tabularx}
+
+\begin{document}
+    \begin{center}
+        \section*{Fault Tolerant Computing and VLSI Testing}
+        \subsection*{Lab 1}
+    \end{center}
+
+    \begin{enumerate}
+
+        \item \begin{tabularx}{\textwidth}{|X|X|X|X|}
+                \hline
+                Circuit name & Number of stuck-at faults & No of test patterns & Test coverage \\ \hline
+                C432 & 812 & 35 & 90.59 \\ \hline
+                C499 & 1130 & 61 & 100 \\ \hline
+                C880 & 1376 & 32 & 100 \\ \hline
+                C1355 & 1294 & 75 & 100 \\ \hline
+                C1908 & 892 & 34 & 100 \\ \hline
+            \end{tabularx}
+
+            Note with C1908 that two faults were undetected. The 100\% coverage is due to the fact that Tetramax rounds to two decimal places.
+
+        \item \begin{tabularx}{\textwidth}{|X|X|X|X|}
+                \hline
+                Circuit name (combinational logic only) & Number of stuck-at faults & No of test patterns & Test coverage \\ \hline
+                Full adder & 32 & 5 & 100 \\ \hline
+                4 bit & 116 & 8 & 100 \\ \hline
+                8 bit & 228 & 11 & 100 \\ \hline
+                16 bit & 452 & 12 & 100 \\ \hline
+                32 bit & 900 & 17 & 100 \\ \hline
+                64 bit & 1796 & 22 & 100 \\ \hline
+            \end{tabularx}
+
+        \item \begin{tabularx}{\textwidth}{|X|X|X|X|}
+                \hline
+                Circuit name & Number of stuck-at faults & No of test patterns & Test coverage \\ \hline
+                s298 & 510 & 21 & 97.04 \\ \hline
+                s344 & 634 & 13 & 97.3 \\ \hline
+                s349 & 634 & 13 & 97.3 \\ \hline
+                s382 & 756 & 38 & 95.61 \\ \hline
+                s386 & 576 & 15 & 79.37 \\ \hline
+            \end{tabularx}
+
+        \item \begin{tabularx}{\textwidth}{|X|X|}
+                \hline
+                Command & Example \\ \hline
+                read\_netlist & read\_netlist ./verilog\_simulation\_models/*.v \\ \hline
+                run\_build\_model & run\_build\_model s27 \\ \hline
+                add\_clocks & add\_clocks 0 CK \\ \hline
+                write\_drc\_file & write\_drc\_file ./s27.spf -replace \\ \hline
+                run\_drc & run\_drc ./s27.spf \\ \hline
+                set\_atpg & set\_atpg -merge medium \\ \hline
+                set\_faults & set\_faults -model stuck \\ \hline
+                add\_faults & add\_faults -all \\ \hline
+                run\_atpg & run\_atpg full\_sequential\_only \\ \hline
+                report\_summaries & report\_summaries \\ \hline
+                report\_faults & report\_faults -all \\ \hline
+                report\_patterns & report\_patterns -all \\ \hline
+                write\_patterns & write\_patterns s27\_ATPG.wgl -format WGL \\ \hline
+            \end{tabularx}
+
+    \end{enumerate}
+
+\end{document}
