@@ -3,7 +3,7 @@
 // Components used in MIPS processor
 //------------------------------------------------
 
-module alu(input      [31:0] a, b, 
+module alu_m(input      [31:0] a, b, 
            input      [2:0]  alucont, 
            output reg [31:0] result,
            output            zero);
@@ -23,6 +23,15 @@ module alu(input      [31:0] a, b,
     endcase
 
   assign zero = (result == 32'b0);
+endmodule
+
+module alu(input      [31:0] a, b, 
+           input      [2:0]  alucont, 
+           output     [31:0] result,
+           output            zero);
+
+  alu_m alu_1(.a(a), .b(b), .alucont(alucont), .result(result), .zero(zero));
+
 endmodule
 
 module regfile(input         clk, 
