@@ -1,0 +1,64 @@
+Loading db file '/home/ugrads/coms2011/dm1905/linux/fourth_year/fault_tolerant/lab/Lab1/umcl18g212t3_tc_180V_25C.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : alu
+Version: G-2012.06-SP5
+Date   : Tue Dec 30 13:02:14 2014
+****************************************
+
+
+Library(s) Used:
+
+    umcl18g212t3_tc_180V_25C (File: /home/ugrads/coms2011/dm1905/linux/fourth_year/fault_tolerant/lab/Lab1/umcl18g212t3_tc_180V_25C.db)
+
+
+Operating Conditions: nom_pvt   Library: umcl18g212t3_tc_180V_25C
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+alu                    suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_0                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_1                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_2                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_1_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_2_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_0_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+
+
+Global Operating Voltage = 1.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1uW
+
+
+  Cell Internal Power  =   3.1557 mW   (64%)
+  Net Switching Power  =   1.7512 mW   (36%)
+                         ---------
+Total Dynamic Power    =   4.9069 mW  (100%)
+
+Cell Leakage Power     =  69.4583 nW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      3.1557            1.7512        6.9458e-02            4.9070  ( 100.00%)
+--------------------------------------------------------------------------------------------------
+Total              3.1557 mW         1.7512 mW     6.9458e-02 uW         4.9070 mW
+1
