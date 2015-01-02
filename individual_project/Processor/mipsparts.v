@@ -30,20 +30,22 @@ module alu(input      [31:0] a, b,
            output reg [31:0] result,
            output reg        zero);
 
-  wire [31:0] result_0, result_1, result_2, result_3, result_4;
-  wire zero_0, zero_1, zero_2, zero_3, zero_4;
+  wire [31:0] result_0, result_1, result_2, result_3, result_4, result_5, result_6;
+  wire zero_0, zero_1, zero_2, zero_3, zero_4, zero_5, zero_6;
 
   alu_m alu_0(.a(a), .b(b), .alucont(alucont), .result(result_0), .zero(zero_0));
   alu_m alu_1(.a(a), .b(b), .alucont(alucont), .result(result_1), .zero(zero_1));
   alu_m alu_2(.a(a), .b(b), .alucont(alucont), .result(result_2), .zero(zero_2));
   alu_m alu_3(.a(a), .b(b), .alucont(alucont), .result(result_3), .zero(zero_3));
   alu_m alu_4(.a(a), .b(b), .alucont(alucont), .result(result_4), .zero(zero_4));
+  alu_m alu_5(.a(a), .b(b), .alucont(alucont), .result(result_5), .zero(zero_5));
+  alu_m alu_6(.a(a), .b(b), .alucont(alucont), .result(result_6), .zero(zero_6));
 
   always@(*)
-    result = (result_0 & result_1 & result_2) | (result_0 & result_1 & result_3) | (result_0 & result_1 & result_4) | (result_0 & result_2 & result_3) | (result_0 & result_2 & result_4) | (result_0 & result_3 & result_4) | (result_1 & result_2 & result_3) | (result_1 & result_2 & result_4) | (result_1 & result_3 & result_4) | (result_2 & result_3 & result_4);
+    result = (result_0 & result_1 & result_2 & result_3) | (result_0 & result_1 & result_2 & result_4) | (result_0 & result_1 & result_2 & result_5) | (result_0 & result_1 & result_2 & result_6) | (result_0 & result_1 & result_3 & result_4) | (result_0 & result_1 & result_3 & result_5) | (result_0 & result_1 & result_3 & result_6) | (result_0 & result_1 & result_4 & result_5) | (result_0 & result_1 & result_4 & result_6) | (result_0 & result_1 & result_5 & result_6) | (result_0 & result_2 & result_3 & result_4) | (result_0 & result_2 & result_3 & result_5) | (result_0 & result_2 & result_3 & result_6) | (result_0 & result_2 & result_4 & result_5) | (result_0 & result_2 & result_4 & result_6) | (result_0 & result_2 & result_5 & result_6) | (result_0 & result_3 & result_4 & result_5) | (result_0 & result_3 & result_4 & result_6) | (result_0 & result_3 & result_5 & result_6) | (result_0 & result_4 & result_5 & result_6) | (result_1 & result_2 & result_3 & result_4) | (result_1 & result_2 & result_3 & result_5) | (result_1 & result_2 & result_3 & result_6) | (result_1 & result_2 & result_4 & result_5) | (result_1 & result_2 & result_4 & result_6) | (result_1 & result_2 & result_5 & result_6) | (result_1 & result_3 & result_4 & result_5) | (result_1 & result_3 & result_4 & result_6) | (result_1 & result_3 & result_5 & result_6) | (result_1 & result_4 & result_5 & result_6) | (result_2 & result_3 & result_4 & result_5) | (result_2 & result_3 & result_4 & result_6) | (result_2 & result_3 & result_5 & result_6) | (result_2 & result_4 & result_5 & result_6) | (result_3 & result_4 & result_5 & result_6);
 
   always@(*)
-    zero = (zero_0 & zero_1 & zero_2) | (zero_0 & zero_1 & zero_3) | (zero_0 & zero_1 & zero_4) | (zero_0 & zero_2 & zero_3) | (zero_0 & zero_2 & zero_4) | (zero_0 & zero_3 & zero_4) | (zero_1 & zero_2 & zero_3) | (zero_1 & zero_2 & zero_4) | (zero_1 & zero_3 & zero_4) | (zero_2 & zero_3 & zero_4);
+    zero = (zero_0 & zero_1 & zero_2 & zero_3) | (zero_0 & zero_1 & zero_2 & zero_4) | (zero_0 & zero_1 & zero_2 & zero_5) | (zero_0 & zero_1 & zero_2 & zero_6) | (zero_0 & zero_1 & zero_3 & zero_4) | (zero_0 & zero_1 & zero_3 & zero_5) | (zero_0 & zero_1 & zero_3 & zero_6) | (zero_0 & zero_1 & zero_4 & zero_5) | (zero_0 & zero_1 & zero_4 & zero_6) | (zero_0 & zero_1 & zero_5 & zero_6) | (zero_0 & zero_2 & zero_3 & zero_4) | (zero_0 & zero_2 & zero_3 & zero_5) | (zero_0 & zero_2 & zero_3 & zero_6) | (zero_0 & zero_2 & zero_4 & zero_5) | (zero_0 & zero_2 & zero_4 & zero_6) | (zero_0 & zero_2 & zero_5 & zero_6) | (zero_0 & zero_3 & zero_4 & zero_5) | (zero_0 & zero_3 & zero_4 & zero_6) | (zero_0 & zero_3 & zero_5 & zero_6) | (zero_0 & zero_4 & zero_5 & zero_6) | (zero_1 & zero_2 & zero_3 & zero_4) | (zero_1 & zero_2 & zero_3 & zero_5) | (zero_1 & zero_2 & zero_3 & zero_6) | (zero_1 & zero_2 & zero_4 & zero_5) | (zero_1 & zero_2 & zero_4 & zero_6) | (zero_1 & zero_2 & zero_5 & zero_6) | (zero_1 & zero_3 & zero_4 & zero_5) | (zero_1 & zero_3 & zero_4 & zero_6) | (zero_1 & zero_3 & zero_5 & zero_6) | (zero_1 & zero_4 & zero_5 & zero_6) | (zero_2 & zero_3 & zero_4 & zero_5) | (zero_2 & zero_3 & zero_4 & zero_6) | (zero_2 & zero_3 & zero_5 & zero_6) | (zero_2 & zero_4 & zero_5 & zero_6) | (zero_3 & zero_4 & zero_5 & zero_6);
 
 endmodule
 
