@@ -28,22 +28,22 @@ endmodule
 module alu(input      [31:0] a, b, 
            input      [2:0]  alucont, 
            output reg [31:0] result,
-           output            zero);
+           output reg        zero);
 
-  wire [31:0] result_0, result_1, result_2;
-  wire zero_0, zero_1, zero_2, zero_0_1, zero_0_2, zero_1_2;
+  wire [31:0] result_0, result_1, result_2, result_3, result_4;
+  wire zero_0, zero_1, zero_2, zero_3, zero_4;
 
   alu_m alu_0(.a(a), .b(b), .alucont(alucont), .result(result_0), .zero(zero_0));
   alu_m alu_1(.a(a), .b(b), .alucont(alucont), .result(result_1), .zero(zero_1));
   alu_m alu_2(.a(a), .b(b), .alucont(alucont), .result(result_2), .zero(zero_2));
-
-  and and_zero_0_1(zero_0_1, zero_0, zero_1);
-  and and_zero_0_2(zero_0_2, zero_0, zero_2);
-  and and_zero_1_2(zero_1_2, zero_1, zero_2);
-  or or_zero(zero, zero_0_1, zero_0_2, zero_1_2);
+  alu_m alu_3(.a(a), .b(b), .alucont(alucont), .result(result_3), .zero(zero_3));
+  alu_m alu_4(.a(a), .b(b), .alucont(alucont), .result(result_4), .zero(zero_4));
 
   always@(*)
-    result = (result_0 & result_1) | (result_0 & result_2) | (result_1 & result_2);
+    result = (result_0 & result_1 & result_2) | (result_0 & result_1 & result_3) | (result_0 & result_1 & result_4) | (result_0 & result_2 & result_3) | (result_0 & result_2 & result_4) | (result_0 & result_3 & result_4) | (result_1 & result_2 & result_3) | (result_1 & result_2 & result_4) | (result_1 & result_3 & result_4) | (result_2 & result_3 & result_4);
+
+  always@(*)
+    zero = (zero_0 & zero_1 & zero_2) | (zero_0 & zero_1 & zero_3) | (zero_0 & zero_1 & zero_4) | (zero_0 & zero_2 & zero_3) | (zero_0 & zero_2 & zero_4) | (zero_0 & zero_3 & zero_4) | (zero_1 & zero_2 & zero_3) | (zero_1 & zero_2 & zero_4) | (zero_1 & zero_3 & zero_4) | (zero_2 & zero_3 & zero_4);
 
 endmodule
 
