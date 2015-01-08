@@ -57,10 +57,10 @@ module alu(input      [31:0] a, b,
   and and_zero_3(zero_3, zero_3_out, switchz_3);
 
   always@(*)
-    result = (result_0 & result_1) | (result_0 & result_2) | (result_0 & result_3) | (result_1 & result_2) | (result_1 & result_3) | (result_2 & result_3);
+    result = (result_0 & result_1 & result_2) | (result_0 & result_1 & result_3) | (result_0 & result_2 & result_3) | (result_1 & result_2 & result_3);
 
   always@(*)
-    zero = (zero_0 & zero_1) | (zero_0 & zero_2) | (zero_0 & zero_3) | (zero_1 & zero_2) | (zero_1 & zero_3) | (zero_2 & zero_3);
+    zero = (zero_0 & zero_1 & zero_2) | (zero_0 & zero_1 & zero_3) | (zero_0 & zero_2 & zero_3) | (zero_1 & zero_2 & zero_3);
 
   always@(result)
     switchr_0 = switchr_0 & ~(result_0 ^ result);
