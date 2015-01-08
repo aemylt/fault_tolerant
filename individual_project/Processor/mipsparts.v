@@ -80,19 +80,19 @@ module alu(input      [31:0] a, b,
   always@(result)
     switchr_4 = switchr_4 & ~(result_4 ^ result);
 
-  always@(result)
+  always@(zero)
     switchz_0 = switchz_0 & ~(zero_0 ^ zero);
 
-  always@(result)
+  always@(zero)
     switchz_1 = switchz_1 & ~(zero_1 ^ zero);
 
-  always@(result)
+  always@(zero)
     switchz_2 = switchz_2 & ~(zero_2 ^ zero);
 
-  always@(result)
+  always@(zero)
     switchz_3 = switchz_3 & ~(zero_3 ^ zero);
 
-  always@(result)
+  always@(zero)
     switchz_4 = switchz_4 & ~(zero_4 ^ zero);
 
 endmodule
