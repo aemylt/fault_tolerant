@@ -63,10 +63,10 @@ module alu(input      [31:0] a, b,
   and and_zero_5(zero_5, zero_5_out, switchz_5);
 
   always@(*)
-    result = (result_0 & result_1) | (result_0 & result_2) | (result_0 & result_3) | (result_0 & result_4) | (result_0 & result_5) | (result_1 & result_2) | (result_1 & result_3) | (result_1 & result_4) | (result_1 & result_5) | (result_2 & result_3) | (result_2 & result_4) | (result_2 & result_5) | (result_3 & result_4) | (result_3 & result_5) | (result_4 & result_5);
+    result = (result_0 & result_1 & result_2) | (result_0 & result_1 & result_3) | (result_0 & result_1 & result_4) | (result_0 & result_1 & result_5) | (result_0 & result_2 & result_3) | (result_0 & result_2 & result_4) | (result_0 & result_2 & result_5) | (result_0 & result_3 & result_4) | (result_0 & result_3 & result_5) | (result_0 & result_4 & result_5) | (result_1 & result_2 & result_3) | (result_1 & result_2 & result_4) | (result_1 & result_2 & result_5) | (result_1 & result_3 & result_4) | (result_1 & result_3 & result_5) | (result_1 & result_4 & result_5) | (result_2 & result_3 & result_4) | (result_2 & result_3 & result_5) | (result_2 & result_4 & result_5) | (result_3 & result_4 & result_5);
 
   always@(*)
-    zero = (zero_0 & zero_1) | (zero_0 & zero_2) | (zero_0 & zero_3) | (zero_0 & zero_4) | (zero_0 & zero_5) | (zero_1 & zero_2) | (zero_1 & zero_3) | (zero_1 & zero_4) | (zero_1 & zero_5) | (zero_2 & zero_3) | (zero_2 & zero_4) | (zero_2 & zero_5) | (zero_3 & zero_4) | (zero_3 & zero_5) | (zero_4 & zero_5);
+    zero = (zero_0 & zero_1 & zero_2) | (zero_0 & zero_1 & zero_3) | (zero_0 & zero_1 & zero_4) | (zero_0 & zero_1 & zero_5) | (zero_0 & zero_2 & zero_3) | (zero_0 & zero_2 & zero_4) | (zero_0 & zero_2 & zero_5) | (zero_0 & zero_3 & zero_4) | (zero_0 & zero_3 & zero_5) | (zero_0 & zero_4 & zero_5) | (zero_1 & zero_2 & zero_3) | (zero_1 & zero_2 & zero_4) | (zero_1 & zero_2 & zero_5) | (zero_1 & zero_3 & zero_4) | (zero_1 & zero_3 & zero_5) | (zero_1 & zero_4 & zero_5) | (zero_2 & zero_3 & zero_4) | (zero_2 & zero_3 & zero_5) | (zero_2 & zero_4 & zero_5) | (zero_3 & zero_4 & zero_5);
 
   always@(result)
     switchr_0 = switchr_0 & ~(result_0 ^ result);
