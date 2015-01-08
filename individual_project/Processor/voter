@@ -18,4 +18,5 @@ for combo in itertools.product(modules, repeat=threashold):
         else:
             code.append("({0})".format(" & ".join(combo)))
 
-print " | ".join(code)
+print " | ".join(code).replace("zero", "result") + ";"
+print " | ".join(code) + ";"
