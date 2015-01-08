@@ -1,0 +1,87 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : alu
+Version: G-2012.06-SP5
+Date   : Thu Jan  8 21:04:20 2015
+****************************************
+
+Operating Conditions: nom_pvt   Library: umcl18g212t3_tc_180V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: alucont[2] (input port)
+  Endpoint: zero (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  alu                suggested_20K         umcl18g212t3_tc_180V_25C
+  alu_m_4            suggested_10K         umcl18g212t3_tc_180V_25C
+  alu_m_4_DW01_add_0 suggested_10K         umcl18g212t3_tc_180V_25C
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  alucont[2] (in)                                         0.00       0.00 r
+  alu_6/alucont[2] (alu_m_4)                              0.00       0.00 r
+  alu_6/U114/Z (HDEXOR2D1)                                0.17       0.17 f
+  alu_6/add_1_root_add_14_2/B[0] (alu_m_4_DW01_add_0)     0.00       0.17 f
+  alu_6/add_1_root_add_14_2/U1_0/CO (HDADFULDL)           0.25       0.43 f
+  alu_6/add_1_root_add_14_2/U1_1/CO (HDADFULDL)           0.24       0.67 f
+  alu_6/add_1_root_add_14_2/U1_2/CO (HDADFULDL)           0.24       0.91 f
+  alu_6/add_1_root_add_14_2/U1_3/CO (HDADFULDL)           0.24       1.16 f
+  alu_6/add_1_root_add_14_2/U1_4/CO (HDADFULDL)           0.24       1.40 f
+  alu_6/add_1_root_add_14_2/U1_5/CO (HDADFULDL)           0.24       1.64 f
+  alu_6/add_1_root_add_14_2/U1_6/CO (HDADFULDL)           0.24       1.89 f
+  alu_6/add_1_root_add_14_2/U1_7/CO (HDADFULDL)           0.24       2.13 f
+  alu_6/add_1_root_add_14_2/U1_8/CO (HDADFULDL)           0.24       2.37 f
+  alu_6/add_1_root_add_14_2/U1_9/CO (HDADFULDL)           0.24       2.62 f
+  alu_6/add_1_root_add_14_2/U1_10/CO (HDADFULDL)          0.24       2.86 f
+  alu_6/add_1_root_add_14_2/U1_11/CO (HDADFULDL)          0.24       3.10 f
+  alu_6/add_1_root_add_14_2/U1_12/CO (HDADFULDL)          0.24       3.35 f
+  alu_6/add_1_root_add_14_2/U1_13/CO (HDADFULDL)          0.24       3.59 f
+  alu_6/add_1_root_add_14_2/U1_14/CO (HDADFULDL)          0.24       3.83 f
+  alu_6/add_1_root_add_14_2/U1_15/CO (HDADFULDL)          0.24       4.08 f
+  alu_6/add_1_root_add_14_2/U1_16/CO (HDADFULDL)          0.24       4.32 f
+  alu_6/add_1_root_add_14_2/U1_17/CO (HDADFULDL)          0.24       4.56 f
+  alu_6/add_1_root_add_14_2/U1_18/CO (HDADFULDL)          0.24       4.81 f
+  alu_6/add_1_root_add_14_2/U1_19/CO (HDADFULDL)          0.24       5.05 f
+  alu_6/add_1_root_add_14_2/U1_20/CO (HDADFULDL)          0.24       5.29 f
+  alu_6/add_1_root_add_14_2/U1_21/CO (HDADFULDL)          0.24       5.53 f
+  alu_6/add_1_root_add_14_2/U1_22/CO (HDADFULDL)          0.24       5.78 f
+  alu_6/add_1_root_add_14_2/U1_23/CO (HDADFULDL)          0.24       6.02 f
+  alu_6/add_1_root_add_14_2/U1_24/CO (HDADFULDL)          0.24       6.26 f
+  alu_6/add_1_root_add_14_2/U1_25/CO (HDADFULDL)          0.24       6.51 f
+  alu_6/add_1_root_add_14_2/U1_26/CO (HDADFULDL)          0.24       6.75 f
+  alu_6/add_1_root_add_14_2/U1_27/CO (HDADFULDL)          0.24       6.99 f
+  alu_6/add_1_root_add_14_2/U1_28/CO (HDADFULDL)          0.24       7.24 f
+  alu_6/add_1_root_add_14_2/U1_29/CO (HDADFULDL)          0.24       7.48 f
+  alu_6/add_1_root_add_14_2/U1_30/CO (HDADFULDL)          0.23       7.71 f
+  alu_6/add_1_root_add_14_2/U1_31/Z (HDEXOR3D2)           0.17       7.88 f
+  alu_6/add_1_root_add_14_2/SUM[31] (alu_m_4_DW01_add_0)
+                                                          0.00       7.88 f
+  alu_6/U27/Z (HDAO222DL)                                 0.53       8.41 f
+  alu_6/U10/Z (HDNOR4D1)                                  0.20       8.61 r
+  alu_6/U8/Z (HDNAN4D1)                                   0.08       8.69 f
+  alu_6/U2/Z (HDNOR2D1)                                   0.13       8.81 r
+  alu_6/zero (alu_m_4)                                    0.00       8.81 r
+  U687/Z (HDNAN2D2)                                       0.07       8.89 f
+  U2724/Z (HDEXOR2D1)                                     0.22       9.10 r
+  U2716/Z (HDEXNOR2D1)                                    0.22       9.32 r
+  U2714/Z (HDEXOR2D1)                                     0.19       9.51 f
+  U2711/Z (HDEXOR2D1)                                     0.18       9.70 f
+  U2710/Z (HDNAN2D1)                                      0.10       9.79 r
+  U2709/Z (HDAO22DL)                                      0.17       9.97 r
+  U2708/Z (HDOAI21DL)                                     0.17      10.14 f
+  U2707/Z (HDNOR2D1)                                      0.63      10.76 r
+  zero (out)                                              0.00      10.76 r
+  data arrival time                                                 10.76
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

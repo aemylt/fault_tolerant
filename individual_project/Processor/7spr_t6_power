@@ -1,0 +1,72 @@
+Loading db file '/home/ugrads/coms2011/dm1905/linux/fourth_year/fault_tolerant/lab/Lab1/umcl18g212t3_tc_180V_25C.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : alu
+Version: G-2012.06-SP5
+Date   : Thu Jan  8 20:37:28 2015
+****************************************
+
+
+Library(s) Used:
+
+    umcl18g212t3_tc_180V_25C (File: /home/ugrads/coms2011/dm1905/linux/fourth_year/fault_tolerant/lab/Lab1/umcl18g212t3_tc_180V_25C.db)
+
+
+Operating Conditions: nom_pvt   Library: umcl18g212t3_tc_180V_25C
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+alu                    suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_0                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_1                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_2                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_3                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_4                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_5                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_6                suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_1_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_2_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_3_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_4_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_5_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_6_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+alu_m_0_DW01_add_0     suggested_10K     umcl18g212t3_tc_180V_25C
+
+
+Global Operating Voltage = 1.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1uW
+
+
+  Cell Internal Power  =   6.8760 mW   (59%)
+  Net Switching Power  =   4.7695 mW   (41%)
+                         ---------
+Total Dynamic Power    =  11.6455 mW  (100%)
+
+Cell Leakage Power     = 235.7452 nW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      6.8760            4.7695            0.2357           11.6458  ( 100.00%)
+--------------------------------------------------------------------------------------------------
+Total              6.8760 mW         4.7695 mW         0.2357 uW        11.6458 mW
+1
