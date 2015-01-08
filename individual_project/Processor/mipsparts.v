@@ -30,16 +30,14 @@ module alu(input      [31:0] a, b,
            output reg [31:0] result,
            output reg        zero);
 
-  wire [31:0] result_0, result_1, result_2, result_3, result_4, result_0_out, result_1_out, result_2_out, result_3_out, result_4_out;
-  wire zero_0, zero_1, zero_2, zero_3, zero_4, zero_0_out, zero_1_out, zero_2_out, zero_3_out, zero_4_out;
-  reg [31:0] switchr_0 = 32'd4294967295, switchr_1 = 32'd4294967295, switchr_2 = 32'd4294967295, switchr_3 = 32'd4294967295, switchr_4 = 32'd4294967295;
-  reg switchz_0 = 1'b1, switchz_1 = 1'b1, switchz_2 = 1'b1, switchz_3 = 1'b1, switchz_4 = 1'b1;
+  wire [31:0] result_0, result_1, result_2, result_0_out, result_1_out, result_2_out;
+  wire zero_0, zero_1, zero_2, zero_0_out, zero_1_out, zero_2_out;
+  reg [31:0] switchr_0 = 32'd4294967295, switchr_1 = 32'd4294967295, switchr_2 = 32'd4294967295;
+  reg switchz_0 = 1'b1, switchz_1 = 1'b1, switchz_2 = 1'b1;
 
   alu_m alu_0(.a(a), .b(b), .alucont(alucont), .result(result_0_out), .zero(zero_0_out));
   alu_m alu_1(.a(a), .b(b), .alucont(alucont), .result(result_1_out), .zero(zero_1_out));
   alu_m alu_2(.a(a), .b(b), .alucont(alucont), .result(result_2_out), .zero(zero_2_out));
-  alu_m alu_3(.a(a), .b(b), .alucont(alucont), .result(result_3_out), .zero(zero_3_out));
-  alu_m alu_4(.a(a), .b(b), .alucont(alucont), .result(result_4_out), .zero(zero_4_out));
 
   genvar i;
   generate
@@ -48,16 +46,12 @@ module alu(input      [31:0] a, b,
         and and_result_0(result_0[i], result_0_out[i], switchr_0[i]);
         and and_result_1(result_1[i], result_1_out[i], switchr_1[i]);
         and and_result_2(result_2[i], result_2_out[i], switchr_2[i]);
-        and and_result_3(result_3[i], result_3_out[i], switchr_3[i]);
-        and and_result_4(result_4[i], result_4_out[i], switchr_4[i]);
       end
   endgenerate
 
   and and_zero_0(zero_0, zero_0_out, switchz_0);
   and and_zero_1(zero_1, zero_1_out, switchz_1);
   and and_zero_2(zero_2, zero_2_out, switchz_2);
-  and and_zero_3(zero_3, zero_3_out, switchz_3);
-  and and_zero_4(zero_4, zero_4_out, switchz_4);
 
   always@(*)
     result = (result_0 & result_1) | (result_0 & result_2) | (result_1 & result_2);
@@ -74,12 +68,6 @@ module alu(input      [31:0] a, b,
   always@(result)
     switchr_2 = switchr_2 & ~(result_2 ^ result);
 
-  always@(result)
-    switchr_3 = switchr_3 & ~(result_3 ^ result);
-
-  always@(result)
-    switchr_4 = switchr_4 & ~(result_4 ^ result);
-
   always@(zero)
     switchz_0 = switchz_0 & ~(zero_0 ^ zero);
 
@@ -88,12 +76,6 @@ module alu(input      [31:0] a, b,
 
   always@(zero)
     switchz_2 = switchz_2 & ~(zero_2 ^ zero);
-
-  always@(zero)
-    switchz_3 = switchz_3 & ~(zero_3 ^ zero);
-
-  always@(zero)
-    switchz_4 = switchz_4 & ~(zero_4 ^ zero);
 
 endmodule
 
