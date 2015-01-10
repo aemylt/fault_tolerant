@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+
+import matplotlib.pyplot as plot
+
+num_modules = []
+threashold = []
+area = []
+timing = []
+power = []
+
+with open("results.csv", 'r') as f:
+    for line in f:
+        data = [float(i) for i in line.split(',')]
+        if (not num_modules) or (num_modules[-1][-1] != data[0]):
+            num_modules.append([data[0]])
+            threashold.append([data[1]])
+            timing.append([data[2]])
+            area.append([data[3]])
+            power.append([data[4]])
+        else:
+            num_modules[-1].append(data[0])
+            threashold[-1].append(data[1])
+            timing[-1].append(data[2])
+            area[-1].append(data[3])
+            power[-1].append(data[4])
+
+def make_graphs_n(i):
+    plot.figure()
+    plot.plot(threashold[i], area[i])
+    plot.xlabel("Voter Threashold")
+    plot.ylabel("Total Cell Area")
+    plot.title("Total Cell Area for a Self-Purging Redundancy ALU\n with {0} Modules over Voter Threashold".format(int(num_modules[i][0])))
+    plot.savefig('area_{0}.pdf'.format(int(num_modules[i][0])), bbox_inches='tight')
+    plot.figure()
+    plot.plot(threashold[i], timing[i])
+    plot.xlabel("Voter Threashold")
+    plot.ylabel("Data Arrival Time")
+    plot.title("Data Arrival Time for a Self-Purging Redundancy ALU\n with {0} Modules over Voter Threashold".format(int(num_modules[i][0])))
+    plot.savefig('time_{0}.pdf'.format(int(num_modules[i][0])), bbox_inches='tight')
+    plot.figure()
+    plot.plot(threashold[i], power[i])
+    plot.xlabel("Voter Threashold")
+    plot.ylabel("Total Power (mW)")
+    plot.title("Total Power for a Self-Purging Redundancy ALU\n with {0} Modules over Voter Threashold".format(int(num_modules[i][0])))
+    plot.savefig('power_{0}.pdf'.format(int(num_modules[i][0])), bbox_inches='tight')
+
+def make_graphs():
+    modules = [i[0] for i in num_modules]
+    plot.figure()
+    plot.plot(modules, [i[0] for i in area])
+    plot.xlabel("Number of Modules")
+    plot.ylabel("Total Cell Area")
+    plot.title("Total Cell Area for a Self-Purging Redundancy ALU\n with Voter Threashold of 2 over Number of Modules")
+    plot.savefig('area.pdf', bbox_inches='tight')
+    plot.figure()
+    plot.plot(modules, [i[0] for i in timing])
+    plot.xlabel("Number of Modules")
+    plot.ylabel("Data Arrival Time")
+    plot.title("Data Arrival Time for a Self-Purging Redundancy ALU\n with Voter Threashold of 2 over Number of Modules")
+    plot.savefig('timing.pdf', bbox_inches='tight')
+    plot.figure()
+    plot.plot(modules, [i[0] for i in power])
+    plot.xlabel("Number of Modules")
+    plot.ylabel("Total Power (mW)")
+    plot.title("Total Power for a Self-Purging Redundancy ALU\n with Voter Threashold of 2 over Number of Modules")
+    plot.savefig('power.pdf', bbox_inches='tight')
+
+make_graphs_n(2)
+make_graphs_n(-1)
+
+make_graphs()

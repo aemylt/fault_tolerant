@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+import re
+
+timing_re = re.compile("\s+ data arrival time")
+area_re = re.compile("Total cell area")
+power_re = re.compile("Total\s{2,}")
+
+with open("results.csv", 'w') as results:
+    for i in range(3, 12):
+        for j in range(2, i):
+            files = "results/{0}spr_t{1}_".format(i, j)
+            with open("{0}timing".format(files), 'r') as f:
+                for line in f:
+                    if timing_re.match(line):
+                        time = line.split()[-1]
+            with open("{0}area".format(files), 'r') as f:
+                for line in f:
+                    if area_re.match(line):
+                        area = line.split()[-1]
+            with open("{0}power".format(files), 'r') as f:
+                for line in f:
+                    if power_re.match(line):
+                        power = line.split()[-2]
+            results.write("{0},{1},{2},{3},{4}\n".format(i, j, time, area, power))
