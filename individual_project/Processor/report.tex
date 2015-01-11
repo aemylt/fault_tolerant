@@ -1,0 +1,33 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{graphicx}
+
+\usepackage[backend=biber]{biblatex}
+\bibliography{report.bib}
+
+\DeclareGraphicsExtensions{.pdf}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Dominic Moylett - dm1905@my.bristol.ac.uk}
+\cfoot{Page \thepage}
+
+\begin{document}
+    \begin{center}
+        \section*{Fault Tolerant Computation and VLSI Testing}
+        \subsection*{Individual Project:\\Self-Purging Redundancy on a MIPS ALU Unit}
+    \end{center}
+
+    \section{Introduction}
+    Fault tolerant circuit design has become increasingly important over the past several decades, due to the demand for faster and smaller systems. A common method for making circuits tolerate one of the modules developing a fault is through redundancy: having multiple instances of the same module and taking the vote as the majority verdict. These systems would work until the majority of modules developed faults. A system with N modules is an N Module Redundancy (NMR) system.
+
+    Following on from NMR, research then investigate hybrid redundancy techniques. These techniques often involve more complex logic to ensure the system remains running even after more than the majority of active modules develop faults. Examples of this include NMR-with-Spare schemes, and Self-Purging Redundancy \cite{1674656}. The latter scheme will be the focus of this report.
+
+    We investigate Self-Purging Redundancy in practice by implementing it on the ALU component of a MIPS processor. We show how the reundancy logic was implemented for our n-bit ALU and in Verilog. Mathematical models for reliability are used to measure how the reliability changes depending on the number of modules and the voter threashold. The circuit was synthesised by the Synopsys Design Compiler and metrics for area, timing and power were taken for different numbers of modules and voter threasholds. From these results, we reach a compromise between reliability and overhead and compare with the original circuit and NMR circuits with the same number of modules. The source code for the final self-purging redundancy scheme is included as part of this submission.
+
+    Also included in this report is the scripts used to generate the metrics for our circuits.
+
+    \printbibliography
+
+\end{document}

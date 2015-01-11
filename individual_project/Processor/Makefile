@@ -3,3 +3,9 @@ mipstest:
 
 clean:
 	rm mipstest
+
+report:
+	pdflatex report.tex
+
+bib:
+	biber report
