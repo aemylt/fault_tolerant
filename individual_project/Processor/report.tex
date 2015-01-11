@@ -1,10 +1,13 @@
 \documentclass[a4paper,12pt]{article}
 
-\usepackage{graphicx}
 
 \usepackage[backend=biber]{biblatex}
 \bibliography{report.bib}
 
+\usepackage{circuitikz}
+\usetikzlibrary{shapes}
+
+\usepackage{graphicx}
 \DeclareGraphicsExtensions{.pdf}
 
 \usepackage{fancyhdr}
@@ -13,9 +16,12 @@
 \rhead{Dominic Moylett - dm1905@my.bristol.ac.uk}
 \cfoot{Page \thepage}
 
+\usepackage{listings}
+\definecolor{comment}{HTML}{75715E}
+
 \begin{document}
     \begin{center}
-        \section*{Fault Tolerant Computation and VLSI Testing}
+        \section*{Fault Tolerant Computing and VLSI Testing}
         \subsection*{Individual Project:\\Self-Purging Redundancy on a MIPS ALU Unit}
     \end{center}
 
@@ -24,9 +30,87 @@
 
     Following on from NMR, research then investigate hybrid redundancy techniques. These techniques often involve more complex logic to ensure the system remains running even after more than the majority of active modules develop faults. Examples of this include NMR-with-Spare schemes, and Self-Purging Redundancy \cite{1674656}. The latter scheme will be the focus of this report.
 
-    We investigate Self-Purging Redundancy in practice by implementing it on the ALU component of a MIPS processor. We show how the reundancy logic was implemented for our n-bit ALU and in Verilog. Mathematical models for reliability are used to measure how the reliability changes depending on the number of modules and the voter threashold. The circuit was synthesised by the Synopsys Design Compiler and metrics for area, timing and power were taken for different numbers of modules and voter threasholds. From these results, we reach a compromise between reliability and overhead and compare with the original circuit and NMR circuits with the same number of modules. The source code for the final self-purging redundancy scheme is included as part of this submission.
+    I investigate Self-Purging Redundancy in practice by implementing it on the ALU component of a MIPS processor. I show how the reundancy logic was implemented for our n-bit ALU and in Verilog. Mathematical models for reliability are used to measure how the reliability changes depending on the number of modules and the voter threashold. The circuit was synthesised by the Synopsys Design Compiler and metrics for area, timing and power were taken for different numbers of modules and voter threasholds. From these results, I reach a compromise between reliability and overhead and compare with the original circuit and NMR circuits with the same number of modules. The source code for the final self-purging redundancy scheme is included as part of this submission.
 
     Also included in this report is the scripts used to generate the metrics for our circuits.
+
+    \section{Realisation of Self-Purging Redundancy}
+    NMR circuits decide on their output using a voter circuit, which use multiple-input AND gates to check if one value is produced by the majority of modules. This is realised by testing all ${n \choose k}$ combinations of modules where $n$ is the number of modules and $k = \lceil\frac{n}{2}\rceil$ is the number of modules required for a majority.
+
+    We can see this with the example below for three modules $a, b, c$ and output $r$:
+
+    $$r = ab + ac + bc$$
+
+    And again for five modules $a, b, c, d, e$:
+
+    $$r = abc + abd + abe + acd + ace + ade + bcd + bce + bde + cde$$
+
+    With both circuits, in order for $r = 1$ at least three of the modules must also output 1.
+
+    Self-Purging Redundancy also uses a voter, but a more generalised one known as a threashold voter. A threashold voter produces $r = 1$ if at least $k$ modules produce $1$, where $k \in \{2,...,n-1\}$. The version with three modules is the same as before, but for five modules we can now use the following logic for a threashold of two:
+
+    $$r = ab + ac + ad + ae + bc + bd + be + cd + ce + de$$
+
+    This means that we no longer need a majority of modules to agree on a result.
+
+    This would not work in traditional NMR, as if more than two modules developed faults then the fault could propagate. Self-Purging Redundancy avoids this by how it handles faulty voters which disagree with the verdict. Instead of allowing them to vote, a 'switch' is used to set that module's vote to $0$, preventing it from changing the outcome.
+
+    This is typically achieved using an SR flip-flop driven by the system clock, as illustrated by Losq \cite[Section 2-B]{1674656}. Realising this in Verilog however is difficult. Firstly, because the ALU circuit receives no clock input and is instead driven by the pins themselves. And secondly, Verilog's registers are D flip-flops, meaning that we cannot simply drive a reset signal.
+
+    For realisation the following compromises were therefore made:
+
+    \begin{itemize}
+        \item To avoid the changes required to the overall processor in order to add a clock to the ALU, the flip-flops were driven by the output port.
+        \item To use D flip-flops, an XOR gate was used to set the flip-flop to $0$, an extra AND gate was used to ensure that once the switch was set to $0$ it could not be set back to $1$.
+    \end{itemize}
+
+    An example of these modifications for a simple module m and D flip-flop s can be seen below. For the sake of simplicity, the driving pin for s has been removed. At initialisation, s is set to $1$.
+
+    \begin{circuitikz}
+        \node (in) at (0,0) {};
+        \node[rectangle,draw,thick,minimum width=30,minimum height=40] (m) at (2,0) {m};
+        \node[and port] (result) at (5,0) {};
+        \node[circle,draw,thick,minimum width=40,minimum height=40] (voter) at (9,0) {voter};
+        \node[xnor port, rotate=180] (err) at (6, 2) {};
+        \node[and port, rotate=180] (reset) at (4,2) {};
+        \node[rectangle,draw,thick,minimum width=30,minimum height=40] (s) at (2,2) {s};
+        \node (out) at (11, 0) {};
+        \draw (in) -- (m);
+        \draw (m) -| (result.in 2);
+        \draw (voter) -- (out);
+        \draw (s) -- (1,2) |- (2,1) -| (result.in 1);
+        \draw (result.out) -- (voter);
+        \draw (result.out) -| (err.in 1);
+        \draw (voter) -- (10, 0) |- (err.in 2);
+        \draw (2,1) -| (reset.in 1);
+        \draw (err.out) |- (reset.in 2);
+        \draw (reset.out) -- (s);
+    \end{circuitikz}
+
+    Another interesting question raised from this work was how to move from Self-Purging Redundancy for modules with single-bit outputs such as the one above to modules with multiple outputs, such as our ALU unit which has a 32-bit output pin for the result and a single-bit output pin for zero. The solution used for this project was to treat each output bit independently with its own voting circuit and switch, though another solution could be to switch off the entire module if any of its outputs fail. This was not attempted due to complexity.
+
+    Using the above design for the switch and the logic for the voter specified on the previous page, the fault-tolerant ALU was designed in Verilog and synthesised using Synopsys Design Compiler. The design was generalised and tested for three to eleven modules, with voter threasholds ranging from two to $n-1$ for $n$ modules.
+
+    \section{Design Compiler Script}
+    The following script was used in Design Vision to synthesise the ALU circuit and measure its performance.
+
+    \begin{lstlisting}[language=Bash,
+        commentstyle=\color{comment}]
+        #design_vision->File->Read mipsparts.v
+        current_design alu
+        compile
+        report_timing
+        report_area
+        report_power
+    \end{lstlisting}
+
+    \section{Results}
+    \subsection{Reliability of Self-Purging Redundancy}
+    For measuring the reliability of the self-purging redundancy scheme, the following equation was used from Loch \cite[~Section 3-A]{1674656}.
+
+    $$R_{N,K}(T) = \sum_{i = K}^{N} {N \choose i}\left[R(t)\right]^i\left[1 - R(t)\right]^{N - i} $$
+
+    N.B. this formula assumes perfect voter and switch coverage. There is another formula which takes into account faults in the voter \cite[~Section 3-B]{1674656}, but this one was chosen for simplicity.
 
     \printbibliography
 
