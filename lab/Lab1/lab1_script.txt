@@ -1,3 +1,4 @@
+#design_vision->File->Read s27
 create_clock -period 10 CK
 current_design s27
 compile
@@ -17,6 +18,8 @@ report_timing > s27_timing_scan
 report_power > s27_power_scan
 write -format verilog -hierarchy -output s27_dft.v
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read s27 s298
 create_clock -period 10 CK
 current_design s298
 compile
@@ -32,6 +35,8 @@ insert_dft
 report_area > s298_area_scan
 write -format verilog -hierarchy -output s298_syn.v
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read s27 s344
 create_clock -period 10 CK
 current_design s344
 compile
@@ -47,6 +52,8 @@ insert_dft
 report_area > s344_area_scan
 write -format verilog -hierarchy -output s344_syn.v
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read s27 s349
 create_clock -period 10 CK
 current_design s349
 compile
@@ -62,6 +69,8 @@ insert_dft
 report_area > s349_area_scan
 write -format verilog -hierarchy -output s349_syn.v
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read s27 s382
 create_clock -period 10 CK
 current_design s382
 compile
@@ -77,6 +86,8 @@ insert_dft
 report_area > s382_area_scan
 write -format verilog -hierarchy -output s382_syn.v
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read s27 s386
 create_clock -period 10 CK
 current_design s386
 compile
@@ -92,6 +103,8 @@ insert_dft
 report_area > s386_area_scan
 write -format verilog -hierarchy -output s386_syn.v
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read 1bit_adder
 create_clock -period 10 clk
 compile
 report_area > full_adder_area_noscan
@@ -105,6 +118,8 @@ preview_dft
 insert_dft
 report_area > full_adder_area_scan
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read 4bit_adder
 create_clock -period 10 clk
 compile
 report_area > 4bit_adder_area_noscan
@@ -118,6 +133,8 @@ preview_dft
 insert_dft
 report_area > 4bit_adder_area_scan
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read 8bit_adder
 create_clock -period 10 clk
 compile
 report_area > 8bit_adder_area_noscan
@@ -131,6 +148,8 @@ preview_dft
 insert_dft
 report_area > 8bit_adder_area_scan
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read 16bit_adder
 create_clock -period 10 clk
 compile
 report_area > 16bit_adder_area_noscan
@@ -144,6 +163,8 @@ preview_dft
 insert_dft
 report_area > 16bit_adder_area_scan
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read 32bit_adder
 create_clock -period 10 clk
 compile
 report_area > 32bit_adder_area_noscan
@@ -157,6 +178,8 @@ preview_dft
 insert_dft
 report_area > 32bit_adder_area_scan
 
+#design_vision->File->Remove all designs
+#design_vision->File->Read 64bit_adder
 create_clock -period 10 clk
 compile
 report_area > 64bit_adder_area_noscan
