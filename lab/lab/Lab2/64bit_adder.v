@@ -1,0 +1,76 @@
+//# 4-bit adder
+module adder(a, b, cin, s, cout);
+
+	input	[63:0] 	a, b;
+	input			cin;
+	output	[63:0]	s;
+	output			cout;
+
+	wire    [62:0]   carry;
+
+	fulladder fa_0 (.a(a[0 ]), .b(b[0 ]), .cin(cin      ), .s(s[0 ]), .cout(carry[0 ]));
+	fulladder fa_1 (.a(a[1 ]), .b(b[1 ]), .cin(carry[0 ]), .s(s[1 ]), .cout(carry[1 ]));
+	fulladder fa_2 (.a(a[2 ]), .b(b[2 ]), .cin(carry[1 ]), .s(s[2 ]), .cout(carry[2 ]));
+	fulladder fa_3 (.a(a[3 ]), .b(b[3 ]), .cin(carry[2 ]), .s(s[3 ]), .cout(carry[3 ]));
+	fulladder fa_4 (.a(a[4 ]), .b(b[4 ]), .cin(carry[3 ]), .s(s[4 ]), .cout(carry[4 ]));
+	fulladder fa_5 (.a(a[5 ]), .b(b[5 ]), .cin(carry[4 ]), .s(s[5 ]), .cout(carry[5 ]));
+	fulladder fa_6 (.a(a[6 ]), .b(b[6 ]), .cin(carry[5 ]), .s(s[6 ]), .cout(carry[6 ]));
+	fulladder fa_7 (.a(a[7 ]), .b(b[7 ]), .cin(carry[6 ]), .s(s[7 ]), .cout(carry[7 ]));
+	fulladder fa_8 (.a(a[8 ]), .b(b[8 ]), .cin(carry[7 ]), .s(s[8 ]), .cout(carry[8 ]));
+	fulladder fa_9 (.a(a[9 ]), .b(b[9 ]), .cin(carry[8 ]), .s(s[9 ]), .cout(carry[9 ]));
+	fulladder fa_10(.a(a[10]), .b(b[10]), .cin(carry[9 ]), .s(s[10]), .cout(carry[10]));
+	fulladder fa_11(.a(a[11]), .b(b[11]), .cin(carry[10]), .s(s[11]), .cout(carry[11]));
+	fulladder fa_12(.a(a[12]), .b(b[12]), .cin(carry[11]), .s(s[12]), .cout(carry[12]));
+	fulladder fa_13(.a(a[13]), .b(b[13]), .cin(carry[12]), .s(s[13]), .cout(carry[13]));
+	fulladder fa_14(.a(a[14]), .b(b[14]), .cin(carry[13]), .s(s[14]), .cout(carry[14]));
+	fulladder fa_15(.a(a[15]), .b(b[15]), .cin(carry[14]), .s(s[15]), .cout(carry[15]));
+	fulladder fa_16(.a(a[16]), .b(b[16]), .cin(carry[15]), .s(s[16]), .cout(carry[16]));
+	fulladder fa_17(.a(a[17]), .b(b[17]), .cin(carry[16]), .s(s[17]), .cout(carry[17]));
+	fulladder fa_18(.a(a[18]), .b(b[18]), .cin(carry[17]), .s(s[18]), .cout(carry[18]));
+	fulladder fa_19(.a(a[19]), .b(b[19]), .cin(carry[18]), .s(s[19]), .cout(carry[19]));
+	fulladder fa_20(.a(a[20]), .b(b[20]), .cin(carry[19]), .s(s[20]), .cout(carry[20]));
+	fulladder fa_21(.a(a[21]), .b(b[21]), .cin(carry[20]), .s(s[21]), .cout(carry[21]));
+	fulladder fa_22(.a(a[22]), .b(b[22]), .cin(carry[21]), .s(s[22]), .cout(carry[22]));
+	fulladder fa_23(.a(a[23]), .b(b[23]), .cin(carry[22]), .s(s[23]), .cout(carry[23]));
+	fulladder fa_24(.a(a[24]), .b(b[24]), .cin(carry[23]), .s(s[24]), .cout(carry[24]));
+	fulladder fa_25(.a(a[25]), .b(b[25]), .cin(carry[24]), .s(s[25]), .cout(carry[25]));
+	fulladder fa_26(.a(a[26]), .b(b[26]), .cin(carry[25]), .s(s[26]), .cout(carry[26]));
+	fulladder fa_27(.a(a[27]), .b(b[27]), .cin(carry[26]), .s(s[27]), .cout(carry[27]));
+	fulladder fa_28(.a(a[28]), .b(b[28]), .cin(carry[27]), .s(s[28]), .cout(carry[28]));
+	fulladder fa_29(.a(a[29]), .b(b[29]), .cin(carry[28]), .s(s[29]), .cout(carry[29]));
+	fulladder fa_30(.a(a[30]), .b(b[30]), .cin(carry[29]), .s(s[30]), .cout(carry[30]));
+	fulladder fa_31(.a(a[31]), .b(b[31]), .cin(carry[30]), .s(s[31]), .cout(carry[31]));
+	fulladder fa_32(.a(a[32]), .b(b[32]), .cin(carry[31]), .s(s[32]), .cout(carry[32]));
+	fulladder fa_33(.a(a[33]), .b(b[33]), .cin(carry[32]), .s(s[33]), .cout(carry[33]));
+	fulladder fa_34(.a(a[34]), .b(b[34]), .cin(carry[33]), .s(s[34]), .cout(carry[34]));
+	fulladder fa_35(.a(a[35]), .b(b[35]), .cin(carry[34]), .s(s[35]), .cout(carry[35]));
+	fulladder fa_36(.a(a[36]), .b(b[36]), .cin(carry[35]), .s(s[36]), .cout(carry[36]));
+	fulladder fa_37(.a(a[37]), .b(b[37]), .cin(carry[36]), .s(s[37]), .cout(carry[37]));
+	fulladder fa_38(.a(a[38]), .b(b[38]), .cin(carry[37]), .s(s[38]), .cout(carry[38]));
+	fulladder fa_39(.a(a[39]), .b(b[39]), .cin(carry[38]), .s(s[39]), .cout(carry[39]));
+	fulladder fa_40(.a(a[40]), .b(b[40]), .cin(carry[39]), .s(s[40]), .cout(carry[40]));
+	fulladder fa_41(.a(a[41]), .b(b[41]), .cin(carry[40]), .s(s[41]), .cout(carry[41]));
+	fulladder fa_42(.a(a[42]), .b(b[42]), .cin(carry[41]), .s(s[42]), .cout(carry[42]));
+	fulladder fa_43(.a(a[43]), .b(b[43]), .cin(carry[42]), .s(s[43]), .cout(carry[43]));
+	fulladder fa_44(.a(a[44]), .b(b[44]), .cin(carry[43]), .s(s[44]), .cout(carry[44]));
+	fulladder fa_45(.a(a[45]), .b(b[45]), .cin(carry[44]), .s(s[45]), .cout(carry[45]));
+	fulladder fa_46(.a(a[46]), .b(b[46]), .cin(carry[45]), .s(s[46]), .cout(carry[46]));
+	fulladder fa_47(.a(a[47]), .b(b[47]), .cin(carry[46]), .s(s[47]), .cout(carry[47]));
+	fulladder fa_48(.a(a[48]), .b(b[48]), .cin(carry[47]), .s(s[48]), .cout(carry[48]));
+	fulladder fa_49(.a(a[49]), .b(b[49]), .cin(carry[48]), .s(s[49]), .cout(carry[49]));
+	fulladder fa_50(.a(a[50]), .b(b[50]), .cin(carry[49]), .s(s[50]), .cout(carry[50]));
+	fulladder fa_51(.a(a[51]), .b(b[51]), .cin(carry[50]), .s(s[51]), .cout(carry[51]));
+	fulladder fa_52(.a(a[52]), .b(b[52]), .cin(carry[51]), .s(s[52]), .cout(carry[52]));
+	fulladder fa_53(.a(a[53]), .b(b[53]), .cin(carry[52]), .s(s[53]), .cout(carry[53]));
+	fulladder fa_54(.a(a[54]), .b(b[54]), .cin(carry[53]), .s(s[54]), .cout(carry[54]));
+	fulladder fa_55(.a(a[55]), .b(b[55]), .cin(carry[54]), .s(s[55]), .cout(carry[55]));
+	fulladder fa_56(.a(a[56]), .b(b[56]), .cin(carry[55]), .s(s[56]), .cout(carry[56]));
+	fulladder fa_57(.a(a[57]), .b(b[57]), .cin(carry[56]), .s(s[57]), .cout(carry[57]));
+	fulladder fa_58(.a(a[58]), .b(b[58]), .cin(carry[57]), .s(s[58]), .cout(carry[58]));
+	fulladder fa_59(.a(a[59]), .b(b[59]), .cin(carry[58]), .s(s[59]), .cout(carry[59]));
+	fulladder fa_60(.a(a[60]), .b(b[60]), .cin(carry[59]), .s(s[60]), .cout(carry[60]));
+	fulladder fa_61(.a(a[61]), .b(b[61]), .cin(carry[60]), .s(s[61]), .cout(carry[61]));
+	fulladder fa_62(.a(a[62]), .b(b[62]), .cin(carry[61]), .s(s[62]), .cout(carry[62]));
+	fulladder fa_63(.a(a[63]), .b(b[63]), .cin(carry[62]), .s(s[63]), .cout(cout     ));
+
+endmodule

@@ -1,0 +1,186 @@
+read_netlist ./verilog_simulation_models/*.v
+read_netlist s27_scan_syn.v
+run_build_model s27
+add_clocks 0 CK
+add_scan_enables 1 test_se
+write_drc_file ./s27.spf -replace
+run_drc ./s27.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only
+report_summaries
+report_faults -all
+report_patterns -all
+write_patterns s27_ATPG.wgl -format WGL
+write_patterns s27_ATPG.stil -format STIL
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist c432_syn.v
+run_build_model c432
+write_drc_file ./c432.spf -replace
+run_drc ./c432.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist c499_syn.v
+run_build_model c499
+write_drc_file ./c499.spf -replace
+run_drc ./c499.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist c880_syn.v
+run_build_model c880
+write_drc_file ./c880.spf -replace
+run_drc ./c880.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist c1355_syn.v
+run_build_model c1355
+write_drc_file ./c1355.spf -replace
+run_drc ./c1355.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist c1908a_syn.v
+run_build_model c1908
+write_drc_file ./c1908.spf -replace
+run_drc ./c1908.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+run_build_model fulladder
+write_drc_file ./full_add.spf -replace
+run_drc ./full_add.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 4bit_adder.v
+run_build_model adder
+write_drc_file ./4bit_adder.spf -replace
+run_drc ./4bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 8bit_adder.v
+run_build_model adder
+write_drc_file ./8bit_adder.spf -replace
+run_drc ./8bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 16bit_adder.v
+run_build_model adder
+write_drc_file ./16bit_adder.spf -replace
+run_drc ./16bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 32bit_adder.v
+run_build_model adder
+write_drc_file ./32bit_adder.spf -replace
+run_drc ./32bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist full_add_syn.v
+read_netlist 64bit_adder.v
+run_build_model adder
+write_drc_file ./64bit_adder.spf -replace
+run_drc ./64bit_adder.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist s298_syn.v
+run_build_model s298
+add_clocks 0 CK
+write_drc_file ./s298.spf -replace
+run_drc ./s298.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist s344_syn.v
+run_build_model s344
+add_clocks 0 CK
+write_drc_file ./s344.spf -replace
+run_drc ./s344.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist s349_syn.v
+run_build_model s349
+add_clocks 0 CK
+write_drc_file ./s349.spf -replace
+run_drc ./s349.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist s382_syn.v
+run_build_model s382
+add_clocks 0 CK
+write_drc_file ./s382.spf -replace
+run_drc ./s382.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
+
+read_netlist ./verilog_simulation_models/*.v
+read_netlist s386_syn.v
+run_build_model s386
+add_clocks 0 CK
+write_drc_file ./s386.spf -replace
+run_drc ./s386.spf
+set_atpg -merge medium
+set_faults -model stuck
+add_faults -all
+run_atpg full_sequential_only -auto
