@@ -30,17 +30,20 @@ module alu(input      [31:0] a, b,
            output reg [31:0] result,
            output reg        zero);
 
+// Internal wires and registers
   wire [31:0] result_0, result_1, result_2, result_3, result_4, result_0_out, result_1_out, result_2_out, result_3_out, result_4_out;
   wire zero_0, zero_1, zero_2, zero_3, zero_4, zero_0_out, zero_1_out, zero_2_out, zero_3_out, zero_4_out;
   reg [31:0] switchr_0 = 32'd4294967295, switchr_1 = 32'd4294967295, switchr_2 = 32'd4294967295, switchr_3 = 32'd4294967295, switchr_4 = 32'd4294967295;
   reg switchz_0 = 1'b1, switchz_1 = 1'b1, switchz_2 = 1'b1, switchz_3 = 1'b1, switchz_4 = 1'b1;
 
+// The module instances
   alu_m alu_0(.a(a), .b(b), .alucont(alucont), .result(result_0_out), .zero(zero_0_out));
   alu_m alu_1(.a(a), .b(b), .alucont(alucont), .result(result_1_out), .zero(zero_1_out));
   alu_m alu_2(.a(a), .b(b), .alucont(alucont), .result(result_2_out), .zero(zero_2_out));
   alu_m alu_3(.a(a), .b(b), .alucont(alucont), .result(result_3_out), .zero(zero_3_out));
   alu_m alu_4(.a(a), .b(b), .alucont(alucont), .result(result_4_out), .zero(zero_4_out));
 
+// Generate the AND-gates to 'switch off' the bit outputs for the modules
   genvar i;
   generate
     for (i = 0; i < 32; i = i + 1)
@@ -59,12 +62,15 @@ module alu(input      [31:0] a, b,
   and and_zero_3(zero_3, zero_3_out, switchz_3);
   and and_zero_4(zero_4, zero_4_out, switchz_4);
 
+// The voter
   always@(*)
     result = (result_0 & result_1) | (result_0 & result_2) | (result_0 & result_3) | (result_0 & result_4) | (result_1 & result_2) | (result_1 & result_3) | (result_1 & result_4) | (result_2 & result_3) | (result_2 & result_4) | (result_3 & result_4);
 
   always@(*)
     zero = (zero_0 & zero_1) | (zero_0 & zero_2) | (zero_0 & zero_3) | (zero_0 & zero_4) | (zero_1 & zero_2) | (zero_1 & zero_3) | (zero_1 & zero_4) | (zero_2 & zero_3) | (zero_2 & zero_4) | (zero_3 & zero_4);
 
+// Switch the output registers off if there is a discrepancy
+// AND-gate used to ensure it doesn't get switched on again
   always@(result)
     switchr_0 = switchr_0 & ~(result_0 ^ result);
 
