@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+import matplotlib.pyplot as plot
+
+num_modules = [3, 5, 7, 9, 11]
+
+nmr_area = [13779.816193, 26833.894361, 36268.796501, 51345.312710, 69827.693176]
+nmr_timing = [8.87, 9.48, 9.56, 10.02, 11.49]
+nmr_power = [4.9070, 9.6888, 13.2462, 18.2397, 37.6611]
+
+spr_area = [20911.578203, 33752.872437, 48297.098673, 62515.666834, 76430.935041]
+spr_timing = [9.53, 9.32, 9.50, 10.49, 10.47]
+spr_power = [5.8890, 7.8461, 11.2766, 15.3004, 18.7781]
+
+plot.figure()
+plot.plot(num_modules, nmr_area, label='NMR')
+plot.plot(num_modules, spr_area, label='Self-Purging Redundancy')
+plot.xticks(num_modules)
+plot.legend()
+plot.xlabel('Number of Modules')
+plot.ylabel('Total Cell Area $(\mu m)$')
+plot.title('Total Cell Area for NMR and Self-Purging Redundancy\n ALUs over Number of Modules')
+plot.savefig('area_nmr.pdf')
+
+plot.figure()
+plot.plot(num_modules, nmr_timing, label='NMR')
+plot.plot(num_modules, spr_timing, label='Self-Purging Redundancy')
+plot.xticks(num_modules)
+plot.legend()
+plot.xlabel('Number of Modules')
+plot.ylabel('Data Arrival Time $(r)$')
+plot.title('Data Arrival Time for NMR and Self-Purging Redundancy\n ALUs over Number of Modules')
+plot.savefig('time_nmr.pdf')
+
+plot.figure()
+plot.plot(num_modules, nmr_power, label='NMR')
+plot.plot(num_modules, spr_power, label='Self-Purging Redundancy')
+plot.xticks(num_modules)
+plot.legend()
+plot.xlabel('Number of Modules')
+plot.ylabel('Total Power $(mW)$')
+plot.title('Total Power for NMR and Self-Purging Redundancy\n ALUs over Number of Modules')
+plot.savefig('power_nmr.pdf')

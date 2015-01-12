@@ -10,8 +10,8 @@ from numpy import arange
 def combination(n, k):
     return math.factorial(n) / (math.factorial(k) * math.factorial(n - k))
 
+la = 0.001
 def reliability(p, m):
-    la = 0.001
     r = []
     for t in range(4000):
         r_m = math.e ** (-la * t)
@@ -31,6 +31,7 @@ def plot_reliability_threashold(p):
     fig = plot.figure()
     ax = fig.gca(projection='3d')
     ax.plot_surface(times, threashold, r, cstride=100, cmap=cm.coolwarm)
+    ax.set_yticks(range(2, p))
     ax.set_xlabel('Time')
     ax.set_ylabel('Voter Threashold')
     ax.set_zlabel('System Reliability')
@@ -52,7 +53,7 @@ def plot_reliability_modules():
     ax.set_ylabel('Number of Modules')
     ax.set_zlabel('System Reliability')
     plot.title("Reliability of Self-Purging Redundancy ALU\n with Voter Threashold of 2 over Time and Number of Modules".format(p))
-    plot.savefig('reliability.pdf'.format(p), bbox_inches='tight')
+    plot.savefig('reliability.pdf', bbox_inches='tight')
 
 plot_reliability_threashold(5)
 plot_reliability_threashold(11)
