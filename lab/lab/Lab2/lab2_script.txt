@@ -134,6 +134,7 @@ read_netlist ./verilog_simulation_models/*.v
 read_netlist s298_syn.v
 run_build_model s298
 add_clocks 0 CK
+add_scan_enables 1 test_se
 write_drc_file ./s298.spf -replace
 run_drc ./s298.spf
 set_atpg -merge medium
@@ -145,6 +146,7 @@ read_netlist ./verilog_simulation_models/*.v
 read_netlist s344_syn.v
 run_build_model s344
 add_clocks 0 CK
+add_scan_enables 1 test_se
 write_drc_file ./s344.spf -replace
 run_drc ./s344.spf
 set_atpg -merge medium
@@ -156,6 +158,7 @@ read_netlist ./verilog_simulation_models/*.v
 read_netlist s349_syn.v
 run_build_model s349
 add_clocks 0 CK
+add_scan_enables 1 test_se
 write_drc_file ./s349.spf -replace
 run_drc ./s349.spf
 set_atpg -merge medium
@@ -167,6 +170,7 @@ read_netlist ./verilog_simulation_models/*.v
 read_netlist s382_syn.v
 run_build_model s382
 add_clocks 0 CK
+add_scan_enables 1 test_se
 write_drc_file ./s382.spf -replace
 run_drc ./s382.spf
 set_atpg -merge medium
@@ -178,6 +182,7 @@ read_netlist ./verilog_simulation_models/*.v
 read_netlist s386_syn.v
 run_build_model s386
 add_clocks 0 CK
+add_scan_enables 1 test_se
 write_drc_file ./s386.spf -replace
 run_drc ./s386.spf
 set_atpg -merge medium
