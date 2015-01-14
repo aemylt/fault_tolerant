@@ -1,7 +1,7 @@
 STIL 1.0 { Design 2005; }
 Header {
    Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
-   Date "Wed Jan 14 15:27:37 2015";
+   Date "Wed Jan 14 15:36:40 2015";
    History {
       Ann {*     Uncollapsed Stuck Fault Summary Report *}
       Ann {* ----------------------------------------------- *}
@@ -36,19 +36,24 @@ Header {
    }
 }
 Signals {
-   "GND" In; "VDD" In; "CK" In; "G0" In; "G1" In; "G2" In; "G3" In; "test_si" In;
-   "test_se" In; "G17" Out; "test_so" Out;
+   "GND" In; "VDD" In; "CK" In; "A0" In; "A1" In; "A2" In; "A3" In; "B0" In; "B1" In;
+   "B2" In; "B3" In; "START" In; "test_si" In; "test_se" In; "CNTVCO2" Out; "CNTVCON2" Out;
+   "P0" Out; "P1" Out; "P2" Out; "P3" Out; "P4" Out; "P5" Out; "P6" Out; "P7" Out;
+   "READY" Out; "test_so" Out;
 }
 SignalGroups {
-   "_pi" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
-   "test_se"'; // #signals=9
-   "_in" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
-   "test_se"'; // #signals=9
-   "_po" = '"G17" + "test_so"'; // #signals=2
-   "_out" = '"G17" + "test_so"'; // #signals=2
-   "_default_In_Timing_" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" +
-   "test_si" + "test_se"'; // #signals=9
-   "_default_Out_Timing_" = '"G17" + "test_so"'; // #signals=2
+   "_pi" = '"GND" + "VDD" + "CK" + "A0" + "A1" + "A2" + "A3" + "B0" + "B1" +
+   "B2" + "B3" + "START" + "test_si" + "test_se"'; // #signals=14
+   "_in" = '"GND" + "VDD" + "CK" + "A0" + "A1" + "A2" + "A3" + "B0" + "B1" +
+   "B2" + "B3" + "START" + "test_si" + "test_se"'; // #signals=14
+   "_po" = '"CNTVCO2" + "CNTVCON2" + "P0" + "P1" + "P2" + "P3" + "P4" + "P5" +
+   "P6" + "P7" + "READY" + "test_so"'; // #signals=12
+   "_out" = '"CNTVCO2" + "CNTVCON2" + "P0" + "P1" + "P2" + "P3" + "P4" + "P5" +
+   "P6" + "P7" + "READY" + "test_so"'; // #signals=12
+   "_default_In_Timing_" = '"GND" + "VDD" + "CK" + "A0" + "A1" + "A2" + "A3" +
+   "B0" + "B1" + "B2" + "B3" + "START" + "test_si" + "test_se"'; // #signals=14
+   "_default_Out_Timing_" = '"CNTVCO2" + "CNTVCON2" + "P0" + "P1" + "P2" + "P3" +
+   "P4" + "P5" + "P6" + "P7" + "READY" + "test_so"'; // #signals=12
    "_default_Clk0_Timing_" = '"CK"'; // #signals=1
 }
 Timing {
@@ -80,13 +85,13 @@ PatternExec {
 }
 Procedures {
    "multiclock_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r14 #; "_po"=\j \r12 #; }}
    "allclock_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r14 #; "_po"=\j \r12 #; }}
    "allclock_launch" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r14 #; "_po"=\j \r12 #; }}
    "allclock_launch_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r14 #; "_po"=\j \r12 #; }}
    // Uncomment and modify the following to suit your design
    // load_unload {
       // V { "CK" = 0; } // force clocks off and scan enable pins active

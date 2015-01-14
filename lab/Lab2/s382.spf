@@ -1,7 +1,7 @@
 STIL 1.0 { Design 2005; }
 Header {
    Title "  TetraMAX (TM)  G-2012.06-SP5-i130118_181936 STIL output";
-   Date "Wed Jan 14 15:27:37 2015";
+   Date "Wed Jan 14 15:38:55 2015";
    History {
       Ann {*     Uncollapsed Stuck Fault Summary Report *}
       Ann {* ----------------------------------------------- *}
@@ -36,19 +36,20 @@ Header {
    }
 }
 Signals {
-   "GND" In; "VDD" In; "CK" In; "G0" In; "G1" In; "G2" In; "G3" In; "test_si" In;
-   "test_se" In; "G17" Out; "test_so" Out;
+   "GND" In; "VDD" In; "CK" In; "CLR" In; "FM" In; "TEST" In; "test_si" In; "test_se" In;
+   "GRN1" Out; "GRN2" Out; "RED1" Out; "RED2" Out; "YLW1" Out; "YLW2" Out;
 }
 SignalGroups {
-   "_pi" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
-   "test_se"'; // #signals=9
-   "_in" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" + "test_si" +
-   "test_se"'; // #signals=9
-   "_po" = '"G17" + "test_so"'; // #signals=2
-   "_out" = '"G17" + "test_so"'; // #signals=2
-   "_default_In_Timing_" = '"GND" + "VDD" + "CK" + "G0" + "G1" + "G2" + "G3" +
-   "test_si" + "test_se"'; // #signals=9
-   "_default_Out_Timing_" = '"G17" + "test_so"'; // #signals=2
+   "_pi" = '"GND" + "VDD" + "CK" + "CLR" + "FM" + "TEST" + "test_si" + "test_se"';
+   // #signals=8
+   "_in" = '"GND" + "VDD" + "CK" + "CLR" + "FM" + "TEST" + "test_si" + "test_se"';
+   // #signals=8
+   "_po" = '"GRN1" + "GRN2" + "RED1" + "RED2" + "YLW1" + "YLW2"'; // #signals=6
+   "_out" = '"GRN1" + "GRN2" + "RED1" + "RED2" + "YLW1" + "YLW2"'; // #signals=6
+   "_default_In_Timing_" = '"GND" + "VDD" + "CK" + "CLR" + "FM" + "TEST" +
+   "test_si" + "test_se"'; // #signals=8
+   "_default_Out_Timing_" = '"GRN1" + "GRN2" + "RED1" + "RED2" + "YLW1" + "YLW2"';
+   // #signals=6
    "_default_Clk0_Timing_" = '"CK"'; // #signals=1
 }
 Timing {
@@ -80,13 +81,13 @@ PatternExec {
 }
 Procedures {
    "multiclock_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r8 #; "_po"=\j \r6 #; }}
    "allclock_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r8 #; "_po"=\j \r6 #; }}
    "allclock_launch" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r8 #; "_po"=\j \r6 #; }}
    "allclock_launch_capture" { W "_default_WFT_";
-      V { "_pi"=\j \r9 #; "_po"=\j \r2 #; }}
+      V { "_pi"=\j \r8 #; "_po"=\j \r6 #; }}
    // Uncomment and modify the following to suit your design
    // load_unload {
       // V { "CK" = 0; } // force clocks off and scan enable pins active
